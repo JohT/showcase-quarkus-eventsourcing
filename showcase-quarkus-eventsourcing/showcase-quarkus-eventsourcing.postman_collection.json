@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "c6c969bf-35e6-4a7f-a02b-970c44c9151a",
+		"name": "showcase-quarkus-eventsourcing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "226cf9dd-dc05-49c3-8fe6-3b76f07deae6",
+						"exec": [
+							"postman.setEnvironmentVariable(\"showcase_created_account\", ",
+							"postman.getResponseHeader(\"Location\"));",
+							"console.log(pm.variables.get(\"showcase_created_account\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read account nickname",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/accounts/{{showcase_created_account}}/nickname",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"{{showcase_created_account}}",
+						"nickname"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change nickname",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"value\": \"Hugo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/accounts/3a8b3dbc-9a05-4e15-838f-94d0460eb6a5/nickname",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"accounts",
+						"3a8b3dbc-9a05-4e15-838f-94d0460eb6a5",
+						"nickname"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Replay Nickname Projection (Management)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nicknames/projection",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nicknames",
+						"projection"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a82a4917-e810-4828-bca0-fae2fc35e7bd",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4c723b2f-5c40-49d7-acaa-fdd118ff869a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

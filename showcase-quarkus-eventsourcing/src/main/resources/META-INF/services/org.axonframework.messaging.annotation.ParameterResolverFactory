@@ -1,0 +1,4 @@
+#Note: Since there is a problem using ServiceLoader registry on quarkus in dev mode 
+#in conjunction with ClasspathParameterResolverFactory, the registration is done inside AxonConfiguration.
+#For future reference as comment:
+#io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.inject.cdi.CdiParameterResolverFactory
