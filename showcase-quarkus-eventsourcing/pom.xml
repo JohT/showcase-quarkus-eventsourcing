@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire-plugin.version>2.22.2</surefire-plugin.version>
 
-		<quarkus.version>0.21.2</quarkus.version>
+		<quarkus.version>0.22.0</quarkus.version>
 		<axon.version>4.2</axon.version>
 		<reactor.version>3.2.6.RELEASE</reactor.version>
 		<dom4j.version>1.6.1</dom4j.version>
@@ -256,6 +256,23 @@
 								</goals>
 								<configuration>
 									<enableHttpUrlHandler>true</enableHttpUrlHandler>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>${surefire-plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+								<configuration>
+									<systemProperties>
+										<native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+									</systemProperties>
 								</configuration>
 							</execution>
 						</executions>
