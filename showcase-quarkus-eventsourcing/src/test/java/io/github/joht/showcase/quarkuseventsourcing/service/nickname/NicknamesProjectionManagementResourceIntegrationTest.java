@@ -11,13 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.QueryProjectionStatus.Feature;
-import io.quarkus.test.junit.DisabledOnSubstrate;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 
 @QuarkusTest
-@DisabledOnSubstrate
 public class NicknamesProjectionManagementResourceIntegrationTest {
 
     private static final int OK = Status.OK.getStatusCode();

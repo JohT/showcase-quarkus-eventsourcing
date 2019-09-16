@@ -19,7 +19,6 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 
 @QuarkusTest
-// @DisabledOnSubstrate
 public class AccountResourceIntegrationTest {
 
     private static final String EMPTY = "\"\"";
