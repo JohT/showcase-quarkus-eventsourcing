@@ -5,6 +5,8 @@ import static io.github.joht.showcase.quarkuseventsourcing.messaging.infrastruct
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 
@@ -20,6 +22,7 @@ import javax.transaction.TransactionSynchronizationRegistry;
 import javax.transaction.UserTransaction;
 import javax.validation.ValidatorFactory;
 
+import org.axonframework.common.Priority;
 import org.axonframework.common.transaction.TransactionManager;
 import org.axonframework.config.Configuration;
 import org.axonframework.config.Configurer;
@@ -114,19 +117,32 @@ public class AxonConfiguration {
 
     /**
      * Registers <code>CdiParameterResolverFactory</code> on top of the default {@link ParameterResolverFactory}. <br>
-     * For best compatibility, this is done without using ServiceLoader
+     * For best compatibility, this is done without using ServiceLoader, test dependencies and annotations.
      * <p>
      * Note: ClasspathParameterResolverFactory doesn't see "CdiParameterResolverFactory" <br>
      * when running "mvn compile quarkus:dev" (quarkus in development mode). <br>
      * This method assures, that "CdiParameterResolverFactory" gets registered, regardless of which classloader is used.
+     * <p>
+     * Note: "FixtureResourceParameterResolverFactory" gets registered, integration tests and axon aggregate tests run inside the same
+     * module and therefore share the same test dependencies. To remove them for the the "real" configuration, this method also removes test
+     * parameter resolvers.
+     * <p>
+     * Note: {@link MultiParameterResolverFactory#ordered(List)} is not used, since it uses the {@link Priority} annotation, which seems to
+     * have a problem running in quarkus native mode.
      * 
      * @param config {@link Configuration}
      * @return {@link ParameterResolverFactory}
      */
     private ParameterResolverFactory parameterResolvers(Configuration config) {
         Configuration defaultConfig = DefaultConfigurer.defaultConfiguration().buildConfiguration();
-        ParameterResolverFactory parameterResolverFactory = defaultConfig.getComponent(ParameterResolverFactory.class);
-        return MultiParameterResolverFactory.ordered(parameterResolverFactory, new CdiParameterResolverFactory());
+        List<ParameterResolverFactory> factories = allFactoriesOf(defaultConfig.getComponent(ParameterResolverFactory.class));
+        factories.add(new CdiParameterResolverFactory()); // add with lowest priority (without using an annotation)
+        factories.removeIf(factory -> factory.getClass().getName().contains(".test.")); // remove test factories
+        return new MultiParameterResolverFactory(factories);
+    }
+
+    private static List<ParameterResolverFactory> allFactoriesOf(ParameterResolverFactory parameterResolverFactory) {
+        return new ArrayList<>(MultiParameterResolverFactory.ordered(parameterResolverFactory).getDelegates());
     }
 
     @PreDestroy

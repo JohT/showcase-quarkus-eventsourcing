@@ -13,7 +13,6 @@ import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Typed;
 import javax.enterprise.inject.spi.CDI;
 
-import org.axonframework.common.Priority;
 import org.axonframework.messaging.Message;
 import org.axonframework.messaging.annotation.ParameterResolver;
 import org.axonframework.messaging.annotation.ParameterResolverFactory;
@@ -21,8 +20,6 @@ import org.axonframework.messaging.annotation.ParameterResolverFactory;
 /**
  * Resolves method parameters using CDI.
  */
-@Typed()
-@Priority(Priority.LOW)
 public class CdiParameterResolverFactory implements ParameterResolverFactory {
 
 	private static final Logger LOGGER = Logger.getLogger(CdiParameterResolverFactory.class.getName());
