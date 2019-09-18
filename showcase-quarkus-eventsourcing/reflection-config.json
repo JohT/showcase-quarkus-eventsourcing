@@ -61,5 +61,14 @@
     "allPublicMethods" : true,
     "allDeclaredFields" : true,
     "allPublicFields" : true
+  },
+  {
+    "name" : "io.github.joht.showcase.quarkuseventsourcing.domain.model.account.AccountAggregate",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "allDeclaredFields" : true,
+    "allPublicFields" : true
   }
 ]

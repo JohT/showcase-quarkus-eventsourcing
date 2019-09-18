@@ -65,7 +65,7 @@
 			<version>${dom4j.version}</version>
 		</dependency>
 
-		<!-- Axon - Optional dependencies for CQRS and EventSourcing Framework (only needed for native compile)-->
+		<!-- Axon - Optional dependencies for CQRS and EventSourcing Framework (only needed for native compile) -->
 		<dependency>
 			<groupId>xom</groupId>
 			<artifactId>xom</artifactId>
@@ -257,6 +257,9 @@
 								</goals>
 								<configuration>
 									<enableHttpUrlHandler>true</enableHttpUrlHandler>
+									<additionalBuildArgs>
+										<additionalBuildArg>-H:ReflectionConfigurationFiles=${project.basedir}/reflection-config.json</additionalBuildArg>
+									</additionalBuildArgs>
 								</configuration>
 							</execution>
 						</executions>
