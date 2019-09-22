@@ -8,11 +8,15 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class RegisteredAnnotatedTypes {
-    private static final int MAX_RECURSION_DEPTH = 3;
+
+    private static final Logger LOGGER = Logger.getLogger(RegisteredAnnotatedTypes.class.getName());
+
+    private static final int MAX_META_ANNOTATION_RECURSION_DEPTH = 3;
     private final Collection<Class<?>> allTypes = new HashSet<>();
 
 	public static final RegisteredAnnotatedTypes ofStream(Stream<Class<?>> allTypes) {
@@ -28,11 +32,11 @@ class RegisteredAnnotatedTypes {
 	}
 
     public Stream<Class<?>> subtypeOf(Class<?> annotationClass) {
-        return allTypes.stream().filter(annotationClass::isAssignableFrom).distinct();
+        return logged(allTypes.stream().filter(annotationClass::isAssignableFrom).distinct(), annotationClass);
     }
 
     public Stream<Class<?>> annotatedWith(Class<? extends Annotation> annotationClass) {
-        return allTypes.stream().filter(type -> isAnnotationPresent(annotationClass, type)).distinct();
+        return logged(allTypes.stream().filter(type -> isAnnotationPresent(annotationClass, type)).distinct(), annotationClass);
 	}
 
 	@SafeVarargs
@@ -70,7 +74,7 @@ class RegisteredAnnotatedTypes {
 		if (element.isAnnotationPresent(annotationType)) {
 			return true;
 		}
-		if (recursion > MAX_RECURSION_DEPTH) {
+		if (recursion > MAX_META_ANNOTATION_RECURSION_DEPTH) {
 			return false;
 		}
 		for (Annotation annotation : element.getAnnotations()) {
@@ -83,6 +87,10 @@ class RegisteredAnnotatedTypes {
 		}
 		return false;
 	}
+
+    private static Stream<Class<?>> logged(Stream<Class<?>> stream, Class<?> queriedType) {
+        return stream.peek(type -> LOGGER.fine(() -> "Found " + type.getName() + " as " + queriedType));
+    }
 
 	@Override
 	public String toString() {
