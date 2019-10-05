@@ -11,9 +11,14 @@
 * Open [events.html](http://localhost:8080/events.html) in a browser to see server sent events and axon subscription query in action.
 * Use the postman collection "showcase-quarkus-eventsourcing.postman_collection.json" for service call examples.
 * Use the unit tests inside the service package to replay nicknames, create new ones or create further accounts.
-* Build a native image with ```mvn package -Pnative```. A started database server is needed (see above).
-  Details see [Building a native executable](https://quarkus.io/guides/building-native-image-guide)
 
+## Native image
+* Build a native image with ```mvn package -Pnative```.
+  Details see [Building a native executable](https://quarkus.io/guides/building-native-image-guide)
+* Currently there is a bug using native image: 
+  org.axonframework.commandhandling.NoHandlerForCommandException: No handler was subscribed to command [io.github.joht.showcase.quarkuseventsourcing.message.command.account.CreateAccountCommand]
+	at org.axonframework.commandhandling.SimpleCommandBus.doDispatch(SimpleCommandBus.java:146)
+  
 ## Features
 * "Reactive" example using server sent events (may not work for IE and Edge) and axon subscription query
 * Replay example. Use REST DELETE ```/nicknames/projection```
