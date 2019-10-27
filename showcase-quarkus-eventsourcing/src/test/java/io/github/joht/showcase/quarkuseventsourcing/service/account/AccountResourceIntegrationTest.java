@@ -45,9 +45,9 @@ public class AccountResourceIntegrationTest {
         Nickname nickname = Nickname.of("The Rock " + LocalDate.now() + " " + LocalTime.now());
         String newAccount = given().when().post("/accounts").then().statusCode(CREATED).extract().header(LOCATION);
         String nicknameUrl = newAccount + "/nickname";
-        given().when().get(nicknameUrl).then().statusCode(OK).content(containsString(EMPTY));
+        given().when().get(nicknameUrl).then().statusCode(OK).body(containsString(EMPTY));
         given().body(jsonb.toJson(nickname)).when().when().put(nicknameUrl).then().statusCode(NO_CONTENT);
-        given().when().get(nicknameUrl).then().statusCode(OK).content(containsString(nickname.getValue()));
+        given().when().get(nicknameUrl).then().statusCode(OK).body(containsString(nickname.getValue()));
     }
 
     private static RequestSpecification given() {

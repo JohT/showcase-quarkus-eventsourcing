@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -70,6 +71,8 @@ import io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.Que
 @Typed()
 @ApplicationScoped
 public class AxonConfiguration {
+
+    private static final Logger LOGGER = Logger.getLogger(AxonConfiguration.class.getName());
 
     private static final String DATABASE_POSTGRESQL_JSON_BINARY_TYPE = "jsonb";
     private static final String DATABASE_SCHEMA_COMMAND_SIDE = "axon_on_microprofile_tryout";
@@ -248,7 +251,13 @@ public class AxonConfiguration {
 
     // Note Query-Side
     private static Consumer<QueryModelProjection> assignUsing(EventProcessingConfigurer eventProcessing) {
-        return assignment -> eventProcessing.assignProcessingGroup(assignment.processingGroup(), assignment.processor().getName());
+        return assignment -> eventProcessing.assignProcessingGroup(logged(assignment).processingGroup(), assignment.processor().getName());
+    }
+
+    private static QueryModelProjection logged(QueryModelProjection assignment) {
+        LOGGER.fine(
+                () -> String.format("Processor %s assigned to group %s", assignment.processor().getName(), assignment.processingGroup()));
+        return assignment;
     }
 
     // Note Query-Side
@@ -263,9 +272,17 @@ public class AxonConfiguration {
         // Note: Other projections (e.g. for materialized reports) are notified
         // asynchronously. They shouldn't influence the main thread and aren't needed to
         // react immediately ("eventual consistency").
-        eventProcessing.registerTokenStore(this::jdbcTokenStore);
         eventProcessing.registerTrackingEventProcessorConfiguration(this::trackingEventProcessorConfig);
+        eventProcessing.registerTrackingEventProcessor(QueryProcessor.TRACKING.getName());
+        eventProcessing.registerTokenStore(this::jdbcTokenStore);
+        eventProcessing.assignProcessingGroup(this::logDefaultAssignment);
         return configurer;
+    }
+
+    private String logDefaultAssignment(String processingGroup) {
+        LOGGER.fine(() -> "Default assignment for processingGroup <" + processingGroup + ">");
+        return ((processingGroup != null) && !processingGroup.trim().isEmpty()) ? processingGroup
+                : QueryProcessor.TRACKING.getName();
     }
 
     // Note Query-Side

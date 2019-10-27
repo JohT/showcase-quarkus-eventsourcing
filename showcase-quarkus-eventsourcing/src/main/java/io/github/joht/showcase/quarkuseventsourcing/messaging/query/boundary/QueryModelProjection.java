@@ -48,11 +48,11 @@ public @interface QueryModelProjection {
      * Specifies the processor name that will be assigned to the {@link #processingGroup()}.<br>
      * The processor name represents a processing configuration.
      * <p>
-     * Defaults to {@link QueryProcessor#DEFAULT_TRACKING}
+     * Defaults to {@link QueryProcessor#TRACKING}
      * 
      * @return {@link QueryProcessor}
      */
-    QueryProcessor processor() default QueryProcessor.DEFAULT_TRACKING;
+    QueryProcessor processor() default QueryProcessor.TRACKING;
 
     /**
      * Gets the assignment between {@link QueryModelProjection#processingGroup()} and {@link QueryModelProjection#processor()} for the given

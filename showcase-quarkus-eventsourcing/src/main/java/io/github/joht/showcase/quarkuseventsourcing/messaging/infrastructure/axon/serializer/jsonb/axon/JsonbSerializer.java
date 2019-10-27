@@ -1,5 +1,7 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import javax.json.bind.JsonbBuilder;
@@ -31,6 +33,8 @@ import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axo
  * @author JohT
  */
 public class JsonbSerializer implements Serializer {
+
+    private static final Logger LOGGER = Logger.getLogger(JsonbSerializer.class.getName());
 
     private RevisionResolver revisionResolver = new AnnotationRevisionResolver();
     private Converter converter = new ChainingConverter();
@@ -117,9 +121,11 @@ public class JsonbSerializer implements Serializer {
         if (SimpleSerializedType.emptyType().equals(type)) {
             return Void.class;
         }
+        String classNameToResolve = resolveClassName(type);
         try {
-            return Class.forName(resolveClassName(type));
+            return Class.forName(classNameToResolve);
         } catch (ClassNotFoundException e) {
+            LOGGER.log(Level.WARNING, e, () -> "Class " + classNameToResolve + " for type " + type + " not found");
             return UnknownSerializedType.class;
         }
     }

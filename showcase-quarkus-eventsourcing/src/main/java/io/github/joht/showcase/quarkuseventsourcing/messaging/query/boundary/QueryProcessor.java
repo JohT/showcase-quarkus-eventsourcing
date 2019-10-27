@@ -6,7 +6,7 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary;
  * @author JohT
  */
 public enum QueryProcessor {
-    DEFAULT_TRACKING(""),
+    TRACKING("tracking"),
     SUBSCRIBING("subscribing"),
     ;
 
@@ -21,6 +21,6 @@ public enum QueryProcessor {
     }
 
     public boolean isDefault() {
-        return equals(DEFAULT_TRACKING);
+        return equals(TRACKING);
     }
 }

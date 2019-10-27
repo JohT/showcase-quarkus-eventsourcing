@@ -1,5 +1,8 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.adapter;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -19,6 +22,8 @@ import org.axonframework.eventhandling.TrackingToken;
  * @author JohT
  */
 class JsonbReplayTokenAdapter implements JsonbAdapter<ReplayToken, JsonObject> {
+
+    private static final Logger LOGGER = Logger.getLogger(JsonbReplayTokenAdapter.class.getName());
 
     private static final String TYPE_FIELD = "@class";
     private static final String TOKEN_AT_RESET = "tokenAtReset";
@@ -84,6 +89,7 @@ class JsonbReplayTokenAdapter implements JsonbAdapter<ReplayToken, JsonObject> {
         try {
             return Class.forName(typename);
         } catch (ClassNotFoundException e) {
+            LOGGER.log(Level.WARNING, e, () -> "Class " + typename + " not found");
             throw new IllegalArgumentException(e);
         }
     }

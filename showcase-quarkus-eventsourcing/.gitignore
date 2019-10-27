@@ -2,6 +2,7 @@
 .project
 .classpath
 .settings/
+analyzed-substrate-for-native-image/
 bin/
 
 # IntelliJ

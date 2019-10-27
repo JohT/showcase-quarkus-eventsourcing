@@ -18,6 +18,8 @@
 * Currently there is a bug using native image: 
   org.axonframework.commandhandling.NoHandlerForCommandException: No handler was subscribed to command [io.github.joht.showcase.quarkuseventsourcing.message.command.account.CreateAccountCommand]
 	at org.axonframework.commandhandling.SimpleCommandBus.doDispatch(SimpleCommandBus.java:146)
+* The substrate runner can be used to collect configuration data for the native image. Use this command for that:
+```java -agentlib:native-image-agent=config-output-dir=native-image -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
   
 ## Features
 * "Reactive" example using server sent events (may not work for IE and Edge) and axon subscription query

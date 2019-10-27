@@ -1,5 +1,7 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon;
 
+import java.util.logging.Logger;
+
 import org.axonframework.config.AggregateConfigurer;
 import org.axonframework.config.Configuration;
 import org.axonframework.eventsourcing.AggregateSnapshotter;
@@ -18,7 +20,9 @@ import io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTarge
  */
 class AxonAggregateConfiguration {
 
-	private final AggregateConfigurer<?> aggregateConfigurer;
+    private static final Logger LOGGER = Logger.getLogger(AxonAggregateConfiguration.class.getName());
+
+    private final AggregateConfigurer<?> aggregateConfigurer;
 
 	public static final AggregateConfigurer<?> update(AggregateConfigurer<?> aggregateConfigurer) {
 		return new AxonAggregateConfiguration(aggregateConfigurer).aggregateConfiguration();
@@ -38,6 +42,7 @@ class AxonAggregateConfiguration {
 		// (better avoid that),
 		// but to make the API as independent as possible.
 		aggregateConfigurer.configureCommandTargetResolver(config -> annotationCommandTargetResolver());
+        LOGGER.fine(() -> "Configured Aggregate " + aggregateConfigurer.aggregateType());
 		return aggregateConfigurer;
 	}
 
