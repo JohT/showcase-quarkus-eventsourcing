@@ -19,7 +19,7 @@
   then it might help to just start and stop the application to trigger flyway using the runner.jar:
   ```java -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
 * The substrate runner can be used to collect configuration data for the native image:
-   ```java -agentlib:native-image-agent=config-output-dir=native-image -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
+   ```$GRAALVM_HOME/bin/java -agentlib:native-image-agent=config-output-dir=native-image -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
   This is helpful to get a hint on how to configure ```reflection-config.json``` and ```resources-config.json```
   These files were configured that way.
   To automate this and to get a more complete set of entries, a build step may be a solution.
