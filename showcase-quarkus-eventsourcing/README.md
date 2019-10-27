@@ -1,7 +1,7 @@
 # Showcase for eventsourcing on quarkus using axon and standard microprofile
 
 ## Getting started
-* Clone or download this repositor.y 
+* Clone or download this repository. 
 * Open a terminal/command window.
 * Locate the h2 jar in your maven repository, e.g. ```repository/com/h2database/h2/1.4.197/```.
 * Start the h2 database server using ```java -cp h2-1.4.197.jar org.h2.tools.Server -tcpAllowOthers```.
@@ -15,11 +15,15 @@
 ## Native image
 * Build a native image with ```mvn package -Pnative```.
   Details see [Building a native executable](https://quarkus.io/guides/building-native-image-guide)
-* Currently there is a bug using native image: 
-  org.axonframework.commandhandling.NoHandlerForCommandException: No handler was subscribed to command [io.github.joht.showcase.quarkuseventsourcing.message.command.account.CreateAccountCommand]
-	at org.axonframework.commandhandling.SimpleCommandBus.doDispatch(SimpleCommandBus.java:146)
-* The substrate runner can be used to collect configuration data for the native image. Use this command for that:
-```java -agentlib:native-image-agent=config-output-dir=native-image -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
+* If there is a problem updating the database scheme (table ... does not exists),
+  then it might help to just start and stop the application to trigger flyway using the runner.jar:
+  ```java -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
+* The substrate runner can be used to collect configuration data for the native image:
+   ```java -agentlib:native-image-agent=config-output-dir=native-image -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
+  This is helpful to get a hint on how to configure ```reflection-config.json``` and ```resources-config.json```
+  These files were configured that way.
+  To automate this and to get a more complete set of entries, a build step may be a solution.
+  Ideally, there would be a axon-extension for quarkus that manages these settings.
   
 ## Features
 * "Reactive" example using server sent events (may not work for IE and Edge) and axon subscription query
