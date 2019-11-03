@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire-plugin.version>2.22.2</surefire-plugin.version>
 
-		<quarkus.version>0.25.0</quarkus.version>
+		<quarkus.version>0.26.1</quarkus.version>
 		<axon.version>4.2</axon.version>
 		<reactor.version>3.3.0.RELEASE</reactor.version>
 		<dom4j.version>1.6.1</dom4j.version>

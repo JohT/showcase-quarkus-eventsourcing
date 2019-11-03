@@ -15,7 +15,7 @@
 ## Native image
 * Build a native image with ```mvn package -Pnative```.
   Details see [Building a native executable](https://quarkus.io/guides/building-native-image-guide)
-* If there is a problem updating the database scheme (table ... does not exists),
+* (should be solved) If there is a problem updating the database scheme (table ... does not exists),
   then it might help to just start and stop the application to trigger flyway using the runner.jar:
   ```java -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
 * The substrate runner can be used to collect configuration data for the native image:

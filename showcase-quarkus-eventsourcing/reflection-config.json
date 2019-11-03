@@ -9,6 +9,12 @@
 		]
 	},
 	{
+		"name": "com.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean",
+		"allDeclaredFields": true,
+		"allDeclaredMethods": true,
+		"allDeclaredConstructors": true
+	},
+	{
 		"name": "org.axonframework.commandhandling.CommandHandler",
 		"allDeclaredMethods": true
 	},
@@ -262,6 +268,12 @@
 	},
 	{
 		"name": "org.axonframework.messaging.annotation.SourceIdParameterResolverFactory",
+		"allDeclaredFields": true,
+		"allDeclaredMethods": true,
+		"allDeclaredConstructors": true
+	},
+	{
+		"name": "org.axonframework.eventsourcing.conflictresolution.ConflictResolution",
 		"allDeclaredFields": true,
 		"allDeclaredMethods": true,
 		"allDeclaredConstructors": true
