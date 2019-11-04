@@ -9,12 +9,6 @@
 		]
 	},
 	{
-		"name": "com.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean",
-		"allDeclaredFields": true,
-		"allDeclaredMethods": true,
-		"allDeclaredConstructors": true
-	},
-	{
 		"name": "org.axonframework.commandhandling.CommandHandler",
 		"allDeclaredMethods": true
 	},

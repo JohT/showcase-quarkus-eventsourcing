@@ -8,8 +8,8 @@
 * Open another terminal/command window. Don't close the one where the h2 server is running.
 * Open the directory where this README.md is located.
 * Run the application by using the following command: ```mvn compile quarkus:dev```.
-* Open [events.html](http://localhost:8080/events.html) in a browser to see server sent events and axon subscription query in action.
 * Use the postman collection "showcase-quarkus-eventsourcing.postman_collection.json" for service call examples.
+* Open [events.html](http://localhost:8080/events.html) in a browser to see server sent events and axon subscription query in action.
 * Use the unit tests inside the service package to replay nicknames, create new ones or create further accounts.
 
 ## Native image
