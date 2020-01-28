@@ -13,14 +13,14 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire-plugin.version>2.22.2</surefire-plugin.version>
 
-		<quarkus.version>0.28.0</quarkus.version>
-		<axon.version>4.2</axon.version>
+		<quarkus.version>1.2.0.Final</quarkus.version>
+		<axon.version>4.2.1</axon.version>
 		<reactor.version>3.3.0.RELEASE</reactor.version>
 		<dom4j.version>1.6.1</dom4j.version>
 		<xom.version>1.2.5</xom.version>
 
-		<archunit.version>0.12.0</archunit.version>
-		<equalsverifier.version>3.1.10</equalsverifier.version>
+		<archunit.version>0.13.0</archunit.version>
+		<equalsverifier.version>3.1.11</equalsverifier.version>
 		<mockito.version>3.0.0</mockito.version>
 		<hamcrest.version>2.1</hamcrest.version>
 	</properties>
@@ -152,13 +152,7 @@
 		<!-- Testing - Architectural Unit Testing Libraries -->
 		<dependency>
 			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit-junit5-api</artifactId>
-			<version>${archunit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit-junit5-engine</artifactId>
+			<artifactId>archunit-junit5</artifactId>
 			<version>${archunit.version}</version>
 			<scope>test</scope>
 		</dependency>

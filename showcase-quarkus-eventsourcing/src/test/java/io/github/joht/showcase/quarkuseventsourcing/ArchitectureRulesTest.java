@@ -6,6 +6,8 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.fields;
 import static nl.jqno.equalsverifier.Warning.STRICT_HASHCODE;
 import static nl.jqno.equalsverifier.Warning.SURROGATE_KEY;
 
+import java.lang.annotation.Retention;
+
 import org.axonframework.modelling.command.AggregateRoot;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -85,6 +87,7 @@ public class ArchitectureRulesTest {
     @DisplayName("boundary should not use axon directly")
     void boundaryShouldNotUseAxonDirectly() {
         classes().that().resideInAPackage("..boundary..")
+                .and().areNotAnnotatedWith(Retention.class) // ignore annotations here
                 .should().onlyDependOnClassesThat().resideOutsideOfPackages("..axon..", "..axonframework..")
                 .check(classes);
     }
