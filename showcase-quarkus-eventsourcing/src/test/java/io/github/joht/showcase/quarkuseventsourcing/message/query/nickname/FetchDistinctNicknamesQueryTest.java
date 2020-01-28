@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import io.github.joht.showcase.quarkuseventsourcing.message.query.nickname.FetchDistinctNicknamesQuery;
-
 class FetchDistinctNicknamesQueryTest {
 
     FetchDistinctNicknamesQuery queryToTest;
@@ -32,7 +30,7 @@ class FetchDistinctNicknamesQueryTest {
     @DisplayName("a negative offset queries all nicknames ignoring their creation timestamp")
     void negativeOffsetMeansIgnoreCreatedSince() {
         queryToTest = FetchDistinctNicknamesQuery.allNicknamesLike("Max").usingOffset(-1);
-        assertEquals(Instant.MIN, queryToTest.getCreatedSince());
+        assertEquals(Instant.ofEpochMilli(0), queryToTest.getCreatedSince());
     }
 
     @Test

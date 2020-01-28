@@ -5,7 +5,8 @@ import java.util.Objects;
 
 public class FetchDistinctNicknamesQuery {
 
-	private static final String UNFILTERED = "";
+    private static final Instant ALL_PAST_CHANGES = Instant.ofEpochMilli(0);
+    private static final String UNFILTERED = "";
 
 	private final String partOfNickname;
     private final Instant createdSince;
@@ -15,7 +16,7 @@ public class FetchDistinctNicknamesQuery {
     }
 
     public static final FetchDistinctNicknamesQuery allNicknamesLike(String partOfNickname) {
-        return new FetchDistinctNicknamesQuery(partOfNickname, Instant.MIN);
+        return new FetchDistinctNicknamesQuery(partOfNickname, ALL_PAST_CHANGES);
     }
 
     protected FetchDistinctNicknamesQuery(String partOfNickname, Instant createdSince) {
@@ -24,7 +25,7 @@ public class FetchDistinctNicknamesQuery {
 	}
 
     public FetchDistinctNicknamesQuery usingOffset(long offset) {
-        return createdSince((offset > 0) ? Instant.ofEpochMilli(offset) : Instant.MIN);
+        return createdSince((offset > 0) ? Instant.ofEpochMilli(offset) : ALL_PAST_CHANGES);
     }
 
     public FetchDistinctNicknamesQuery createdSince(Instant createdSince) {
