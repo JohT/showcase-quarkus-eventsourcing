@@ -1,7 +1,5 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.database;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import static io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.database.DatabaseCatalogColumn.columnIn;
 import static io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.database.DatabaseCatalogTable.schemaAndTable;
 
@@ -14,12 +12,13 @@ import javax.sql.DataSource;
 
 import org.junit.jupiter.api.Test;
 
-import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.database.DatabaseCatalogQuery;
-import io.quarkus.test.junit.DisabledOnSubstrate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import io.quarkus.test.junit.DisabledOnNativeImage;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
-@DisabledOnSubstrate
+@DisabledOnNativeImage
 public class DatabaseCatalogQueryIntegrationTest {
 
     @Inject

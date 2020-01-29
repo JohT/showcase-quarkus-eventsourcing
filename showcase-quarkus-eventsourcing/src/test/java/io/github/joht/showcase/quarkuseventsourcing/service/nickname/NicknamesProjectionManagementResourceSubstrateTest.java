@@ -2,10 +2,10 @@ package io.github.joht.showcase.quarkuseventsourcing.service.nickname;
 
 import org.junit.jupiter.api.Disabled;
 
-import io.quarkus.test.junit.SubstrateTest;
+import io.quarkus.test.junit.NativeImageTest;
 
 @Disabled
-@SubstrateTest
+@NativeImageTest
 public class NicknamesProjectionManagementResourceSubstrateTest extends NicknamesProjectionManagementResourceIntegrationTest {
     // run the same tests
 }
