@@ -8,16 +8,13 @@
 * Open another terminal/command window. Don't close the one where the h2 server is running.
 * Open the directory where this README.md is located.
 * Run the application by using the following command: ```mvn compile quarkus:dev```.
+* Open the UI [http://localhost:8080](http://localhost:8080)
 * Use the postman collection "showcase-quarkus-eventsourcing.postman_collection.json" for service call examples.
-* Open [events.html](http://localhost:8080/events.html) in a browser to see server sent events and axon subscription query in action.
 * Use the unit tests inside the service package to replay nicknames, create new ones or create further accounts.
 
 ## Native image
 * Build a native image with ```mvn package -Pnative```.
   Details see [Building a native executable](https://quarkus.io/guides/building-native-image-guide)
-* (should be solved) If there is a problem updating the database scheme (table ... does not exists),
-  then it might help to just start and stop the application to trigger flyway using the runner.jar:
-  ```java -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
 * The substrate runner can be used to collect configuration data for the native image:
    ```$GRAALVM_HOME/bin/java -agentlib:native-image-agent=config-output-dir=native-image -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
   This is helpful to get a hint on how to configure ```reflection-config.json``` and ```resources-config.json```
@@ -26,19 +23,20 @@
   Ideally, there would be a axon-extension for quarkus that manages these settings.
   
 ## Features
-* "Reactive" example using server sent events (may not work for IE and Edge) and axon subscription query
+* "Reactive" example using server sent events (tested with safari browser) and axon subscription query
 * Replay example. Use REST DELETE ```/nicknames/projection```
 * Contains an axon upcaster example
 * Works with H2 and PostgreSql. Just switch the regarding comments in ```application.properties``` and ```persistence.xml```.
 * Uses flyway for database schema migration. It is configured to work with H2 and PostgreSql.
 * Uses JSON-B to stay inside the microprofile standard
 * Uses meta-annotations to fully decouple axon from the message api and business code.
+* Full-Stack Build configuration including JavaScript Unit Tests with Jasmine, JavaScript minify, ... 
 
 ## Notes
 * Code comments containing the marker ```Note:``` describes thoughts, background information, documented decisions and hints to problems. 
 * ```ArchitectureRulesTest``` defines rules to assure low coupling between the business core, axon and the microprofile features.
 * These rules might seem a bit extreme. Some may even find them to be impractical. After all, this examples shows that it can be done.
-* This is just a simple show case, not an fully thought through application. 
+* This is just a simple show case, not an full application. 
 
 ## What is axon?
 

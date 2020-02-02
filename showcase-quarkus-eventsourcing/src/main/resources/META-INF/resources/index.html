@@ -1,152 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>full - 1.0-SNAPSHOT</title>
-    <style>
-        h1, h2, h3, h4, h5, h6 {
-            margin-bottom: 0.5rem;
-            font-weight: 400;
-            line-height: 1.5;
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles/application.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="styles/animate.min.css" type="text/css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Baumans|Open+Sans&display=swap" rel="stylesheet" />
 
-        h1 {
-            font-size: 2.5rem;
-        }
+    <script src="javascript/application.js"></script>
+    
+    <title>event sourcing showcase</title>
+  </head>
 
-        h2 {
-            font-size: 2rem
-        }
+  <body>
+    <header class="container">
+      <h1 id="headertext" class="animated rubberBand delay-1s">Event Sourcing Showcase</h1>
+      <div class="marquee fast backgroundtext">
+        <div>
+          <span>----</span>
+        </div>
+      </div>
+      <div class="marquee slow backgroundtext">
+        <div>
+          <span>--</span>
+        </div>
+      </div>
+      <div class="marquee normal backgroundtext">
+        <div>
+          <span>---</span>
+        </div>
+      </div>
+    </header>
 
-        h3 {
-            font-size: 1.75rem
-        }
+    <section class="accountsettings container">
+      <div>
+        <input id="accountid" placeholder="no account selected" readonly/>
+      </div>
+      <div>
+        <table>
+          <tr>
+            <td rowspan="2">
+              <button id="create_account" class="action big">
+                create account
+              </button>
+            </td>
+            <td class="nickname_panel hide">
+              <input id="nickname" placeholder="choose nickname" />
+              <input id="nickname_old" hidden="true" />
+            </td>
+          </tr>
+          <tr>
+            <td class="nickname_panel confirmationalignment hide">
+              <button id="nickname_confirm" class="confirm action"></button>
+              <button id="nickname_reset" class="abort noaction"></button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <button id="replay_nicknames" class="action big">
+        replay nicknames
+      </button>
+    </section>
 
-        h4 {
-            font-size: 1.5rem
-        }
-
-        h5 {
-            font-size: 1.25rem
-        }
-
-        h6 {
-            font-size: 1rem
-        }
-
-        .lead {
-            font-weight: 300;
-            font-size: 2rem;
-        }
-
-        .banner {
-            font-size: 2.7rem;
-            margin: 0;
-            padding: 2rem 1rem;
-            background-color: #00A1E2;
-            color: white;
-        }
-
-        body {
-            margin: 0;
-            font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        }
-
-        code {
-            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            font-size: 87.5%;
-            color: #e83e8c;
-            word-break: break-word;
-        }
-
-        .left-column {
-            padding: .75rem;
-            max-width: 75%;
-            min-width: 55%;
-        }
-
-        .right-column {
-            padding: .75rem;
-            max-width: 25%;
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-        }
-
-        li {
-            margin: 0.75rem;
-        }
-
-        .right-section {
-            margin-left: 1rem;
-            padding-left: 0.5rem;
-        }
-
-        .right-section h3 {
-            padding-top: 0;
-            font-weight: 200;
-        }
-
-        .right-section ul {
-            border-left: 0.3rem solid #00A1E2;
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-    </style>
-</head>
-<body>
-
-<div class="banner lead">
-    Your new Cloud-Native application is ready!
-</div>
-
-<div class="container">
-    <div class="left-column">
-        <p class="lead"> Congratulations, you have created a new Quarkus application.</p>
-
-        <h2>Why do you see this?</h2>
-
-        <p>This page is served by Quarkus. The source is in
-            <code>src/main/resources/META-INF/resources/index.html</code>.</p>
-
-        <h2>What can I do from here?</h2>
-
-        <p>If not already done, run the application in <em>dev mode</em> using: <code>mvn compile quarkus:dev</code>.
-        </p>
-        <ul>
-            <li>Add REST resources, Servlets, functions and other services in <code>src/main/java</code>.</li>
-            <li>Your static assets are located in <code>src/main/resources/META-INF/resources</code>.</li>
-            <li>Configure your application in <code>src/main/resources/application.properties</code>.
-            </li>
+    <section class="eventviews container">
+      <div class="eventview">
+        <h3>nicknames</h3>
+        <ul id="nicknamechanges" class="bulletless"></ul>
+      </div>
+      <!-- for further views -->
+      <div class="eventview">
+        <h3>&nbsp;</h3>
+        <ul id="createdaccounts" class="bulletless">
+          <li>&nbsp;</li>
         </ul>
+      </div>
+    </section>
 
-        <h2>How do I get rid of this page?</h2>
-        <p>Just delete the <code>src/main/resources/META-INF/resources/index.html</code> file.</p>
-    </div>
-    <div class="right-column">
-        <div class="right-section">
-            <h3>Application</h3>
-            <ul>
-                <li>GroupId: com.airhacks</li>
-                <li>ArtifactId: full</li>
-                <li>Version: 1.0-SNAPSHOT</li>
-                <li>Quarkus Version: 0.15.0</li>
-            </ul>
-        </div>
-        <div class="right-section">
-            <h3>Next steps</h3>
-            <ul>
-                <li><a href="https://quarkus.io/guides/maven-tooling.html">Setup your IDE</a></li>
-                <li><a href="https://quarkus.io/guides/getting-started-guide.html">Getting started</a></li>
-                <li><a href="https://quarkus.io">Quarkus Web Site</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
-</body>
+    <footer class="container">
+      (c)2020 JohT
+    </footer>
+  </body>
 </html>
