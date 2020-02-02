@@ -1,0 +1,292 @@
+html,
+body {
+  height: 100vh;
+  background-color: rgba(0, 0, 25, 0.832);
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+header.container {
+  padding-top: 0em;
+  position: relative;
+}
+
+section {
+  flex: 1 0 auto;
+  display: block;
+}
+
+footer {
+  margin-bottom: 1em;
+  flex-shrink: 0;
+}
+footer.container {
+  background-position: 0% 90%;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+input {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  color: inherit;
+  border-color: #60a5ff;
+  background-color: rgba(0, 0, 25, 0.832);
+  margin-bottom: 1em;
+}
+
+td.confirmationalignment {
+  text-align: right;
+}
+
+button {
+  border-style: ridge;
+  padding: 0;
+  border: 1;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 10px;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+button:focus {
+  outline: 1px dotted;
+}
+/* "action" identifies elements, that lead to an action 
+   or that executed an action successfully.*/
+.action {
+  border-color: #2f9c4a;
+  background-color: #2f9c4a48;
+  outline-color: #2f9c4a;
+  color: #90ffa8;
+}
+button.action:hover {
+  background-color: #2f9c4a8e;
+}
+button.action:active {
+  background-color: #2f9c4ae5;
+}
+button.action:disabled {
+  cursor: auto;
+  border-color: #2f9c4a56;
+  background-color: #2f9c4a3f;
+  color: #90ffa846;
+}
+
+/* "noaction" identifies elements, that abort an action 
+   or that indicate an error that had occurred.*/
+.noaction {
+  border-color: #9c2f2f;
+  background-color: #9c2f2f48;
+  outline-color: #9c2f2f;
+  color: #e44141;
+}
+button.noaction:hover {
+  background-color: #9c2f2f8e;
+}
+button.noaction:active {
+  background-color: #9c2f2fe5;
+}
+button.noaction:disabled {
+  cursor: auto;
+  border-color: #9c2f2f65;
+  background-color: #9c2f2f42;
+  color: #e4414154;
+}
+button.confirm {
+  border-style: outset;
+  width: 1.5em;
+}
+button.confirm:before {
+  content: "\2713";
+}
+button.abort {
+  border-style: outset;
+  width: 1.5em;
+}
+button.abort:before {
+  content: "\2715";
+}
+
+button.big {
+  height: 3em;
+  width: 8em;
+  font-size: larger;
+  text-align: center;
+  text-shadow: 1px 1px 2px #1d612ecc;
+}
+
+table {
+  border-collapse: collapse;
+}
+table td.highlighted {
+  border-width: 1px;
+  border-style: ridge;
+  border-color: #2f9c4a;
+}
+table tr:first-of-type td.highlighted {
+  border-bottom: none;
+}
+table tr:last-of-type td.highlighted {
+  border-top: none;
+}
+
+#headertext {
+  font-family: Baumans;
+  font-weight: bolder;
+  font-size: xx-large;
+  font-kerning: normal;
+  text-shadow: 0.15em 0.15em rgb(32, 55, 87), -1px -1px 0 #000, 1px -1px 0 #aaa, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+section.accountsettings {
+  background-position: 0% 30%;
+  text-align: left;
+}
+#accountid {
+  width: 90%;
+  max-width: 28em;
+  height: 1.5em;
+}
+#nickname {
+  width: 12em;
+  height: 1.5em;
+  margin-left: 1em;
+  margin-bottom: 0;
+}
+button#create_account {
+  margin-bottom: 1em;
+}
+
+section.eventviews {
+  background-position: 0% 85%;
+  text-align: left;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.eventviews {
+  display: flex;
+  height: 45vh;
+}
+.eventview {
+  flex: 50%;
+  border-width: 2px;
+  border-color: inherit;
+  border-style: ridge;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 1em;
+  background-color: rgba(0, 0, 25, 0.832);
+  font-family: "Courier New", Courier, monospace;
+  font-size: x-small;
+  font-weight: lighter;
+}
+.eventview ul {
+  margin: 0;
+  padding: 0;
+}
+.eventview h3 {
+  text-align: center;
+  padding-bottom: 1em;
+}
+
+.container {
+  background-image: url("../images/lines-board-blue-smaller.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  color: #60a5ff;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 1em;
+  border-style: groove;
+  border-color: #60a5ff;
+  border-width: 2px;
+  font-family: Baumans;
+  text-align: center;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.container input::placeholder {
+  color: rgba(96, 165, 255, 0.6);
+}
+
+.backgroundtext {
+  font-family: "Courier New", Courier, monospace, Helvetica, sans-serif;
+  font-weight: light;
+  font-size: small;
+  text-shadow: none;
+  color: rgb(69, 120, 185);
+}
+
+.marquee {
+  height: 1em;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.marquee div {
+  display: block;
+  width: 200%;
+  height: 1em;
+  position: absolute;
+  overflow: hidden;
+}
+.marquee.slow div {
+  animation: marquee 3.5s linear infinite;
+}
+.marquee.normal div {
+  animation: marquee 3s linear infinite;
+}
+.marquee.fast div {
+  animation: marquee 2s linear infinite;
+}
+.marquee span {
+  float: left;
+  width: 100%;
+}
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -110%;
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  position: relative;
+}
+.spinner:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border-top: 2px solid rgb(18, 221, 0);
+  border-right: 2px solid transparent;
+  animation: spinner 0.6s linear infinite;
+}
+
+.bulletless {
+  list-style: none;
+}

@@ -203,6 +203,92 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>com.github.searls</groupId>
+				<artifactId>jasmine-maven-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>bdd</goal>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sourceExcludes>
+						<exclude>**/startup.js</exclude>
+					</sourceExcludes>
+					<keepServerAlive>true</keepServerAlive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.timurstrekalov</groupId>
+				<artifactId>saga-maven-plugin</artifactId>
+				<version>1.5.5</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>coverage</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<baseDir>http://localhost:${jasmine.serverPort}</baseDir>
+					<outputDir>${project.build.directory}/coverage</outputDir>
+					<noInstrumentPatterns>
+						<pattern>.*/spec/.*</pattern> <!-- Don't instrument specs -->
+						<pattern>.*/jasmine/.*</pattern> <!-- Don't instrument jasmine -->
+						<pattern>.*/lib/.*</pattern> <!-- Don't instrument libs -->
+						<pattern>.*/polyfills/.*</pattern> <!-- Don't instrument libs -->
+					</noInstrumentPatterns>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<version>1.5.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compress</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<preProcessAggregates>true</preProcessAggregates>
+					<aggregations>
+						<aggregation>
+							<insertNewLine>true</insertNewLine>
+							<inputDir>${project.basedir}/src/main/javascript</inputDir>
+							<output>${project.build.directory}/aggregated/javascript/application.js</output>
+							<includes>
+								<include>**/*.js</include>
+							</includes>
+						</aggregation>
+					</aggregations>
+					<includes>
+						<include>**/*application.js</include>
+					</includes>
+					<jswarn>false</jswarn>
+					<nosuffix>true</nosuffix>
+					<nomunge>true</nomunge>	<!-- disables obfuscation -->
+					<sourceDirectory>${project.build.directory}/aggregated</sourceDirectory>
+					<outputDirectory>${project.build.directory}/classes/META-INF/resources</outputDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.8.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.0.0</version>
+			</plugin>
+
+
+			<plugin>
 				<groupId>io.quarkus</groupId>
 				<artifactId>quarkus-maven-plugin</artifactId>
 				<version>${quarkus.version}</version>
