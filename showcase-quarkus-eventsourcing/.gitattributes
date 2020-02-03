@@ -99,6 +99,11 @@
 *.tagx          text
 *.xml           text
 
+# These files shouldn't be taken into account for statistics 
+# since they are from external libraries
+src/main/javascript/polyfills/** linguist-vendored
+src/test/resources/jasmine/** linguist-vendored
+
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
 *.class         binary
