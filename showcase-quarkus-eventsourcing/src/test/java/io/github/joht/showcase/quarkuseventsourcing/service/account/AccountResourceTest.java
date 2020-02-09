@@ -19,7 +19,7 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 
 @QuarkusTest
-public class AccountResourceIntegrationTest {
+public class AccountResourceTest {
 
     private static final String EMPTY = "\"\"";
 

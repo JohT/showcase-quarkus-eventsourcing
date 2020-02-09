@@ -16,7 +16,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 
 @QuarkusTest
-public class NicknamesProjectionManagementResourceIntegrationTest {
+public class NicknamesProjectionManagementResourceTest {
 
     private static final int OK = Status.OK.getStatusCode();
     private static final int NO_CONTENT = Status.NO_CONTENT.getStatusCode();

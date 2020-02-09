@@ -1,4 +1,4 @@
-package io.github.joht.showcase.quarkuseventsourcing.service.account;
+package io.github.joht.showcase.quarkuseventsourcing.service.nickname;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -34,7 +34,7 @@ public class NicknameEventStreamResource {
 
     @GET
     @Produces(MediaType.SERVER_SENT_EVENTS)
-    public void getAccountEvents(
+    public void getNicknameStream(
             @QueryParam("contains") @DefaultValue("") String partOfNickname,
             @HeaderParam(HttpHeaders.LAST_EVENT_ID_HEADER) @DefaultValue("-1") long lastEventId,
             @Context SseEventSink eventSink)
