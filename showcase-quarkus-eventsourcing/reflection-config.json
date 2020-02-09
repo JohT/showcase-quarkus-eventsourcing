@@ -343,6 +343,12 @@
 		"allDeclaredConstructors": true
 	},
 	{
+		"name": "io.github.joht.showcase.quarkuseventsourcing.message.query.nickname.NicknameDetails",
+		"allDeclaredFields": true,
+		"allDeclaredMethods": true,
+		"allDeclaredConstructors": true
+	},
+	{
 		"name": "io.github.joht.showcase.quarkuseventsourcing.message.event.account.AccountCreatedEvent",
 		"allDeclaredFields": true,
 		"allDeclaredMethods": true,
