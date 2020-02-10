@@ -58,18 +58,17 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Axon - Optional dependencies for CQRS and EventSourcing Framework -->
-		<dependency>
-			<groupId>dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<version>${dom4j.version}</version>
-		</dependency>
-
 		<!-- Axon - Optional dependencies for CQRS and EventSourcing Framework (only needed for native compile) -->
 		<dependency>
 			<groupId>xom</groupId>
 			<artifactId>xom</artifactId>
 			<version>${xom.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -291,8 +290,13 @@
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>3.0.0</version>
 			</plugin>
-
-
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<useIncrementalCompilation>false</useIncrementalCompilation>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>io.quarkus</groupId>
 				<artifactId>quarkus-maven-plugin</artifactId>
