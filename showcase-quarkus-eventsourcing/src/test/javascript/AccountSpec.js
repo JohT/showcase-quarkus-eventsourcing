@@ -104,24 +104,18 @@ describe("Account", function() {
 
   describe("Repository", function() {
     var repositoryUnderTest = eventsourcing_showcase.AccountRepository;
-    var restClient, request;
+    var fetchClient;
     var onSuccess = function(data) {};
     var onError = function(error) {};
 
     beforeAll(function() {
-      restClient = jasmine.createSpyObj("restClient", functionNamesOf(eventsourcing_showcase.RestClient));
-      request = jasmine.createSpyObj("request", ["open", "send", "setRequestHeader"]);
-      restClient.prepareRequest.and.returnValue(request);
-      repositoryUnderTest.setRestClient(restClient);
-    });
-
-    beforeEach(function() {
-      restClient.prepareRequest.calls.reset();
+      fetchClient = spyOn(window, "fetch").and.callThrough();
     });
 
     it("attempts to send a POST request to {baseURI}/accounts to create an account", function() {
       repositoryUnderTest.createAccount(onSuccess, onError);
-      expect(request.open).toHaveBeenCalledWith("POST", repositoryUnderTest.getBaseUri() + "/accounts");
+      var param = {method : "post"};
+      expect(fetchClient).toHaveBeenCalledWith(repositoryUnderTest.getBaseUri() + "/accounts", param);
     });
   });
 
@@ -556,42 +550,41 @@ describe("Nickname", function() {
 
   describe("Repository", function() {
     var repositoryUnderTest = eventsourcing_showcase.AccountRepository;
-    var restClient, request;
+    var fetchClient;
     var onSuccess = function(data) {};
     var onError = function(error) {};
 
     beforeAll(function() {
-      restClient = jasmine.createSpyObj("restClient", functionNamesOf(eventsourcing_showcase.RestClient));
-      request = jasmine.createSpyObj("request", ["open", "send", "setRequestHeader"]);
-      restClient.prepareRequest.and.returnValue(request);
-      repositoryUnderTest.setRestClient(restClient);
+      fetchClient = spyOn(window, "fetch").and.callThrough();
     });
 
-    beforeEach(function() {
-      restClient.prepareRequest.calls.reset();
+    afterEach(function() {
+      fetchClient.calls.reset();
     });
 
     it("attempts to send a POST request to {baseURI}/accounts to create an account", function() {
       repositoryUnderTest.createAccount(onSuccess, onError);
-      expect(request.open).toHaveBeenCalledWith("POST", repositoryUnderTest.getBaseUri() + "/accounts");
+      var param = {method: "post"};
+      expect(fetchClient).toHaveBeenCalledWith(repositoryUnderTest.getBaseUri() + "/accounts", param);
     });
     it("attempts to send a GET request to {baseURI}/accounts/{id}/nickname to query the nickname", function() {
       var accountId = "test_account_id_for_get";
       repositoryUnderTest.queryNickname(accountId, onSuccess, onError);
       var expectedUri = repositoryUnderTest.getBaseUri() + "/accounts/" + accountId + "/nickname";
-      expect(request.open).toHaveBeenCalledWith("GET", expectedUri);
+      expect(fetchClient).toHaveBeenCalledWith(expectedUri);
     });
     it("attempts to send a PUT request to {baseURI}/accounts/{id}/nickname to change the nickname", function() {
       var accountId = "test_account_id_for_put";
       var nickname = "testNewNickname";
       repositoryUnderTest.changeNickname(accountId, nickname, onSuccess, onError);
       var expectedUri = repositoryUnderTest.getBaseUri() + "/accounts/" + accountId + "/nickname";
-      expect(request.open).toHaveBeenCalledWith("PUT", expectedUri);
-      expect(request.send).toHaveBeenCalledWith(JSON.stringify({ value: nickname }));
+      expect(fetchClient.calls.mostRecent().args[0]).toMatch(expectedUri);
+      expect(fetchClient.calls.mostRecent().args[1].method).toMatch("put");
     });
     it("attempts to send a DELETE request to {baseURI}/nicknames/projection to replay all nickname changes", function() {
       repositoryUnderTest.replayNicknames(onSuccess, onError);
-      expect(request.open).toHaveBeenCalledWith("DELETE", repositoryUnderTest.getBaseUri() + "/nicknames/projection");
+      var param = {method: "delete"};
+      expect(fetchClient).toHaveBeenCalledWith(repositoryUnderTest.getBaseUri() + "/nicknames/projection", param);
     });
   });
 });

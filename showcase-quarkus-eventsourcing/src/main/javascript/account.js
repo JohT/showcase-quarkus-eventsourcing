@@ -219,78 +219,6 @@ eventsourcing_showcase.AccountUI = (function() {
 })();
 
 /**
- * Local REST Client to create, prepare and preset the XMLHttpRequest.
- * It encapsulates XMLHttpRequest setup in a general, domain independent way.
- * It does not use the DOM at all.
- * @namespace
- */
-eventsourcing_showcase.RestClient = (function() {
-  "use strict";
-
-  var requestTimeout = 10000;
-
-  function isHttpSuccessful(request) {
-    return request.status >= 200 && request.status <= 299 && request.readyState === 4;
-  }
-
-  function getHeaderMap(headerstring) {
-    var headerlines = headerstring.trim().split(/[\r\n]+/);
-    var headers = {};
-    headerlines.forEach(function(line) {
-      var parts = line.split(": ");
-      var header = parts.shift();
-      var value = parts.join(": ");
-      headers[header] = value;
-    });
-    return headers;
-  }
-
-  function isEmpty(str) {
-    return !str || 0 === str.length;
-  }
-
-  function parseResponse(request, onSuccess, onError) {
-    if (isHttpSuccessful(request)) {
-      try {
-        var data = {};
-        if (!isEmpty(request.responseText)) {
-          data = JSON.parse(request.responseText);
-        }
-        data.headers = getHeaderMap(request.getAllResponseHeaders());
-        onSuccess(data);
-      } catch (e) {
-        onError(e);
-      }
-    } else {
-      onError(new Error("unexpected_status_code_" + request.status + "_" + request.statusText));
-    }
-  }
-
-  function prepareRequest(onSuccess, onError) {
-    var request = new XMLHttpRequest();
-    request.timeout = requestTimeout;
-    request.onerror = function(error) {
-      onError(new Error("network_error"));
-    };
-    request.ontimeout = function(error) {
-      onError(new Error("timeout_error"));
-    };
-    request.onload = function() {
-      parseResponse(request, onSuccess, onError);
-    };
-    return request;
-  }
-
-  /**
-   * Public interface
-   * @scope eventsourcing_showcase.RestClient
-   */
-  return {
-    prepareRequest: prepareRequest
-  };
-})();
-
-/**
  * The AccountRepository creates, reads and updates Accounts.
  * It encapsulates RestClient calls.
  * It does not use the DOM at all.
@@ -303,14 +231,6 @@ eventsourcing_showcase.AccountRepository = (function() {
   var baseUri = "http://localhost:8080";
   var accountUri = baseUri + "/accounts";
   var nicknamesUri = baseUri + "/nicknames";
-  var restClient = eventsourcing_showcase.RestClient;
-
-  function amendAccountId(wrappedCallback) {
-    return function(data) {
-      data.accountId = getLastUrlPath(data.headers["location"]);
-      wrappedCallback(data);
-    };
-  }
 
   function getLastUrlPath(url) {
     return url.substring(url.lastIndexOf("/") + 1, url.length);
@@ -323,28 +243,59 @@ eventsourcing_showcase.AccountRepository = (function() {
     return baseUri;
   }
   function createAccount(onAccountCreated, onServiceError) {
-    var request = restClient.prepareRequest(amendAccountId(onAccountCreated), onServiceError);
-    request.open("POST", accountUri);
-    request.send();
+    fetch(accountUri, {
+      method: "post"
+    })
+      .then(function(response) {
+        var data = {};
+        data.accountId = getLastUrlPath(response.headers.get("location"));
+        return data;
+      })
+      .then(function(data) {
+        onAccountCreated(data);
+      })
+      ['catch'](function(error) {
+        onServiceError(error);
+      });
   }
   function queryNickname(accountId, onNicknameChangedSuccessfully, onServiceError) {
-    var request = restClient.prepareRequest(onNicknameChangedSuccessfully, onServiceError);
-    request.open("GET", accountUri + "/" + accountId + "/nickname");
-    request.send();
+    fetch(accountUri + "/" + accountId + "/nickname")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        onNicknameChangedSuccessfully(data);
+      })
+      ['catch'](function(error) {
+        onServiceError(error);
+      });
   }
   function changeNickname(accountId, new_nickname, onNicknameChangedSuccessfully, onServiceError) {
-    var nicknameChange = {};
-    nicknameChange.value = new_nickname;
-
-    var request = restClient.prepareRequest(onNicknameChangedSuccessfully, onServiceError);
-    request.open("PUT", accountUri + "/" + accountId + "/nickname");
-    request.setRequestHeader("Content-type", "application/json; charset=utf-8");
-    request.send(JSON.stringify(nicknameChange));
+    fetch(accountUri + "/" + accountId + "/nickname", {
+      method: "put",
+      headers: new Headers({
+        "Content-Type": "application/json; charset=utf-8"
+      }),
+      body: JSON.stringify({"value" : new_nickname})
+    })
+      .then(function(response) {
+        onNicknameChangedSuccessfully(new_nickname);
+      })
+      ['catch'](function(error) {
+        onServiceError(error);
+      });
   }
+
   function replayNicknames(onReplayStarted, onServiceError) {
-    var request = restClient.prepareRequest(onReplayStarted, onServiceError);
-    request.open("DELETE", nicknamesUri + "/projection");
-    request.send();
+    fetch(nicknamesUri + "/projection", {
+      method: "delete"
+    })
+      .then(function(response) {
+        onReplayStarted({});
+      })
+      ['catch'](function(error) {
+        onServiceError(error);
+      });
   }
 
   /**
@@ -356,11 +307,7 @@ eventsourcing_showcase.AccountRepository = (function() {
     createAccount: createAccount,
     queryNickname: queryNickname,
     changeNickname: changeNickname,
-    replayNicknames: replayNicknames,
-    /**
-     * Only for test purposes. Exchanges the UI.
-     */
-    setRestClient: setRestClient
+    replayNicknames: replayNicknames
   };
 })();
 

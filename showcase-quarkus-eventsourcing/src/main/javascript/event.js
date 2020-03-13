@@ -24,7 +24,7 @@ eventsourcing_showcase.EventController = (function() {
   var eventSource;
 
   function receiveNewEvent(event) {
-    if (!event.origin.startsWith(baseUri)) {
+    if ((event.origin != null) && !event.origin.startsWith(baseUri)) {
       console.log("Origin is not " + baseUri + ": " + event.origin);
       return;
     }

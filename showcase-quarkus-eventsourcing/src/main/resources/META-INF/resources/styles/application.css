@@ -60,42 +60,42 @@ button:focus {
    or that executed an action successfully.*/
 .action {
   border-color: #2f9c4a;
-  background-color: #2f9c4a48;
+  background-color: rgba(47, 156, 74, 0.282);
   outline-color: #2f9c4a;
   color: #90ffa8;
 }
 button.action:hover {
-  background-color: #2f9c4a8e;
+  background-color: rgba(47, 156, 74, 0.557);
 }
 button.action:active {
-  background-color: #2f9c4ae5;
+  background-color: rgba(47, 156, 74, 0.898);
 }
 button.action:disabled {
   cursor: auto;
-  border-color: #2f9c4a56;
-  background-color: #2f9c4a3f;
-  color: #90ffa846;
+  border-color: rgba(47, 156, 74, 0.337);
+  background-color: rgba(47, 156, 74, 0.247);
+  color: rgba(144, 255, 168, 0.275);
 }
 
 /* "noaction" identifies elements, that abort an action 
    or that indicate an error that had occurred.*/
 .noaction {
   border-color: #9c2f2f;
-  background-color: #9c2f2f48;
+  background-color: rgba(156, 47, 47, 0.282);
   outline-color: #9c2f2f;
   color: #e44141;
 }
 button.noaction:hover {
-  background-color: #9c2f2f8e;
+  background-color: rgba(156, 47, 47, 0.557);
 }
 button.noaction:active {
-  background-color: #9c2f2fe5;
+  background-color: rgba(156, 47, 47, 0.898);
 }
 button.noaction:disabled {
   cursor: auto;
-  border-color: #9c2f2f65;
-  background-color: #9c2f2f42;
-  color: #e4414154;
+  border-color: rgba(156, 47, 47, 0.396);
+  background-color: rgba(156, 47, 47, 0.259);
+  color: rgba(228, 65, 65, 0.329);
 }
 button.confirm {
   border-style: outset;
@@ -225,7 +225,7 @@ section.eventviews {
   font-weight: light;
   font-size: small;
   text-shadow: none;
-  color: rgb(69, 120, 185);
+  color: #4578b9;
 }
 
 .marquee {
