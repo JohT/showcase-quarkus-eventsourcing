@@ -266,6 +266,7 @@
 							<inputDir>${project.basedir}/src/main/javascript</inputDir>
 							<output>${project.build.directory}/aggregated/javascript/application.js</output>
 							<includes>
+								<include>**/polyfills/*.js</include>
 								<include>**/*.js</include>
 							</includes>
 						</aggregation>
