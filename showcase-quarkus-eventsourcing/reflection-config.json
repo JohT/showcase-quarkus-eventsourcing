@@ -67,6 +67,36 @@
 		"allDeclaredFields": true
 	},
 	{
+		"name":"org.axonframework.serialization.upcasting.SingleEntryUpcaster",
+		"allDeclaredConstructors": true,
+		"allDeclaredMethods": true,
+		"allDeclaredFields": true
+	},
+	{
+		"name":"org.axonframework.serialization.upcasting.Upcaster",
+		"allDeclaredConstructors": true,
+		"allDeclaredMethods": true,
+		"allDeclaredFields": true
+	},
+	{
+		"name":"org.axonframework.serialization.upcasting.event.EventUpcaster",
+		"allDeclaredConstructors": true,
+		"allDeclaredMethods": true,
+		"allDeclaredFields": true
+	},
+	{
+		"name":"org.axonframework.serialization.upcasting.event.IntermediateEventRepresentation",
+		"allDeclaredConstructors": true,
+		"allDeclaredMethods": true,
+		"allDeclaredFields": true
+	},
+	{
+		"name":"org.axonframework.serialization.upcasting.event.SingleEventUpcaster",
+		"allDeclaredConstructors": true,
+		"allDeclaredMethods": true,
+		"allDeclaredFields": true
+	},
+	{
 		"name": "org.axonframework.modelling.command.AggregateIdentifier",
 		"allDeclaredMethods": true
 	},

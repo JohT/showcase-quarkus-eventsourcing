@@ -1,22 +1,10 @@
 {
 	"resources": [
-		{
-			"pattern": "META-INF/services/org.axonframework.messaging.annotation.HandlerDefinition"
-		},
-		{
-			"pattern": "META-INF/services/org.axonframework.messaging.annotation.HandlerEnhancerDefinition"
-		},
-		{
-			"pattern": "META-INF/services/org.axonframework.messaging.annotation.ParameterResolverFactory"
-		},
-		{
-			"pattern": "META-INF/services/org.axonframework.modelling.command.inspection.ChildEntityDefinition"
-		},
-		{
-			"pattern": "META-INF/services/org.axonframework.serialization.ContentTypeConverter"
-		},
-		{
-			"pattern": ".*\\.sql$"
-		}
+	    {"pattern":"\\QMETA-INF/services/org.axonframework.messaging.annotation.HandlerDefinition\\E"}, 
+    	{"pattern":"\\QMETA-INF/services/org.axonframework.messaging.annotation.HandlerEnhancerDefinition\\E"}, 
+    	{"pattern":"\\QMETA-INF/services/org.axonframework.messaging.annotation.ParameterResolverFactory\\E"}, 
+    	{"pattern":"\\QMETA-INF/services/org.axonframework.modelling.command.inspection.ChildEntityDefinition\\E"}, 
+    	{"pattern":"\\QMETA-INF/services/org.axonframework.serialization.ContentTypeConverter\\E"}, 
+		{"pattern": ".*\\.sql$"}
 	]
 }
