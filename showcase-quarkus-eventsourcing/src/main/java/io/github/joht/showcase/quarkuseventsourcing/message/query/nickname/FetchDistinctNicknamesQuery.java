@@ -1,5 +1,6 @@
 package io.github.joht.showcase.quarkuseventsourcing.message.query.nickname;
 
+import java.beans.ConstructorProperties;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -19,7 +20,8 @@ public class FetchDistinctNicknamesQuery {
         return new FetchDistinctNicknamesQuery(partOfNickname, ALL_PAST_CHANGES);
     }
 
-    protected FetchDistinctNicknamesQuery(String partOfNickname, Instant createdSince) {
+    @ConstructorProperties({ "partOfNickname", "createdSince" })
+    public FetchDistinctNicknamesQuery(String partOfNickname, Instant createdSince) {
 		this.partOfNickname = partOfNickname.replace("%", "\\%").replace("_", "\\_").trim();
         this.createdSince = createdSince;
 	}

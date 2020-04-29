@@ -151,19 +151,6 @@ public class AxonConfiguration {
     @PreDestroy
     protected void shutdown() throws InterruptedException, ExecutionException {
         configuration.shutdown();
-        // Note: This INFO might appear (August 2019) when shutdown is finished.
-        // ReleaseClaims needs a connection. The connection can not be used during/after shutdown.
-        // This does not seem to be a problem. Could the shutdown be optimized further to avoid this?
-        // "Refresh claim on token" in "TrackingEventProcessor" could be done only if "isRunning"?
-        //
-        // org.axonframework.common.jdbc.JdbcException: Failed to obtain a database connection
-        // at org.axonframework.eventhandling.tokenstore.jdbc.JdbcTokenStore.getConnection(JdbcTokenStore.java:516)
-        // at org.axonframework.eventhandling.tokenstore.jdbc.JdbcTokenStore.fetchToken(JdbcTokenStore.java:179)
-        // at org.axonframework.eventhandling.tokenstore.TokenStore.extendClaim(TokenStore.java:130)
-        // ...
-        // Caused by: java.sql.SQLException: This pool is closed and does not handle any more connections!
-        // ...
-        // at org.axonframework.eventhandling.tokenstore.jdbc.JdbcTokenStore.getConnection(JdbcTokenStore.java:514)
     }
 
     @Produces
