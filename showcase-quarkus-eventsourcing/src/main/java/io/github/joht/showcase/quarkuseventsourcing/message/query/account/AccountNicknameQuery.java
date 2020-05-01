@@ -1,5 +1,6 @@
 package io.github.joht.showcase.quarkuseventsourcing.message.query.account;
 
+import java.beans.ConstructorProperties;
 import java.util.Objects;
 
 public class AccountNicknameQuery {
@@ -10,7 +11,8 @@ public class AccountNicknameQuery {
 		return new AccountNicknameQuery(accountId);
 	}
 
-	protected AccountNicknameQuery(String accountId) {
+    @ConstructorProperties({ "accountId" })
+    public AccountNicknameQuery(String accountId) {
 		this.accountId = accountId.trim();
 	}
 

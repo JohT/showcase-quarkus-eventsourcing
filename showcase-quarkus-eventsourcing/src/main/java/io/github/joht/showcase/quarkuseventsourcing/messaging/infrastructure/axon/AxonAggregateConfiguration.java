@@ -9,6 +9,8 @@ import org.axonframework.eventsourcing.EventCountSnapshotTriggerDefinition;
 import org.axonframework.eventsourcing.GenericAggregateFactory;
 import org.axonframework.eventsourcing.Snapshotter;
 import org.axonframework.modelling.command.AnnotationCommandTargetResolver;
+import org.axonframework.modelling.command.inspection.AggregateModel;
+import org.axonframework.modelling.command.inspection.AnnotatedAggregateMetaModelFactory;
 
 import io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTargetAggregateIdentifier;
 import io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTargetAggregateVersion;
@@ -20,9 +22,9 @@ import io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTarge
  */
 class AxonAggregateConfiguration {
 
-    private static final Logger LOGGER = Logger.getLogger(AxonAggregateConfiguration.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(AxonAggregateConfiguration.class.getName());
 
-    private final AggregateConfigurer<?> aggregateConfigurer;
+	private final AggregateConfigurer<?> aggregateConfigurer;
 
 	public static final AggregateConfigurer<?> update(AggregateConfigurer<?> aggregateConfigurer) {
 		return new AxonAggregateConfiguration(aggregateConfigurer).aggregateConfiguration();
@@ -36,13 +38,13 @@ class AxonAggregateConfiguration {
 		aggregateConfigurer.configureSnapshotTrigger(config -> snapshotConfiguration(config));
 		// Note: Using self defined annotations for "AggregateIdentifier" and
 		// "AggregateVersion" located nearby the command
-        // value objects and connecting them inside the axon configuration removes the
+		// value objects and connecting them inside the axon configuration removes the
 		// dependency between the API (containing
 		// the commands) and "axon-modelling". The goal isn't, to share the API module
 		// (better avoid that),
 		// but to make the API as independent as possible.
 		aggregateConfigurer.configureCommandTargetResolver(config -> annotationCommandTargetResolver());
-        LOGGER.fine(() -> "Configured Aggregate " + aggregateConfigurer.aggregateType());
+		LOGGER.fine(() -> "Configured Aggregate " + aggregateConfigurer.aggregateType());
 		return aggregateConfigurer;
 	}
 
@@ -58,7 +60,15 @@ class AxonAggregateConfiguration {
 
 	private static <T> Snapshotter snapshotter(Configuration configuration, AggregateConfigurer<T> aggregate) {
 		return AggregateSnapshotter.builder().eventStore(configuration.eventStore())
-				.aggregateFactories(new GenericAggregateFactory<T>(aggregate.aggregateType())).build();
+//              Note: There was no aggregate model before axon v4.3..
+//				.aggregateFactories(new GenericAggregateFactory<T>(aggregate.aggregateType()))
+				.aggregateFactories(new GenericAggregateFactory<T>(inspectAggregateModel(configuration, aggregate.aggregateType())))
+				.build();
+	}
+
+	private static <T> AggregateModel<T> inspectAggregateModel(Configuration configuration, Class<T> aggregateType) {
+		return AnnotatedAggregateMetaModelFactory.inspectAggregate(aggregateType,
+				configuration.parameterResolverFactory());
 	}
 
 	@Override

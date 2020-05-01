@@ -9,19 +9,27 @@
 * Open the directory where this README.md is located.
 * Run the application by using the following command: ```mvn compile quarkus:dev```.
 * Open the UI [http://localhost:8080](http://localhost:8080)
-* Use the postman collection "showcase-quarkus-eventsourcing.postman_collection.json" for service call examples.
-* Use the unit tests inside the service package to replay nicknames, create new ones or create further accounts.
+* (Optional) Use the postman collection "showcase-quarkus-eventsourcing.postman_collection.json" for service call examples.
+* (Optional) Use the unit tests inside the service package to replay nicknames, create new ones or create further accounts.
 
 ## Native image
 * Build a native image with ```mvn package -Pnative```.
   Details see [Building a native executable](https://quarkus.io/guides/building-native-image-guide)
 * The substrate runner can be used to collect configuration data for the native image:
-   ```$GRAALVM_HOME/bin/java -agentlib:native-image-agent=config-output-dir=native-image -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar```
+```
+$GRAALVM_HOME/bin/java -agentlib:native-image-agent=config-output-dir=native-image,caller-filter-file=native-image-caller-filter-rules.json -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar
+```
   This is helpful to get a hint on how to configure ```reflection-config.json``` and ```resources-config.json```
   These files were configured that way.
   To automate this and to get a more complete set of entries, a build step may be a solution.
   Ideally, there would be a axon-extension for quarkus that manages these settings.
-  
+* The substrate runner can also be used to generate a trace of all reflection calls:
+```
+$GRAALVM_HOME/bin/java -agentlib:native-image-agent=trace-output=native-image/trace-output.json,caller-filter-file=native-image-caller-filter-rules.json -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar
+``` 
+* More informations abount the `native-image-agent` can be found here:
+[CONFIGURE.md](https://github.com/oracle/graal/blob/master/substratevm/CONFIGURE.md)
+
 ## Features
 * "Reactive" example using server sent events (tested with safari browser) and axon subscription query
 * Replay example. Use REST DELETE ```/nicknames/projection```
