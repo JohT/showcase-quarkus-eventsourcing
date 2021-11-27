@@ -8,7 +8,6 @@
     ":automergePatch",
     ":automergeMinor",
     ":automergeRequireAllStatusChecks",
-    ":automergeBranch",
     "group:recommended"
   ],
    "packageRules": [
