@@ -23,6 +23,8 @@ import com.tngtech.archunit.lang.ArchCondition;
 import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
 
+import io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTargetAggregateIdentifier;
+import io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTargetAggregateVersion;
 import nl.jqno.equalsverifier.ConfiguredEqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
@@ -101,10 +103,14 @@ public class ArchitectureRulesTest {
     }
 
     @Test
-    @DisplayName("axon specific configuration should not depend on business code, except for upcasters")
+    @DisplayName("axon specific configuration should not depend on business code, except for upcasters and command target meta annotations")
     void axonSetupShouldNotDependOnBusinessCode() {
-        classes().that().resideInAPackage("..axon..").and().resideOutsideOfPackage("..upcaster..")
-                .should().onlyDependOnClassesThat().resideOutsideOfPackages("..model..", "..message..", "..service..")
+        classes().that().resideInAPackage("..axon..")
+        		.and().resideOutsideOfPackage("..upcaster..")
+                .should().onlyDependOnClassesThat()
+                .resideOutsideOfPackages("..model..", "..message..", "..service..")
+                .orShould().dependOnClassesThat()
+                .belongToAnyOf(CommandTargetAggregateIdentifier.class, CommandTargetAggregateVersion.class)
                 .check(classes);
     }
 
