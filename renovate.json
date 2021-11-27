@@ -4,6 +4,11 @@
     "schedule:monthly",
     ":combinePatchMinorReleases",
     ":ignoreUnstable",
+    ":automergeDigest",
+    ":automergePatch",
+    ":automergeMinor",
+    ":automergeRequireAllStatusChecks",
+    ":automergeBranch",
     "group:recommended"
   ],
    "packageRules": [
