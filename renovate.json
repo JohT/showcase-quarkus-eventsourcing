@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "config:base",
+    ":combinePatchMinorReleases",
+    ":automergeDigest",
+    ":automergePatch",
+    ":automergeMinor",
+    ":automergeRequireAllStatusChecks",
+    ":automergeBranch",
+    ":ignoreUnstable",
+    "group:recommended"
+  ],
+   "packageRules": [
+    {
+      "matchPackagePrefixes": [
+        "io.quarkus:"
+      ],
+      "groupName": "Quarkus"
+    },
+    {
+      "matchPackagePrefixes": [
+      	"org.axonframework"
+      ],
+      "enabled": false
+    }
+  ]
+  
+}
