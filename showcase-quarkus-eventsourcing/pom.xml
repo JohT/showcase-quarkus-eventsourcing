@@ -22,7 +22,7 @@
 		<archunit.version>0.22.0</archunit.version>
 		<equalsverifier.version>3.7.2</equalsverifier.version>
 		<mockito.version>3.0.0</mockito.version>
-		<hamcrest.version>2.1</hamcrest.version>
+		<hamcrest.version>2.2</hamcrest.version>
 	</properties>
 
 	<dependencyManagement>
