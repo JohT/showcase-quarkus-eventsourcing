@@ -12,6 +12,7 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
 
 			<property name="javax.persistence.validation.mode" value="NONE" />
+			<property name="hibernate.archive.autodetection" value="class" />
 		</properties>
 	</persistence-unit>
 
