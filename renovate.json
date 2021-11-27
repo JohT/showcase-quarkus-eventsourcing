@@ -3,11 +3,6 @@
     "config:base",
     "schedule:monthly",
     ":combinePatchMinorReleases",
-    ":automergeDigest",
-    ":automergePatch",
-    ":automergeMinor",
-    ":automergeRequireAllStatusChecks",
-    ":automergeBranch",
     ":ignoreUnstable",
     "group:recommended"
   ],
