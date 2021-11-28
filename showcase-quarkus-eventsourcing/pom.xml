@@ -23,7 +23,6 @@
 		<quarkus-plugin.version>2.5.0.Final</quarkus-plugin.version>
 		
 		<axon.version>4.2.2</axon.version>
-		<reactor.version>3.3.0.RELEASE</reactor.version>
 		<dom4j.version>1.6.1</dom4j.version>
 		<xom.version>1.2.10</xom.version>
 
@@ -85,7 +84,6 @@
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-core</artifactId>
-			<version>${reactor.version}</version>
 			<scope>compile</scope>
 			<optional>true</optional>
 		</dependency>
