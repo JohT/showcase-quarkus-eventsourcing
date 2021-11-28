@@ -5,8 +5,6 @@
     ":combinePatchMinorReleases",
     ":ignoreUnstable",
     ":automergeDigest",
-    ":automergePatch",
-    ":automergeMinor",
     ":automergeRequireAllStatusChecks",
     "group:recommended"
   ],
