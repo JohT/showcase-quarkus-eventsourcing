@@ -80,19 +80,19 @@ class ProcessorAssignmentTest {
 
     @Typed
     @QueryModelProjection(processingGroup = "AssignedGroup", processor = QueryProcessor.SUBSCRIBING)
-    private static final class ProjectionWithAssignedProcessor {
+    static final class ProjectionWithAssignedProcessor {
 
     }
 
     @Typed
     @QueryModelProjection(processingGroup = "", processor = QueryProcessor.SUBSCRIBING)
-    private static final class ProjectionWithAssignedProcessorButEmptyGroup {
+    static final class ProjectionWithAssignedProcessorButEmptyGroup {
 
     }
 
     @Typed
     @QueryModelProjection(processingGroup = "DefaultGroup")
-    private static final class ProjectionWithDefaultProcessor {
+    static final class ProjectionWithDefaultProcessor {
 
     }
 
