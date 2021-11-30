@@ -5,7 +5,7 @@
 
 	<groupId>io.github.joht.showcase.quarkuseventsourcing</groupId>
 	<artifactId>showcase-quarkus-eventsourcing</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.2-SNAPSHOT</version>
 
 	<properties>
     	<compiler-plugin.version>3.8.1</compiler-plugin.version>
