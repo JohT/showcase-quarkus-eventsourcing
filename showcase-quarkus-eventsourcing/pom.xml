@@ -5,7 +5,7 @@
 
 	<groupId>io.github.joht.showcase.quarkuseventsourcing</groupId>
 	<artifactId>showcase-quarkus-eventsourcing</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.2-SNAPSHOT</version>
 
 	<properties>
     	<compiler-plugin.version>3.8.1</compiler-plugin.version>
@@ -22,7 +22,7 @@
 		<quarkus.platform.version>2.5.0.Final</quarkus.platform.version>
 		<quarkus-plugin.version>2.5.0.Final</quarkus-plugin.version>
 		
-		<axon.version>4.2.2</axon.version>
+		<axon.version>4.3.2</axon.version>
 		<dom4j.version>1.6.1</dom4j.version>
 		<xom.version>1.2.10</xom.version>
 

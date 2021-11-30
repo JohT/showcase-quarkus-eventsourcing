@@ -1,0 +1,26 @@
+{ "rules": [
+    {"excludeClasses": "io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.inject.cdi.RegisteredAnnotatedTypes"},
+    {"excludeClasses": "io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.JsonbSerializer"},
+    {"excludeClasses": "com.arjuna.**"},
+    {"excludeClasses": "io.vertx.**"},
+    {"excludeClasses": "io.agroal.**"},
+    {"excludeClasses": "io.netty.**"},
+    {"excludeClasses": "io.quarkus.**"},
+    {"excludeClasses": "org.h2.**"},
+    {"excludeClasses": "antlr.**"},
+    {"excludeClasses": "org.hibernate.**"},
+    {"excludeClasses": "org.infinispan.**"},
+    {"excludeClasses": "org.jboss.**"},
+    {"excludeClasses": "org.wildfly.**"},
+    {"excludeClasses": "org.locationtech.**"},
+    {"excludeClasses": "org.eclipse.yasson.**"},
+    {"excludeClasses": "javax.**"},
+    {"excludeClasses": "sun.misc.**"},
+    {"excludeClasses": "sun.reflect.**"},
+    {"excludeClasses": "java.io.**"},
+    {"excludeClasses": "java.nio.**"},
+    {"excludeClasses": "java.util.**"},
+    {"includeClasses": "java.util.ServiceLoader$LazyIterator"},
+    {"excludeClasses": "java.lang.**"}
+  ]
+}
