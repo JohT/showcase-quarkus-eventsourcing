@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
  * 
  * @author JohT
  */
-class NatieImageReflectConfigTest {
+class NatieImageReflectionConfigTest {
 	private static final Jsonb create = JsonbBuilder.create();
 
 	@Test
@@ -45,7 +45,7 @@ class NatieImageReflectConfigTest {
 				// .filter(name ->
 				// !classForName(name).map(Class::isInterface).orElse(Boolean.FALSE))
 				.collect(Collectors.joining("\n"));
-		System.out.println("missingInManualEditedFile");
+		System.out.println("\nmissingInManualEditedFile:\n");
 		System.out.println(axonClasses);
 	}
 
@@ -54,7 +54,7 @@ class NatieImageReflectConfigTest {
 		Set<String> mainConfig = classNamesRegisteredForReflections("reflection-config.json");
 		Set<String> generatedConfig = classNamesRegisteredForReflections("native-image/432-reflect-config.json");
 		mainConfig.removeAll(generatedConfig);
-		System.out.println("missingInGeneratedFile");
+		System.out.println("\nmissingInGeneratedFile:\n");
 		System.out.println(mainConfig.stream().collect(Collectors.joining("\n")));
 	}
 
