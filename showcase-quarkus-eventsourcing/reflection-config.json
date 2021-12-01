@@ -219,45 +219,36 @@
 	},
 	{
 		"name": "org.axonframework.eventhandling.GapAwareTrackingToken",
-		"allDeclaredFields": true,
 		"allDeclaredMethods": true,
 		"allDeclaredConstructors": true
 	},
 	{
 		"name": "org.axonframework.eventhandling.ReplayToken",
-		"allDeclaredFields": true,
 		"allDeclaredMethods": true,
 		"allDeclaredConstructors": true
 	},
 	{
 		"name": "org.axonframework.eventhandling.TrackingToken",
-		"allDeclaredConstructors": true,
 		"allDeclaredMethods": true,
 		"allDeclaredFields": true
 	},
 	{
 		"name": "org.axonframework.eventhandling.WrappedToken",
-		"allDeclaredConstructors": true,
 		"allDeclaredMethods": true,
 		"allDeclaredFields": true
 	},
 	{
 		"name": "org.axonframework.eventhandling.Timestamp",
-		"allDeclaredConstructors": true,
-		"allDeclaredMethods": true,
-		"allDeclaredFields": true
+		"allDeclaredMethods": true
 	},
 	{
 		"name": "org.axonframework.messaging.MetaData",
 		"allDeclaredConstructors": true,
-		"allDeclaredMethods": true,
-		"allDeclaredFields": true
+		"allDeclaredMethods": true
 	},
 	{
 		"name": "org.axonframework.serialization.upcasting.event.EventUpcaster",
-		"allDeclaredConstructors": true,
-		"allDeclaredMethods": true,
-		"allDeclaredFields": true
+		"allDeclaredMethods": true
 	},
 	{
 		"name": "org.axonframework.serialization.upcasting.SingleEntryUpcaster",
@@ -267,27 +258,20 @@
 	},
 	{
 		"name": "org.axonframework.serialization.upcasting.Upcaster",
-		"allDeclaredConstructors": true,
-		"allDeclaredMethods": true,
-		"allDeclaredFields": true
+		"allDeclaredMethods": true
 	},
 	{
 		"name": "org.axonframework.serialization.upcasting.event.EventUpcaster",
-		"allDeclaredConstructors": true,
-		"allDeclaredMethods": true,
-		"allDeclaredFields": true
+		"allDeclaredMethods": true
 	},
 	{
 		"name": "org.axonframework.serialization.upcasting.event.IntermediateEventRepresentation",
-		"allDeclaredConstructors": true,
-		"allDeclaredMethods": true,
-		"allDeclaredFields": true
+		"allDeclaredMethods": true
 	},
 	{
 		"name": "org.axonframework.serialization.upcasting.event.SingleEventUpcaster",
 		"allDeclaredConstructors": true,
-		"allDeclaredMethods": true,
-		"allDeclaredFields": true
+		"allDeclaredMethods": true
 	},
 	{
 		"name": "org.axonframework.modelling.command.AggregateIdentifier",
