@@ -6,8 +6,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.axonframework.eventhandling.EventHandler;
-import org.axonframework.eventhandling.ResetTriggeredEvent;
+import org.axonframework.eventhandling.replay.ResetContext;
+import org.axonframework.messaging.annotation.MessageHandler;
 
 /**
  * Used to mark a method inside a event handler ("projection") to be called,
@@ -16,7 +16,7 @@ import org.axonframework.eventhandling.ResetTriggeredEvent;
 @Documented
 @Target({ ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@EventHandler(payloadType = ResetTriggeredEvent.class)
+@MessageHandler(messageType = ResetContext.class)
 public @interface QueryModelResetHandler {
 
 }

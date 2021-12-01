@@ -17,7 +17,7 @@
   Details see [Building a native executable](https://quarkus.io/guides/building-native-image-guide)
 * The substrate runner can be used to collect configuration data for the native image:
 ```
-$GRAALVM_HOME/bin/java -agentlib:native-image-agent=config-output-dir=native-image,caller-filter-file=native-image-caller-filter-rules.json -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar
+$GRAALVM_HOME/bin/java -agentlib:native-image-agent=config-output-dir=native-image,caller-filter-file=native-image-caller-filter-rules.json -jar ./target/showcase-quarkus-eventsourcing-1.3-SNAPSHOT-runner.jar
 ```
   This is helpful to get a hint on how to configure ```reflection-config.json``` and ```resources-config.json```
   These files were configured that way.
@@ -25,13 +25,13 @@ $GRAALVM_HOME/bin/java -agentlib:native-image-agent=config-output-dir=native-ima
   Ideally, there would be a axon-extension for quarkus that manages these settings.
 * The substrate runner can also be used to generate a trace of all reflection calls:
 ```
-$GRAALVM_HOME/bin/java -agentlib:native-image-agent=trace-output=native-image/trace-output.json,caller-filter-file=native-image-caller-filter-rules.json -jar ./target/showcase-quarkus-eventsourcing-1.0-SNAPSHOT-runner.jar
+$GRAALVM_HOME/bin/java -agentlib:native-image-agent=trace-output=native-image/trace-output.json,caller-filter-file=native-image-caller-filter-rules.json -jar ./target/showcase-quarkus-eventsourcing-1.3-SNAPSHOT-runner.jar
 ``` 
 * More informations abount the `native-image-agent` can be found here:
 [CONFIGURE.md](https://github.com/oracle/graal/blob/master/substratevm/CONFIGURE.md)
 
 ## Features
-* "Reactive" example using server sent events (tested with safari browser) and axon subscription query
+* "Reactive" example using server sent events (tested with safari & chrome browser) and axon subscription query
 * Replay example. Use REST DELETE ```/nicknames/projection```
 * Contains an axon upcaster example
 * Works with H2 and PostgreSql. Just switch the regarding comments in ```application.properties``` and ```persistence.xml```.
@@ -42,7 +42,7 @@ $GRAALVM_HOME/bin/java -agentlib:native-image-agent=trace-output=native-image/tr
 
 ## Notes
 * Code comments containing the marker ```Note:``` describes thoughts, background information, documented decisions and hints to problems. 
-* ```ArchitectureRulesTest``` defines rules to assure low coupling between the business core, axon and the microprofile features.
+* ```ArchitectureRulesTest``` defines rules to assure low coupling between the business core, axon and microprofile features.
 * These rules might seem a bit extreme. Some may even find them to be impractical. After all, this examples shows that it can be done.
 * This is just a simple show case, not an full application. 
 
