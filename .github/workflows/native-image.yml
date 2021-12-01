@@ -1,0 +1,33 @@
+name: GraalVM Community Edition Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: ['java11']
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2.1.6
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Setup GraalVM Community Edition
+        uses: DeLaGuardo/setup-graalvm@5.0
+        with:
+          graalvm: 21.3.0
+          java: ${{ matrix.java }}
+      - name: Install Native Image
+        run: gu install native-image
+      - name: Build native image with Maven
+        working-directory: showcase-quarkus-eventsourcing
+        run: mvn verify --activate-profiles native --file pom.xml --batch-mode
