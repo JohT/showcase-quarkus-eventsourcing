@@ -70,7 +70,7 @@ jobs:
     #Variables are not yet supported for "uses". Workaround are hardcoded git refs. TODO: Change to main/master branch as soon as merged.
     #https://stackoverflow.com/questions/69737232/github-context-variables-not-evaluating-for-reusable-workflow-reference
     #uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@${{github.event.pull_request.head.ref}}
-    uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@feature/extended-testing
+    uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@master
     if: needs.native-image-build.outputs.commit-message != needs.native-image-build.outputs.auto-commit-message
     with: 
       auto-commit-message: ${{ needs.native-image-build.outputs.auto-commit-message }}    
