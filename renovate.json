@@ -1,7 +1,7 @@
 {
   "extends": [
     "config:base",
-    "schedule:monthly",
+    "schedule:earlyMondays",
     ":combinePatchMinorReleases",
     ":ignoreUnstable",
     ":automergeDigest",
@@ -14,12 +14,6 @@
         "io.quarkus:"
       ],
       "groupName": "Quarkus"
-    },
-    {
-      "matchPackagePrefixes": [
-      	"org.axonframework"
-      ],
-      "enabled": false
     }
   ]
   
