@@ -4,30 +4,75 @@ on:
   push:
     branches:
       - master
+    # Ignore changes in documentation and reports
+    paths-ignore: 
+      - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
+      - '**/*.md'
+      - '**/*.txt'
   pull_request:
     branches:
       - master
+    # Ignore changes in documentation and reports
+    paths-ignore: 
+      - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
+      - '**/*.md'
+      - '**/*.txt'
+
 jobs:
-  build:
+  native-image-build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         java: ['java11']
+    env: 
+      AUTO_COMMIT_MESSAGE: Automated native image agent results (CI)
+    outputs:
+      commit-message: ${{ steps.commit-message-output.outputs.commit-message }}
+      auto-commit-message: ${{ steps.auto-commit-message-output.outputs.auto-commit-message }}
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2.1.6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Set the environment variable "commit-message"
+        run: echo "commit-message=$(git log -1 --pretty=format:"%s")" >> $GITHUB_ENV
+      - name: Set commit message output parameter
+        id: commit-message-output
+        run: echo "::set-output name=commit-message::${{ env.commit-message }}"
+      - name: Set auto commit message output parameter
+        id: auto-commit-message-output
+        run: echo "::set-output name=auto-commit-message::${{ env.AUTO_COMMIT_MESSAGE }}"
+      
+      - uses: actions/cache@v2
+        if: env.commit-message != env.AUTO_COMMIT_MESSAGE
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+
       - name: Setup GraalVM Community Edition
+        if: env.commit-message != env.AUTO_COMMIT_MESSAGE
         uses: DeLaGuardo/setup-graalvm@5.0
         with:
           graalvm: 21.3.0
           java: ${{ matrix.java }}
       - name: Install Native Image
+        if: env.commit-message != env.AUTO_COMMIT_MESSAGE
         run: gu install native-image
+
       - name: Build native image with Maven
+        if: env.commit-message != env.AUTO_COMMIT_MESSAGE
         working-directory: showcase-quarkus-eventsourcing
         run: mvn verify --activate-profiles native --file pom.xml --batch-mode
+
+  include-native-image-agent:
+    needs: native-image-build
+    #Variables are not yet supported for "uses". Workaround are hardcoded git refs. TODO: Change to main/master branch as soon as merged.
+    #https://stackoverflow.com/questions/69737232/github-context-variables-not-evaluating-for-reusable-workflow-reference
+    #uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@${{github.event.pull_request.head.ref}}
+    uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@feature/extended-testing
+    if: needs.native-image-build.outputs.commit-message != needs.native-image-build.outputs.auto-commit-message
+    with: 
+      auto-commit-message: ${{ needs.native-image-build.outputs.auto-commit-message }}    
+    secrets:
+      git-push-access-token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
