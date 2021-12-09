@@ -16,11 +16,14 @@
     	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		
 		<surefire-plugin.version>2.22.2</surefire-plugin.version>
+		<failsafe-plugin.version>2.22.2</failsafe-plugin.version>
+		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+		<jasmine-maven-plugin.version>2.2</jasmine-maven-plugin.version>
 
    		<quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     	<quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
 		<quarkus.platform.version>2.5.0.Final</quarkus.platform.version>
-		<quarkus-plugin.version>2.5.0.Final</quarkus-plugin.version>
+		<quarkus.plugin.version>2.5.0.Final</quarkus.plugin.version>
 		
 		<axon.version>4.5.5</axon.version>
 		<dom4j.version>1.6.1</dom4j.version>
@@ -171,7 +174,12 @@
 			<artifactId>quarkus-junit5</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-jacoco</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 		<!-- Testing - Architectural Unit Testing Libraries -->
 		<dependency>
 			<groupId>com.tngtech.archunit</groupId>
@@ -226,6 +234,7 @@
 				<groupId>com.github.searls</groupId>
 				<artifactId>jasmine-maven-plugin</artifactId>
 				<version>2.2</version>
+				<!-- Run Jasmine JavaScript Unit-Tests -->
 				<executions>
 					<execution>
 						<goals>
@@ -245,6 +254,7 @@
 				<groupId>com.github.timurstrekalov</groupId>
 				<artifactId>saga-maven-plugin</artifactId>
 				<version>1.5.5</version>
+				<!-- Measure Code Coverage of JavaScript Tests -->
 				<executions>
 					<execution>
 						<goals>
@@ -267,6 +277,7 @@
 				<groupId>net.alchim31.maven</groupId>
 				<artifactId>yuicompressor-maven-plugin</artifactId>
 				<version>1.5.1</version>
+				<!-- Compress JavaScript so it takes less time to load -->
 				<executions>
 					<execution>
 						<goals>
@@ -276,6 +287,7 @@
 				</executions>
 				<configuration>
 					<preProcessAggregates>true</preProcessAggregates>
+					<!-- Aggregate/Copy all JavaScript sources into one application.js file. -->
 					<aggregations>
 						<aggregation>
 							<insertNewLine>true</insertNewLine>
@@ -308,27 +320,27 @@
 				<version>3.1.2</version>
 			</plugin>
 			<plugin>
-        		<artifactId>maven-compiler-plugin</artifactId>
-        		<version>${compiler-plugin.version}</version>
-        		<configuration>
-          			<parameters>${maven.compiler.parameters}</parameters>
-        		</configuration>
-      		</plugin>
-      		<plugin>
-        		<groupId>io.quarkus</groupId>
-        		<artifactId>quarkus-maven-plugin</artifactId>
-        		<version>${quarkus-plugin.version}</version>
-        		<extensions>true</extensions>
-        		<executions>
-          			<execution>
-            			<goals>
-              				<goal>build</goal>
-              				<goal>generate-code</goal>
-              				<goal>generate-code-tests</goal>
-            			</goals>
-          			</execution>
-        		</executions>
-      		</plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${compiler-plugin.version}</version>
+				<configuration>
+					<parameters>${maven.compiler.parameters}</parameters>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>io.quarkus</groupId>
+				<artifactId>quarkus-maven-plugin</artifactId>
+				<version>${quarkus.plugin.version}</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build</goal>
+							<goal>generate-code</goal>
+							<goal>generate-code-tests</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${surefire-plugin.version}</version>
@@ -338,6 +350,67 @@
 						<maven.home>${maven.home}</maven.home>
 					</systemProperties>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${failsafe-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<systemPropertyVariables>
+                  		<buildDirectory>${project.build.directory}</buildDirectory>
+                  		<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                    	<maven.home>${maven.home}</maven.home>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-maven-plugin.version}</version>
+				<executions>
+					<!-- Measure Code-Coverage of Java Unit Tests including @QuarkusTest annotated ones-->
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<exclClassLoaders>*QuarkusClassLoader</exclClassLoaders>
+							<destFile>${project.build.directory}/jacoco-quarkus.exec</destFile>
+							<append>true</append>
+						</configuration>
+					</execution>
+					<!-- Set threshold/limit for branch code coverage that needs to be met. Otherwise build fails.-->
+					<execution>
+						<id>jacoco-check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<phase>test</phase>
+						<configuration>
+							<dataFile>${project.build.directory}/jacoco-quarkus.exec</dataFile>
+							<rules>
+								<rule>
+									<element>BUNDLE</element>
+									<limits>
+										<limit>
+											<counter>BRANCH</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.82</minimum>
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -357,22 +430,112 @@
 				<plugins>
 					<plugin>
 						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>${surefire-plugin.version}</version>
+						<version>${failsafe-plugin.version}</version>
 						<executions>
 							<execution>
 								<goals>
 									<goal>integration-test</goal>
 									<goal>verify</goal>
 								</goals>
-								<configuration>
-									<systemProperties>
-										<native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
-                    					<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                    					<maven.home>${maven.home}</maven.home>
-									</systemProperties>
-								</configuration>
 							</execution>
 						</executions>
+						<configuration>
+							<systemPropertyVariables>
+								<native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                    			<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                    			<maven.home>${maven.home}</maven.home>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<!-- The additional profile "native-image-agent" is used to build the java application jar, -->
+		<!-- start it with the GraalVM JVM with activated native-image-agent and run the integration tests on it. -->
+		<!-- The generated reports and template configurations are written to the folder "native-image-reports" and -->
+		<!-- are based on the collected runtime informations. These are helpful to configure native image build. -->
+		<profile>
+			<id>native-image-agent-config</id>
+			<activation>
+				<property>
+					<name>native-image-agent-config</name>
+				</property>
+			</activation>
+			<properties>
+       			<jacoco.skip>true</jacoco.skip> <!-- Skip test coverage reports -->
+       			<skipTests>true</skipTests>
+    		</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>${failsafe-plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<skipTests>false</skipTests> <!--  Don't skip integration tests -->
+							<failIfNoTests>true</failIfNoTests>
+							<shutdown>testset</shutdown>
+							<systemPropertyVariables>
+                  				<buildDirectory>${project.build.directory}</buildDirectory>
+                  				<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                    			<maven.home>${maven.home}</maven.home>
+                    			<!--  GraalVM java command arguments for the native-image-agent to generate configuration files-->
+                    			<quarkus.test.arg-line>-agentlib:native-image-agent=config-output-dir=target/native-image-agent-reports,caller-filter-file=native-image-caller-filter-rules.json,config-write-period-secs=1,config-write-initial-delay-secs=5</quarkus.test.arg-line>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<!-- The additional profile "native-image-agent-trace" is used to build the java application jar, -->
+		<!-- start it with the GraalVM JVM with activated native-image-agent and run the integration tests on it. -->
+		<!-- The generated trace report is written to "target/native-image-trace.json" and contains details about any -->
+		<!-- runtime access that might need to be configured to build a fully running native image. -->
+		<profile>
+			<id>native-image-agent-trace</id>
+			<activation>
+				<property>
+					<name>native-image-agent-trace</name>
+				</property>
+			</activation>
+			<properties>
+       			<jacoco.skip>true</jacoco.skip> <!-- Skip test coverage reports -->
+       			<skipTests>true</skipTests>
+    		</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>${failsafe-plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<skipTests>false</skipTests> <!--  Don't skip integration tests -->
+							<failIfNoTests>true</failIfNoTests>
+							<shutdown>testset</shutdown>
+							<systemPropertyVariables>
+                  				<buildDirectory>${project.build.directory}</buildDirectory>
+                  				<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                    			<maven.home>${maven.home}</maven.home>
+                    			<!--  GraalVM java command arguments for the native-image-agent to write a trace file-->
+                    			<quarkus.test.arg-line>-agentlib:native-image-agent=trace-output=${project.build.directory}/native-image-agent-trace.json,config-write-period-secs=1,config-write-initial-delay-secs=5</quarkus.test.arg-line>
+							</systemPropertyVariables>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>

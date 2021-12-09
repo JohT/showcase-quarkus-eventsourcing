@@ -32,6 +32,7 @@ import org.junit.jupiter.api.Test;
  * 
  * @author JohT
  */
+@Disabled
 class NatieImageReflectionConfigTest {
 	private static final Jsonb create = JsonbBuilder.create();
 
