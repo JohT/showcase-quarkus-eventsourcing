@@ -9,6 +9,10 @@ The following topics are meant to lead you through the code and highlight most i
 * [Connecting JTA Transactions to AxonFramework](#Connecting-JTA-Transactions-to-AxonFramework)
 * [Connecting JSON Binding to AxonFramework](#Connecting-JSON-Binding-to-AxonFramework)
 * [Mitigate Core API dependencies](#Mitigate-Core-API-dependencies)
+* [AxonFramework behind the boundary](#AxonFramework-behind-the-boundary)
+* [ArchUnit in action](#ArchUnit-in-action)
+* [Flyway in action](#Flyway-in-action)
+* [Vanilla JavaScript UI](#Vanilla-JavaScript-UI)
 
 ## Structure
 
@@ -104,6 +108,60 @@ When it comes to immutable value objects using constructor parameters, serializa
 Therefore, serialization libraries provide annotations for constructors. This introduces additional dependencies. These can be avoided by using the build-in [java.beans.ConstructorProperties Annotation][ConstructorProperties], that is now widely supported (Jackson, Yasson, ...). 
 
 As an example have a look at [ChangeNicknameCommand.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/message/command/account/ChangeNicknameCommand.java).
+
+### AxonFramework behind the boundary
+
+Following "Entity Control Boundary" or "Ports'n'Adapters", an extreme but interesting experiment is to define interfaces between the core (domain) of the application and AxonFramework. This is not meant to be an advice to do so. It has a couple of pros and cons as listed below. But it is for sure an interesting experiment.
+
+#### Services and Adapters
+
+As an example, AxonFramework's `CommandGateway` is represented inside the application by the boundary interface [CommandEmitterService.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/command/boundary/CommandEmitterService.java) and implemented by the [CommandEmitterAdapter.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/command/axon/CommandEmitterAdapter.java). The adapter is created in [AxonConfiguration.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/AxonConfiguration.java)  which also contains the CDI producer for the application.
+[AccountResource.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/service/account/AccountResource.java) uses the [CommandEmitterService.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/command/boundary/CommandEmitterService.java) uses [CommandEmitterService.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/command/boundary/CommandEmitterService.java) to send commands as it would be done with the `CommandGateway`.
+
+The core of the application only uses on the interface [CommandEmitterService.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/command/boundary/CommandEmitterService.java) which only contains those methods of an command gateway that are actually used by the application. It could also be further adapted (e.g. other reactive framework) to perfectly fit the needs of the application.
+
+The implementation and connection to AxonFramework all happens in the [messaging](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging) package in the two classes mentioned above. So if anything changes inside AxonFramework, these two classes are the only one the could be affected in most cases.
+
+#### Meta-Annotations
+
+AxonFramework not only comes with interfaces like the `CommandGateway`, it also provides annotations to identify building blocks like a `CommandHandler`.
+To take the approach of an abstraction between application core code and AxonFramework to an extreme level, the annotations can also be replaced by own ones. These own/custom meta-annotations are annotated  in their definition with the original framework annotations.
+
+Here is an example:
+[CommandModelCommandHandler.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/command/boundary/CommandModelCommandHandler.java).
+
+#### Pros
+ * It could be easier to update to a newer version of AxonFramework, especially when there are breaking changes. 
+ * It provides additional possibilities to extend/customize functionality provided by AxonFramework dedicated to the application.
+ * It defines and documents exactly those framework features that are used and hides the rest.
+ * The additional abstraction could be used for integration tests, that shouldn't produce side-effects via AxonFramework, e.g. by replacing those parts by mocks. 
+ 
+#### Cons
+ * It introduces additional complexity. 
+ * It is harder to compare the code to other applications, especially when different names are used.
+ * It is harder to discuss AxonFramework related topics because of the customization in between.
+ * Before using a new feature of the framework, the abstraction/boundary needs to be extended first.
+ * Axon Aggregate tests are harder to setup because they also need to be aware of the customized parts.
+ 
+#### Lessons learned
+
+Updating minor version of 4.x did not lead to changes in core domain code. But it is also very likely,
+that this would also have been the case without the boundary.
+
+The extreme approach to even define meta annotations lead to [a code change](https://github.com/JohT/showcase-quarkus-eventsourcing/commit/d0d3e623f3ef8aea8b75162416372f0b44be87d0#diff-38a240ea3c3ebfc9e839fa2220fa1935d5bcc49ba1bcb58c000e9d97cda2ccb3) in 
+[QueryModelResetHandler.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/query/boundary/QueryModelResetHandler.java) that wouldn't have been necessary otherwise. A transparent change inside an annotation of the framework needed also to be done on its meta annotation. This special case shows, that this can lead to an other form of coupling, even if this is might be less likely.
+
+#### Summary
+
+To summarize, it could be beneficial to applications with a big or fast growing core domain to put some effort in designing a boundary (e.g. interfaces) to frameworks like Axon, to be able to adapt future versions fast, customize the structure and even the behavior to perfectly fit the application and to have code that documents which parts of the frameworks are used.
+
+This is by no means at no cost. It introduces additional complexity, makes it harder to move code between different applications with different boundaries and needs also to be maintained, especially when also replacing the annotations. For small Microservices it is likely to be less effort to adapt framework changes in the core domain code instead of maintaining its abstraction.
+
+### ArchUnit in action
+
+### Flyway in action
+
+### Vanilla JavaScript UI
 
 ## References
 
