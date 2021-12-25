@@ -179,13 +179,49 @@ takes database script files inside the folder [resources/db](./src/main/resource
 
 The configuration is specific to Quarkus and can be found in the [application.properties](./src/main/resources/application.properties).
 
-#### Interesting similarities to Event Sourcing
+#### Similarities to Event Sourcing
+
 * Any database change ("event") is represented by a separate script file ("event payload").
 * Existing script files won't be changed ("immutable").
 * The order of the script files are represented by their version number ("sequence number").
 * They are applied ("replayed") on the database ("projection") until it is up to date ("tracking token").
 
 ### Vanilla JavaScript UI
+
+The user interface is made with plain/vanilla JavaScript, CSS and HTML.
+
+#### UI Structure
+
+* [src/main/javascript](./src/main/javascript) contains JavaScript sources 
+* [src/test/javascript](./src/test/javascript) contains JavaScript Jasmine Unit-Tests
+* [src/main/javascript/polyfills](./src/main/javascript/polyfills) contains JavaScript sources that provide functions, that are missing in older browsers.
+* [META-INF/resources](./src/main/resources/META-INF/resources) contains static CSS and HTML sources
+* [startup.js](./src/main/javascript/startup.js) registers JavaScript functions on page load
+* [account.js](./src/main/javascript/account.js) contains the part of the application, that deals with the "account" (domain name)
+* [event.js](./src/main/javascript/event.js) contains server sent events (SSE) client
+* [Maven POM](./pom.xml) also contains plugins to build the UI without Node.js.
+
+#### UI Modules
+
+[account.js](./src/main/javascript/account.js) consists of these modules in the namespace `eventsourcing_showcase`: 
+
+ * **AccountUI** - Represents the user interface elements, changes their properties and reads their values
+ * **AccountRepository** - Represents the data source(s) (here REST service calls)
+ * **AccountController** - Coordinates the modules AccountUI and AccountRepository and provides the "load" function that is called by [startup.js](./src/main/javascript/startup.js).
+
+[event.js](./src/main/javascript/event.js) consists of one module in the namespace `eventsourcing_showcase`: 
+ * **EventController** - Contains the server sent events (SSE) client, which updates the UI without refresh in a reactive manner when a new nickname is created (backed by a axon subscription query).
+
+#### UI Build
+
+The whole application is build with [Maven][Maven], including the user interface. [Maven][Maven] is usually used for Java applications. [Node.js®][NodeJS] is popular for JavaScript applications. [Maven][Maven] might not be suitable for a large JavaScript applications. However in this case it simplifies the build, since all steps are done within one build tool.
+
+These Maven-Plugins are used to build the user interface:
+
+ * [jasmine-maven-plugin][jasmine-maven-plugin] runs all [Jasmine][Jasmine] unit tests on [PhantomJS], a headless browser
+ * [saga-maven-plugin][saga-maven-plugin] measures JavaScript unit test coverage
+ * [yuicompressor-maven-plugin][yuicompressor-maven-plugin] aggregates/copies all JavaScript sources into one `application.js` and compresses it to make it smaller and therefore faster to load.
+
 
 ## References
 
@@ -201,6 +237,13 @@ The configuration is specific to Quarkus and can be found in the [application.pr
 * [Jakarta JSON Binding][JSONBinding]
 * [Jakarta Transactions (JTA)][JakartaTransaction]
 * [Java ServiceLoader][ServiceLoader]
+* [Jasmine Behavior-Driven JavaScript][Jasmine]
+* [Maven][Maven]
+* [Maven jasmine-maven-plugin][jasmine-maven-plugin]
+* [Maven saga-maven-plugin][saga-maven-plugin]
+* [Maven yuicompressor-maven-plugin][yuicompressor-maven-plugin]
+* [Node.js®][NodeJS]
+* [PhantomJS][PhantomJS]
 * [Quarkus Context and Dependency Injection (CDI)][QuarkusCDI]
 * [Quarkus Application Initialization and Termination][QuarkusLivecycle]
 * [ServiceLoader][ServiceLoader]
@@ -214,10 +257,17 @@ The configuration is specific to Quarkus and can be found in the [application.pr
 [ConstructorProperties]: https://docs.oracle.com/javase/8/docs/api/java/beans/ConstructorProperties.html
 [Flyway]: https://flywaydb.org
 [JakartaTransaction]: https://jakarta.ee/specifications/transactions/
+[Jasmine]: https://jasmine.github.io
+[jasmine-maven-plugin]: https://searls.github.io/jasmine-maven-plugin/
 [JSONBinding]: https://jakarta.ee/specifications/jsonb/2.0/jakarta-jsonb-spec-2.0.html
+[Maven]: https://maven.apache.org
 [MicroProfile]: https://projects.eclipse.org/projects/technology.microprofile
+[NodeJS]: https://nodejs.org/en/
+[PhantomJS]: https://phantomjs.org
 [QuarkusCDI]: https://quarkus.io/guides/cdi-reference
 [QuarkusNativeExecutable]: https://quarkus.io/guides/building-native-image-guide
 [QuarkusLivecycle]: https://quarkus.io/guides/lifecycle
+[saga-maven-plugin]: https://timurstrekalov.github.io/saga/
 [ServiceLoader]: https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html
 [TestingEqualsHashcode]: https://joht.github.io/johtizen/testing/2020/03/08/test-all-equal-and-hashcode-methods.html
+[yuicompressor-maven-plugin]: http://davidb.github.io/yuicompressor-maven-plugin/
