@@ -161,16 +161,29 @@ This is by no means at no cost. It introduces additional complexity, makes it ha
 
 > [ArchUnit][ArchUnit] is a free, simple and extensible library for checking the architecture of your Java code using any plain Java unit test framework. 
 
-[ArchitectureRulesTest.java](./src/test/java/io/github/joht/showcase/quarkuseventsourcing/ArchitectureRulesTest.java) shows how [ArchUnit][ArchUnit] can be utilized to specify and ensure  application (micro) architecture rules. Here are some examples from the unit test:
+[ArchitectureRulesTest.java](./src/test/java/io/github/joht/showcase/quarkuseventsourcing/ArchitectureRulesTest.java) shows how [ArchUnit][ArchUnit] can be utilized to specify and ensure  application (micro) architecture rules. Here are some test case name examples:
 
-* there should be no Quarkus specific dependencies
-* command/domain model should not depend on query model
-* boundary should not use axon directly
+* "there should be no Quarkus specific dependencies"
+* "command/domain model should not depend on query model"
+* "boundary should not use axon directly"
 
 [ArchUnit][ArchUnit] can also be used to test equals- and hashCode methods 
 as described in [Testing all equals and hashCode methods][TestingEqualsHashcode].
 
 ### Flyway in action
+
+> Version control for your database
+
+[Flyway][Flyway] 
+takes database script files inside the folder [resources/db](./src/main/resources/db) and executes them while the application is starting. If the database hadn't been setup yet, all of them will be applied in order. Every database change is written into a new script file using a new version number. [Flyway][Flyway] will keep track of the current database version and will only apply those scripts that are needed to keep it up to date. 
+
+The configuration is specific to Quarkus and can be found in the [application.properties](./src/main/resources/application.properties).
+
+#### Interesting similarities to Event Sourcing
+* Any database change ("event") is represented by a separate script file ("event payload").
+* Existing script files won't be changed ("immutable").
+* The order of the script files are represented by their version number ("sequence number").
+* They are applied ("replayed") on the database ("projection") until it is up to date ("tracking token").
 
 ### Vanilla JavaScript UI
 
