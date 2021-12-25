@@ -145,19 +145,30 @@ Here is an example:
  
 #### Lessons learned
 
-Updating minor version of 4.x did not lead to changes in core domain code. But it is also very likely,
+Updating minor versions of 4.x did not lead to changes in core domain code. But it is also very likely,
 that this would also have been the case without the boundary.
 
 The extreme approach to even define meta annotations lead to [a code change](https://github.com/JohT/showcase-quarkus-eventsourcing/commit/d0d3e623f3ef8aea8b75162416372f0b44be87d0#diff-38a240ea3c3ebfc9e839fa2220fa1935d5bcc49ba1bcb58c000e9d97cda2ccb3) in 
-[QueryModelResetHandler.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/query/boundary/QueryModelResetHandler.java) that wouldn't have been necessary otherwise. A transparent change inside an annotation of the framework needed also to be done on its meta annotation. This special case shows, that this can lead to an other form of coupling, even if this is might be less likely.
+[QueryModelResetHandler.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/query/boundary/QueryModelResetHandler.java) that wouldn't have been necessary otherwise. This change wouldn't have been necessary when the original annotations were used. This special case doen't prove that the abstraction leads to more coupling, but is a good example on how Meta-Annotations tend to be more dependent on their originals (if they get changed) than expected.
 
 #### Summary
 
 To summarize, it could be beneficial to applications with a big or fast growing core domain to put some effort in designing a boundary (e.g. interfaces) to frameworks like Axon, to be able to adapt future versions fast, customize the structure and even the behavior to perfectly fit the application and to have code that documents which parts of the frameworks are used.
 
-This is by no means at no cost. It introduces additional complexity, makes it harder to move code between different applications with different boundaries and needs also to be maintained, especially when also replacing the annotations. For small Microservices it is likely to be less effort to adapt framework changes in the core domain code instead of maintaining its abstraction.
+This is by no means at no cost. It introduces additional complexity, makes it harder to move code between different applications with different boundaries and needs also to be maintained. For small Microservices it is likely to be less effort to adapt framework changes in the whole application instead of maintaining an abstraction.
 
 ### ArchUnit in action
+
+> [ArchUnit][ArchUnit] is a free, simple and extensible library for checking the architecture of your Java code using any plain Java unit test framework. 
+
+[ArchitectureRulesTest.java](./src/test/java/io/github/joht/showcase/quarkuseventsourcing/ArchitectureRulesTest.java) shows how [ArchUnit][ArchUnit] can be utilized to specify and ensure  application (micro) architecture rules. Here are some examples from the unit test:
+
+* there should be no Quarkus specific dependencies
+* command/domain model should not depend on query model
+* boundary should not use axon directly
+
+[ArchUnit][ArchUnit] can also be used to test equals- and hashCode methods 
+as described in [Testing all equals and hashCode methods][TestingEqualsHashcode].
 
 ### Flyway in action
 
@@ -165,6 +176,7 @@ This is by no means at no cost. It introduces additional complexity, makes it ha
 
 ## References
 
+* [ArchUnit][ArchUnit]
 * [Axon Framework CDI Support][AxonFrameworkCDI]
 * [AxonFramework Giftcard Example][AxonFrameworkGiftcardExample]
 * [AxonFramework Parameter Resolver][AxonFrameworkParameterResolver]
@@ -178,7 +190,10 @@ This is by no means at no cost. It introduces additional complexity, makes it ha
 * [Java ServiceLoader][ServiceLoader]
 * [Quarkus Context and Dependency Injection (CDI)][QuarkusCDI]
 * [Quarkus Application Initialization and Termination][QuarkusLivecycle]
+* [ServiceLoader][ServiceLoader]
+* [Testing all equals and hashCode methods][TestingEqualsHashcode]
 
+[ArchUnit]: https://www.archunit.org
 [AxonFrameworkCDI]: https://github.com/AxonFramework/extension-cdi
 [AxonFrameworkParameterResolver]: https://axoniq.io/blog-overview/parameter-resolvers-axon
 [AxonFrameworkGiftcardExample]: https://github.com/AxonFramework/extension-springcloud-sample
@@ -192,3 +207,4 @@ This is by no means at no cost. It introduces additional complexity, makes it ha
 [QuarkusNativeExecutable]: https://quarkus.io/guides/building-native-image-guide
 [QuarkusLivecycle]: https://quarkus.io/guides/lifecycle
 [ServiceLoader]: https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html
+[TestingEqualsHashcode]: https://joht.github.io/johtizen/testing/2020/03/08/test-all-equal-and-hashcode-methods.html
