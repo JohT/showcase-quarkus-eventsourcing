@@ -4,7 +4,7 @@ The following topics are meant to lead you through the code and highlight most i
 
 ## Topics
 
-* [Structure](#Structure)
+* [Main Structure](#Main-Structure)
 * [Connecting CDI to AxonFramework](#Connecting-CDI-to-AxonFramework)
 * [Connecting JTA Transactions to AxonFramework](#Connecting-JTA-Transactions-to-AxonFramework)
 * [Connecting JSON Binding to AxonFramework](#Connecting-JSON-Binding-to-AxonFramework)
@@ -14,7 +14,7 @@ The following topics are meant to lead you through the code and highlight most i
 * [Flyway in action](#Flyway-in-action)
 * [Vanilla JavaScript UI](#Vanilla-JavaScript-UI)
 
-## Structure
+## Main Structure
 
 * [message](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/message) contains the core API with all event-, command- and query-message types.
 * [messaging](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging) connects AxonFramework to the application and provides interfaces (boundary) and adapters to AxonFrameworks as well as it's configuration. 
