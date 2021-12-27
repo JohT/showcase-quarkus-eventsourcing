@@ -1,6 +1,6 @@
 # Walkthrough
 
-The following topics are meant to lead you through the code and highlight most important code pieces from different angles. 
+The following topics are meant to lead through the code and highlight most important code pieces from different angles. 
 
 ## Topics
 
@@ -55,7 +55,7 @@ and returns all beans (of any type) that CDI discovers (in respect of its config
 
 ### Application startup
 
-Axon configuration is created the first time it is used. The disadvantage of this is, that the application might benefit from a warm up. The advantage is, that this works for all CDI containers including Quarkus in native mode. Even if `@Observes @Initialized(ApplicationScope.class)` is Standard CDI and could be used to call a method on server start, Quarkus would run this e.g. in native mode during build. For details see [Quarkus Application Initialization and Termination][QuarkusLivecycle].
+Axon configuration is created the first time it is used. The disadvantage of this is, that the application might benefit from a warm up. The advantage is, that this works for all CDI containers including Quarkus in native mode. Even if `@Observes @Initialized(ApplicationScope.class)` is standardized in  CDI and could be used to call a method on server start, Quarkus would run this e.g. in native mode during build. For details see [Quarkus Application Initialization and Termination][QuarkusLivecycle].
 
 ## Connecting JTA Transactions to AxonFramework
 
@@ -66,10 +66,10 @@ This is pretty similar to [AxonFramework/cdi JtaTransactionManager.java](https:/
 
 ## Connecting JSON Binding to AxonFramework
 
-[JsonbSerializer.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/JsonbSerializer.java) implements [JSON Binding][JSONBinding] as `Serializer` for AxonFramework. As an alternative, Jackson could be used as well. [JSON Binding][JSONBinding] had be chosen here to be fully compliant to the MicroProfile Standard.
+[JsonbSerializer.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/JsonbSerializer.java) implements [JSON Binding][JSONBinding] as `Serializer` for AxonFramework. As an alternative Jackson could be used as well. [JSON Binding][JSONBinding] had been chosen here to stay within the libraries that are included in [MicroProfile][MicroProfile].
 
-AxonFramework has build-in support for Jackson JSON serializer. Some of its internal serializable data types need to be adapted to be used with [JSON Binding][JSONBinding]. 
-These are internally registered in [JsonbAxonAdapterRegister.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/adapter/JsonbAxonAdapterRegister.java). Except for the generic [JsonbMetaDataAdapter.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/adapter/JsonbMetaDataAdapter.java) and [JsonbReplayTokenAdapter.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/adapter/JsonbReplayTokenAdapter.java) the remaining ones shouldn't be needed any more since [AxonFramework PullRequest #1163](https://github.com/AxonFramework/AxonFramework/pull/1163).
+AxonFramework has build-in support for Jackson JSON serializer. For [JSON Binding][JSONBinding], some of Axon's internal serializable data types need to be adapted. 
+These are registered in [JsonbAxonAdapterRegister.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/adapter/JsonbAxonAdapterRegister.java). Except for [JsonbMetaDataAdapter.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/adapter/JsonbMetaDataAdapter.java) and [JsonbReplayTokenAdapter.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/adapter/JsonbReplayTokenAdapter.java) the remaining ones shouldn't be needed any more since [PullRequest #1163](https://github.com/AxonFramework/AxonFramework/pull/1163).
 
 ## Mitigate Core API dependencies
 
@@ -102,7 +102,7 @@ AnnotationCommandTargetResolver.builder()
 
 Plain old java objects (POJO) are widely supported by almost any serialization (JSON, XML,..) library.
 When Domain Driven Design is applied, value objects should be immutable. 
-Their properties should only be set once during creation and should then remain unchangeable. 
+Their properties should only be set once during creation and should then remain unchanged. 
 This is usually done by using constructor parameters. To simplify creating complex objects, builders can be provided as well. 
 
 When it comes to immutable value objects using constructor parameters, serialization libraries need to know which field should be mapped to which constructor argument. If there are a couple of constructors, it gets even more complicated. 
@@ -195,7 +195,7 @@ The user interface is made with plain/vanilla JavaScript, CSS and HTML.
 ### UI Structure
 
 * [src/main/javascript](./src/main/javascript) contains JavaScript sources 
-* [src/test/javascript](./src/test/javascript) contains JavaScript Jasmine Unit-Tests
+* [src/test/javascript](./src/test/javascript) contains JavaScript [Jasmine][Jasmine] Unit-Tests
 * [src/main/javascript/polyfills](./src/main/javascript/polyfills) contains JavaScript sources that provide functions, that are missing in older browsers.
 * [META-INF/resources](./src/main/resources/META-INF/resources) contains static CSS and HTML sources
 * [startup.js](./src/main/javascript/startup.js) registers JavaScript functions on page load
