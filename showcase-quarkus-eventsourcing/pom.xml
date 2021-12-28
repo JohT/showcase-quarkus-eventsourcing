@@ -451,7 +451,7 @@
 			</build>
 		</profile>
 		
-		<!-- The additional profile "native-image-agent" is used to build the java application jar, -->
+		<!-- The additional profile "native-image-agent-config" is used to build the java application jar, -->
 		<!-- start it with the GraalVM JVM with activated native-image-agent and run the integration tests on it. -->
 		<!-- The generated reports and template configurations are written to the folder "native-image-reports" and -->
 		<!-- are based on the collected runtime informations. These are helpful to configure native image build. -->

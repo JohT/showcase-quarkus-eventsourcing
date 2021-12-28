@@ -14,6 +14,7 @@ The following topics are meant to lead through the code and highlight most impor
 * [Flyway in action](#Flyway-in-action)
 * [Vanilla JavaScript UI](#Vanilla-JavaScript-UI)
 * [Server-Sent Events (SSE) for Subscription Queries](#Server-Sent-Events-SSE-for-Subscription-Queries)
+* [Native Image](#Native-Image)
 * [References](#References)
 
 ## Main Structure
@@ -237,9 +238,39 @@ After the initial response the query updates need to be pushed to the browser. U
 * [NicknameEventStreamResource.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/service/nickname/NicknameEventStreamResource.java) contains the server-side SSE endpoint.
 * [NicknameEventSubscriber.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/service/nickname/NicknameEventSubscriber.java) uses `javax.ws.rs.sse.Sse` and `javax.ws.rs.sse.SseEventSink` to notify changes
 
+## Native Image
+
+Detailed informations on how to build the native image and commands that come with it are documented in  [README.md](./README.md).
+
+### Native Image Maven Profiles
+
+These Native Image [Maven][Maven] profiles are defined in the [pom.xml](./pom.xml):
+
+ * **native**: Builds the native image and runs the integration tests as described in [Quarkus Building a native executable][QuarkusNativeImage]
+ * **native-image-agent-config**: Needs to be started with GraalVM JDK. Runs integration tests and generates native image configuration JSON files based on the runtime informations collected by the [NativeImageAgent][NativeImageAssistedConfiguration].
+ * **native-image-agent-trace**: Needs to be started with GraalVM JDK. Runs integration tests and generates the native image trace JSON files based on the runtime informations collected by the [NativeImageAgent][NativeImageAssistedConfiguration]. The trace file can also be used to extract native image configuration JSON files with the GraalVM command "native-image-configure".
+
+### Native Image Configurations
+
+* [reflection-config.json](./reflection-config.json) contains the reflection calls that need to be included in the native image
+* [resources-config.json](./resources-config.json) contains the resources that need to be included in the native image
+* [native-image-caller-filter-rules.json](./native-image-caller-filter-rules.json) contains the filter rules for all things Quarkus already takes care of (so they don't need to be configured).
+
+### GitHub Workflows:
+
+* [native-image.yml](./../.github/workflows/native-image.yml) contains the native image build.
+* [native-image-agent.yml](./../.github/workflows/native-image-agent.yml) contains the trace and configuration file generation using the native image agent.
+
+### Results:
+
+The results of the native image agent are pushed back into the repository by the continuous integration pipeline and can be found in [native-image-agent-results](./native-image-agent-results). A new directory is created for every new Java-, AxonFramework- and Quarkus-Version. This makes it easier to compare them without the need to switch between GIT tags. 
+
+If all use cases of the application are covered by integration tests or in other words the native image agent can collect all necessary informations during runtime, it is theoretically possible to use the generated configuration files to automatically build the native image. Taking these configuration files to get insights to the application and then finding a way to statically generate the configuration may lead to better results though.
+
 ## References
 
 * [ArchUnit][ArchUnit]
+* [Assisted Configuration with Tracing Agent][NativeImageAssistedConfiguration]
 * [Axon Framework CDI Support][AxonFrameworkCDI]
 * [AxonFramework Giftcard Example][AxonFrameworkGiftcardExample]
 * [AxonFramework Parameter Resolver][AxonFrameworkParameterResolver]
@@ -257,10 +288,12 @@ After the initial response the query updates need to be pushed to the browser. U
 * [Maven jasmine-maven-plugin][jasmine-maven-plugin]
 * [Maven saga-maven-plugin][saga-maven-plugin]
 * [Maven yuicompressor-maven-plugin][yuicompressor-maven-plugin]
+* [NativeImageAssistedConfiguration]: https://www.graalvm.org/reference-manual/native-image/Agent
 * [Node.js®][NodeJS]
 * [PhantomJS][PhantomJS]
-* [Quarkus Context and Dependency Injection (CDI)][QuarkusCDI]
 * [Quarkus Application Initialization and Termination][QuarkusLivecycle]
+* [Quarkus Context and Dependency Injection (CDI)][QuarkusCDI]
+* [Quarkus Building a native executable][QuarkusNativeImage]
 * [Server-Sent Events (SSE) in JAX-RS][ServerSentEvents]
 * [ServiceLoader][ServiceLoader]
 * [Testing all equals and hashCode methods][TestingEqualsHashcode]
@@ -283,6 +316,7 @@ After the initial response the query updates need to be pushed to the browser. U
 [PhantomJS]: https://phantomjs.org
 [QuarkusCDI]: https://quarkus.io/guides/cdi-reference
 [QuarkusNativeExecutable]: https://quarkus.io/guides/building-native-image-guide
+[QuarkusNativeImage]: https://quarkus.io/guides/building-native-image
 [QuarkusLivecycle]: https://quarkus.io/guides/lifecycle
 [saga-maven-plugin]: https://timurstrekalov.github.io/saga
 [ServerSentEvents]: https://www.baeldung.com/java-ee-jax-rs-sse
