@@ -89,6 +89,9 @@
       "pattern":"\\Qdb/command/common/V1.0.0__AxonOnMicroprofileTryoutEventsourcing.sql\\E"
     }, 
     {
+      "pattern":"\\Qdb/command/common/V1.1.7__DomainEventEntryTypeNullable.sql\\E"
+    }, 
+    {
       "pattern":"\\Qdb/command/h2/V1.0.1__H2BlobTypeForBinaryData.sql\\E"
     }, 
     {
