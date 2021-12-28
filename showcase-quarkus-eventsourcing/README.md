@@ -63,24 +63,27 @@ $GRAALVM_HOME/bin/java -agentlib:native-image-agent=trace-output=native-image/tr
 
 As described in [Using GraalVM native-image-agent][UsingNativeImageAgent] it is very helpful to use integration tests and run them [against the running application][QuarkusIntegrationTestsAgainstRunningApplication], that was started by one of the commands above with the native image agent activated. This is much easier than clicking through the application manually. 
 
-
 ## Features
 * MicroProfile Standard
 * "Reactive" example using server sent events (tested with safari & chrome browser) and axon subscription query
 * Replay example. Use REST DELETE ```/nicknames/projection```
 * Contains an axon upcaster example
 * Works with H2 and PostgreSql. Just switch the regarding comments in ```application.properties``` and ```persistence.xml```.
-* Uses flyway for database schema creation and migration. It is configured to work with H2 and PostgreSql.
+* Uses [Flyway][Flyway] for database schema creation and migration. It is configured to work with H2 and PostgreSql.
 * Uses [JSON Binding][JSONBinding] to serialize JSON (MicroProfile Standard)
 * Uses meta-annotations to decouple [AxonFramework][AxonFramework] from the message api and business code.
 * Full-Stack Build configuration including JavaScript Unit Tests with Jasmine, JavaScript minify, ... 
 * Continuous Integration using [GitHub Actions][GitHubActions] for a fully automated build including Java and JavaScript Unit Tests, Web Packaging, native image and integration-tests.
 
-## Notes
+### Notes
 * Code comments containing the marker ```Note:``` describes thoughts, background information, documented decisions and hints to problems. 
 * ```ArchitectureRulesTest``` defines rules to assure low coupling between the business core, axon and microprofile features.
 * These rules might seem a bit extreme. Some may even find them to be impractical. After all, this examples shows that it can be done.
 * This is just a simple show case, not an full application. 
+
+## Walkthrough
+
+The [Walkthrough](./WALKTHROUGH.md) lead you through the code and highlights most important code pieces from different angles. 
 
 ## What is [AxonFramework][AxonFramework]?
 
@@ -102,10 +105,10 @@ For more details please visit [Quarkus][Quarkus].
 
 ## References
 
-* [ArchUnit][ArchUnit]
 * [Assisted Configuration with Tracing Agent][NativeImageAssistedConfiguration]
 * [AxonFramework][AxonFramework]
 * [Building a native executable][QuarkusNativeExecutable]
+* [CDI - Jakarta Contexts and Dependency Injection][CDI]
 * [Eclipse MicroProfile][MicroProfile]
 * [EqualsVerifier][EqualsVerifier]
 * [Flyway Version control for your database][Flyway]
@@ -114,11 +117,10 @@ For more details please visit [Quarkus][Quarkus].
 * [Jakarta JSON Binding][JSONBinding]
 * [Quarkus][Quarkus]
 * [Quarkus Integrationtest - Executing against a running application][QuarkusIntegrationTestsAgainstRunningApplication]
-* [Testing all equals and hashCode methods][TestingEqualsHashcode]
 * [Using GraalVM native-image-agent when porting a library to Quarkus][UsingNativeImageAgent]
 
-[ArchUnit]: https://www.archunit.org
 [AxonFramework]: https://axoniq.io/product-overview/axon-framework
+[CDI]: https://jakarta.ee/specifications/cdi
 [EqualsVerifier]: https://jqno.nl/equalsverifier
 [Flyway]: https://flywaydb.org
 [GitHubActions]: https://docs.github.com/en/actions
@@ -129,5 +131,4 @@ For more details please visit [Quarkus][Quarkus].
 [Quarkus]: https://quarkus.io
 [QuarkusNativeExecutable]: https://quarkus.io/guides/building-native-image-guide
 [QuarkusIntegrationTestsAgainstRunningApplication]: https://quarkus.io/guides/getting-started-testing#executing-against-a-running-application
-[TestingEqualsHashcode]: https://joht.github.io/johtizen/testing/2020/03/08/test-all-equal-and-hashcode-methods.html
 [UsingNativeImageAgent]: https://peter.palaga.org/2021/01/31/using-native-image-agent-when-porting-a-lib-to-quarkus.html
