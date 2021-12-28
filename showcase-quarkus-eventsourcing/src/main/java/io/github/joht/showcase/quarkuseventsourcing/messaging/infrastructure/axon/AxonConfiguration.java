@@ -54,9 +54,11 @@ import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axo
 import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.JsonbSerializer;
 import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.transaction.jta.JtaTransactionManager;
 import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.upcaster.AnnotationEventRevisionResolver;
+import io.github.joht.showcase.quarkuseventsourcing.messaging.query.axon.EventPublishingAdapter;
 import io.github.joht.showcase.quarkuseventsourcing.messaging.query.axon.QueryReplayAdapter;
 import io.github.joht.showcase.quarkuseventsourcing.messaging.query.axon.QuerySubmitterAdapter;
 import io.github.joht.showcase.quarkuseventsourcing.messaging.query.axon.QueryUpdateEmitterAdapter;
+import io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.EventPublishingService;
 import io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.QueryModelProjection;
 import io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.QueryProcessor;
 import io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.QueryProjectionManagementService;
@@ -177,6 +179,12 @@ public class AxonConfiguration {
         return new QueryReplayAdapter(configuration.eventProcessingConfiguration());
     }
 
+    @Produces
+    @ApplicationScoped
+    public EventPublishingService getEventPublishingService() {
+    	return new EventPublishingAdapter(configuration.eventGateway());
+    }
+    
     private Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
