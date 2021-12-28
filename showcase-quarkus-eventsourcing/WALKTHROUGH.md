@@ -272,33 +272,33 @@ If all use cases of the application are covered by integration tests or in other
 * [ArchUnit][ArchUnit]
 * [Assisted Configuration with Tracing Agent][NativeImageAssistedConfiguration]
 * [Axon Framework CDI Support][AxonFrameworkCDI]
-* [AxonFramework Giftcard Example][AxonFrameworkGiftcardExample]
-* [AxonFramework Parameter Resolver][AxonFrameworkParameterResolver]
-* [Introducing Subscription Queries][AxonSubscriptionQueries]
+* [Axon Framework Giftcard Example][AxonFrameworkGiftcardExample]
+* [Axon Framework Parameter Resolver][AxonFrameworkParameterResolver]
 * [Building a native executable][QuarkusNativeExecutable]
 * [CDI Portable Extension][CDIExtension]
-* [Java Beans ConstructorProperties Annotation][ConstructorProperties]
 * [Eclipse MicroProfile][MicroProfile]
 * [Flyway Version control for your database][Flyway]
+* [Introducing Subscription Queries][AxonSubscriptionQueries]
 * [Jakarta JSON Binding][JSONBinding]
 * [Jakarta Transactions (JTA)][JakartaTransaction]
+* [Java Beans ConstructorProperties Annotation][ConstructorProperties]
 * [Java ServiceLoader][ServiceLoader]
 * [Jasmine Behavior-Driven JavaScript][Jasmine]
 * [Maven][Maven]
 * [Maven jasmine-maven-plugin][jasmine-maven-plugin]
 * [Maven saga-maven-plugin][saga-maven-plugin]
 * [Maven yuicompressor-maven-plugin][yuicompressor-maven-plugin]
-* [NativeImageAssistedConfiguration]: https://www.graalvm.org/reference-manual/native-image/Agent
 * [Node.js®][NodeJS]
 * [PhantomJS][PhantomJS]
 * [Quarkus Application Initialization and Termination][QuarkusLivecycle]
-* [Quarkus Context and Dependency Injection (CDI)][QuarkusCDI]
 * [Quarkus Building a native executable][QuarkusNativeImage]
+* [Quarkus Context and Dependency Injection (CDI)][QuarkusCDI]
 * [Server-Sent Events (SSE) in JAX-RS][ServerSentEvents]
 * [ServiceLoader][ServiceLoader]
 * [Testing all equals and hashCode methods][TestingEqualsHashcode]
 
 [ArchUnit]: https://www.archunit.org
+[NativeImageAssistedConfiguration]: https://www.graalvm.org/reference-manual/native-image/Agent
 [AxonFrameworkCDI]: https://github.com/AxonFramework/extension-cdi
 [AxonFrameworkParameterResolver]: https://axoniq.io/blog-overview/parameter-resolvers-axon
 [AxonFrameworkGiftcardExample]: https://github.com/AxonFramework/extension-springcloud-sample
