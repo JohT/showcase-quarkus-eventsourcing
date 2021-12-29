@@ -74,10 +74,10 @@ public class ArchitectureRulesTest {
     }
 
     @Test
-    @DisplayName("messages should not depend on javax")
-    void messagesShouldNotDependOnJavax() {
-        classes().that().resideInAPackage("..messages..")
-                .should().onlyDependOnClassesThat().resideOutsideOfPackage("..javax..")
+    @DisplayName("message types should only depend on java and classes of the package they belong to")
+    void messageTypesShouldOnlyDependOnJava() {
+        classes().that().resideInAPackage("..message..")
+                .should().onlyDependOnClassesThat().resideInAnyPackage("java..", "..message..")
                 .check(classes);
     }
 

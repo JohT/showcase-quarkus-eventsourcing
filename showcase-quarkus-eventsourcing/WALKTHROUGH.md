@@ -8,6 +8,7 @@ The following topics are meant to lead through the code and highlight most impor
 * [Connecting CDI to AxonFramework](#Connecting-CDI-to-AxonFramework)
 * [Connecting JTA Transactions to AxonFramework](#Connecting-JTA-Transactions-to-AxonFramework)
 * [Connecting JSON Binding to AxonFramework](#Connecting-JSON-Binding-to-AxonFramework)
+* [Connecting Bean Validation to AxonFramework](#Connecting-Bean-Validation-to-AxonFramework)
 * [Mitigate Core API dependencies](#Mitigate-Core-API-dependencies)
 * [AxonFramework behind the boundary](#AxonFramework-behind-the-boundary)
 * [ArchUnit in action](#ArchUnit-in-action)
@@ -72,6 +73,19 @@ This is pretty similar to [AxonFramework/cdi JtaTransactionManager.java](https:/
 AxonFramework has build-in support for Jackson JSON serializer. For [JSON Binding][JSONBinding], some of Axon's internal serializable data types need to be adapted. 
 These are registered in [JsonbAxonAdapterRegister.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/adapter/JsonbAxonAdapterRegister.java). Except for [JsonbMetaDataAdapter.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/adapter/JsonbMetaDataAdapter.java) and [JsonbReplayTokenAdapter.java](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/serializer/jsonb/axon/adapter/JsonbReplayTokenAdapter.java) the remaining ones shouldn't be needed any more since [PullRequest #1163](https://github.com/AxonFramework/AxonFramework/pull/1163).
 
+## Connecting Bean Validation to AxonFramework
+
+[Jakarta Bean Validation][JakartaBeanValidation] lets you express constraints on object models via annotations. As described in [Axon Framework Message Intercepting][AxonFrameworkMessageIntercepting], there is a build-in dispatch interceptor to validate messages using Bean Validation.
+The following code snippet shows how to attach it to the command bus: 
+
+```java
+configuration.commandBus().registerDispatchInterceptor(new BeanValidationInterceptor<>(validatorFactory));
+```
+
+Bean Validation had been removed from this showcase in favor to dependency free message types.
+It still can be found in version V1.4 and earlier e.g. in [AxonConfiguration.java](https://github.com/JohT/showcase-quarkus-eventsourcing/blob/6ebae39aba2e0828f5d1e93d82cd3caeedcb7541/showcase-quarkus-eventsourcing/src/main/java/io/github/joht/showcase/quarkuseventsourcing/messaging/infrastructure/axon/AxonConfiguration.java#L342) and [CreateAccountCommand.java](https://github.com/JohT/showcase-quarkus-eventsourcing/blob/6ebae39aba2e0828f5d1e93d82cd3caeedcb7541/showcase-quarkus-eventsourcing/src/main/java/io/github/joht/showcase/quarkuseventsourcing/message/command/account/CreateAccountCommand.java#L11)
+
+
 ## Mitigate Core API dependencies
 
 The core API contains value objects of all messages (events, commands, queries). These can be found in the package [message](./src/main/java/io/github/joht/showcase/quarkuseventsourcing/message).
@@ -79,8 +93,6 @@ The core API contains value objects of all messages (events, commands, queries).
 As a reference [AxonFramework Giftcard Example][AxonFrameworkGiftcardExample] shows how these could be defined using Kotlin (see "coreapi" package"). 
 
 The core API might become a separate module and will be shared upon command- and query-side implementations. Shared libraries need to be treated with special care. Changes might introduce changes in dependent modules (coupling). They may also introduce version conflicts, if the dependent module needs a library in a different version. To mitigate that it is advantageous when the shared API is self contained and only depends on java itself. 
-
-**&#8505;** Currently (2021) there is a dependency to the bean validation API. This could also be replaced.
 
 ### Command message types without axon dependency
 
@@ -274,11 +286,13 @@ If all use cases of the application are covered by integration tests or in other
 * [Axon Framework CDI Support][AxonFrameworkCDI]
 * [Axon Framework Giftcard Example][AxonFrameworkGiftcardExample]
 * [Axon Framework Parameter Resolver][AxonFrameworkParameterResolver]
+* [Axon Framework Message Intercepting][AxonFrameworkMessageIntercepting]
 * [Building a native executable][QuarkusNativeExecutable]
 * [CDI Portable Extension][CDIExtension]
 * [Eclipse MicroProfile][MicroProfile]
 * [Flyway Version control for your database][Flyway]
 * [Introducing Subscription Queries][AxonSubscriptionQueries]
+* [Jakarta Bean Validation][JakartaBeanValidation]
 * [Jakarta JSON Binding][JSONBinding]
 * [Jakarta Transactions (JTA)][JakartaTransaction]
 * [Java Beans ConstructorProperties Annotation][ConstructorProperties]
@@ -300,12 +314,14 @@ If all use cases of the application are covered by integration tests or in other
 [ArchUnit]: https://www.archunit.org
 [NativeImageAssistedConfiguration]: https://www.graalvm.org/reference-manual/native-image/Agent
 [AxonFrameworkCDI]: https://github.com/AxonFramework/extension-cdi
-[AxonFrameworkParameterResolver]: https://axoniq.io/blog-overview/parameter-resolvers-axon
 [AxonFrameworkGiftcardExample]: https://github.com/AxonFramework/extension-springcloud-sample
+[AxonFrameworkParameterResolver]: https://axoniq.io/blog-overview/parameter-resolvers-axon
+[AxonFrameworkMessageIntercepting]: https://docs.axoniq.io/reference-guide/v/master/axon-framework/messaging-concepts/message-intercepting#structural-validation
 [AxonSubscriptionQueries]: https://axoniq.io/blog-overview/introducing-subscription-queries
 [CDIExtension]: https://docs.jboss.org/weld/reference/latest/en-US/html/extend.html
 [ConstructorProperties]: https://docs.oracle.com/javase/8/docs/api/java/beans/ConstructorProperties.html
 [Flyway]: https://flywaydb.org
+[JakartaBeanValidation]: https://beanvalidation.org
 [JakartaTransaction]: https://jakarta.ee/specifications/transactions/
 [Jasmine]: https://jasmine.github.io
 [jasmine-maven-plugin]: https://searls.github.io/jasmine-maven-plugin/
