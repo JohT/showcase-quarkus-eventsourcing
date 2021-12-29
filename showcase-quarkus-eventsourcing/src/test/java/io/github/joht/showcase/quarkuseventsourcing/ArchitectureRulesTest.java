@@ -2,7 +2,6 @@ package io.github.joht.showcase.quarkuseventsourcing;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.codeUnits;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.fields;
 import static nl.jqno.equalsverifier.Warning.STRICT_HASHCODE;
 import static nl.jqno.equalsverifier.Warning.SURROGATE_KEY;
 
@@ -13,8 +12,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.tngtech.archunit.base.DescribedPredicate;
-import com.tngtech.archunit.core.domain.JavaAnnotation;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.domain.JavaCodeUnit;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
@@ -68,24 +65,6 @@ public class ArchitectureRulesTest {
     }
 
     @Test
-    @DisplayName("there should be no Quarkus specific annotations on classes")
-    void thereShouldBeNoQuarkusSpecificAnnotationOnClasses() {
-        classes().should().notBeAnnotatedWith(AnAnnotation.containingPackageName("quarkus.")).check(classes);
-    }
-
-    @Test
-    @DisplayName("there should be no Quarkus specific annotations on methods")
-    void thereShouldBeNoQuarkusSpecificAnnotationOnMethods() {
-        codeUnits().should().notBeAnnotatedWith(AnAnnotation.containingPackageName("quarkus.")).check(classes);
-    }
-
-    @Test
-    @DisplayName("there should be no Quarkus specific annotations on fields")
-    void thereShouldBeNoQuarkusSpecificAnnotationOnFields() {
-        fields().should().notBeAnnotatedWith(AnAnnotation.containingPackageName("quarkus.")).check(classes);
-    }
-
-    @Test
     @DisplayName("boundary should not use axon directly")
     void boundaryShouldNotUseAxonDirectly() {
         classes().that().resideInAPackage("..boundary..")
@@ -131,30 +110,6 @@ public class ArchitectureRulesTest {
     }
 
     @Test
-    @DisplayName("command/domain model should not use axon annotations on types")
-    void commandModelClassesShouldNotUseAxonAnnotations() {
-        classes().that().resideInAPackage("..domain..")
-                .should().notBeAnnotatedWith(AnAnnotation.containingPackageName("axon"))
-                .check(classes);
-    }
-
-    @Test
-    @DisplayName("command/domain model should not use axon annotations on code units")
-    void commandModelMethodsShouldNotUseAxonAnnotations() {
-        codeUnits().that().areDeclaredInClassesThat().resideInAPackage("..domain..")
-                .should().notBeAnnotatedWith(AnAnnotation.containingPackageName("axon"))
-                .check(classes);
-    }
-
-    @Test
-    @DisplayName("command/domain model should not use axon annotations on fields")
-    void commandModelFieldsShouldNotUseAxonAnnotations() {
-        fields().that().areDeclaredInClassesThat().resideInAPackage("..domain..")
-                .should().notBeAnnotatedWith(AnAnnotation.containingPackageName("axon"))
-                .check(classes);
-    }
-
-    @Test
     @DisplayName("query model should not depend on command model")
     void queryModelShouldNotDependOnComandModel() {
         classes().that().resideInAnyPackage("..query..", "..queries..")
@@ -167,30 +122,6 @@ public class ArchitectureRulesTest {
     void queryModelShouldNotUseAxonDirectly() {
         classes().that().resideInAPackage("..query.model..")
                 .should().onlyDependOnClassesThat().resideOutsideOfPackages("..axon..", "..axonframework..")
-                .check(classes);
-    }
-
-    @Test
-    @DisplayName("query model should not use axon annotations on types")
-    void queryModelClassesShouldNotUseAxonAnnotations() {
-        classes().that().resideInAPackage("..query.model..")
-                .should().notBeAnnotatedWith(AnAnnotation.containingPackageName("axon"))
-                .check(classes);
-    }
-
-    @Test
-    @DisplayName("query model should not use axon annotations on code units")
-    void queryModelCodeUnitsShouldNotUseAxonAnnotations() {
-        codeUnits().that().areDeclaredInClassesThat().resideInAPackage("..query.model..")
-                .should().notBeAnnotatedWith(AnAnnotation.containingPackageName("axon"))
-                .check(classes);
-    }
-
-    @Test
-    @DisplayName("query model should not use axon annotations on fields")
-    void queryModelFieldsShouldNotUseAxonAnnotations() {
-        fields().that().areDeclaredInClassesThat().resideInAPackage("..domain.model..")
-                .should().notBeAnnotatedWith(AnAnnotation.containingPackageName("axon"))
                 .check(classes);
     }
 
@@ -235,26 +166,6 @@ public class ArchitectureRulesTest {
             } catch (ClassNotFoundException e) {
                 throw new IllegalStateException(e);
             }
-        }
-    }
-
-    private static class AnAnnotation extends DescribedPredicate<JavaAnnotation> {
-
-        private String partOfPackageName;
-
-        public static final DescribedPredicate<JavaAnnotation> containingPackageName(String partOfPackageName) {
-            return new AnAnnotation(partOfPackageName);
-        }
-
-        public AnAnnotation(String partOfPackageName) {
-            super("an annotation inside a package that contains the name %s", partOfPackageName);
-            this.partOfPackageName = partOfPackageName;
-        }
-
-        @Override
-        public boolean apply(JavaAnnotation input) {
-            String packageName = input.getRawType().getPackageName();
-            return packageName.contains(partOfPackageName);
         }
     }
 }
