@@ -21,7 +21,6 @@ import javax.inject.Named;
 import javax.sql.DataSource;
 import javax.transaction.TransactionSynchronizationRegistry;
 import javax.transaction.UserTransaction;
-import javax.validation.ValidatorFactory;
 
 import org.axonframework.common.Priority;
 import org.axonframework.common.transaction.TransactionManager;
@@ -38,7 +37,6 @@ import org.axonframework.eventsourcing.eventstore.jdbc.EventSchema;
 import org.axonframework.eventsourcing.eventstore.jdbc.JdbcEventStorageEngine;
 import org.axonframework.messaging.annotation.MultiParameterResolverFactory;
 import org.axonframework.messaging.annotation.ParameterResolverFactory;
-import org.axonframework.messaging.interceptors.BeanValidationInterceptor;
 import org.axonframework.serialization.RevisionResolver;
 import org.axonframework.serialization.Serializer;
 
@@ -88,9 +86,6 @@ public class AxonConfiguration {
     DataSource dataSource;
 
     @Inject
-    ValidatorFactory validatorFactory;
-
-    @Inject
     UserTransaction userTransaction;
 
     @Inject
@@ -116,7 +111,6 @@ public class AxonConfiguration {
                 .configureTransactionManager(c -> transactionManager())
                 .buildConfiguration();
         configurer.registerComponent(ParameterResolverFactory.class, this::parameterResolvers);
-        enableBeanValidationForCommandMessages();
         configuration.start();
     }
 
@@ -335,10 +329,5 @@ public class AxonConfiguration {
         } catch (ClassNotFoundException e) {
             throw new UnsupportedOperationException("Cannot load PostgreSql specific data type class " + className, e);
         }
-    }
-
-    // Note Command-Side
-    private void enableBeanValidationForCommandMessages() {
-        configuration.commandBus().registerDispatchInterceptor(new BeanValidationInterceptor<>(validatorFactory));
     }
 }

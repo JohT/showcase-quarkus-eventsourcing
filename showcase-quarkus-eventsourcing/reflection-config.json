@@ -540,5 +540,15 @@
 		"allDeclaredFields": true,
 		"allDeclaredMethods": true,
 		"allDeclaredConstructors": true
+	},
+	{
+		"name":"io.github.joht.showcase.quarkuseventsourcing.message.command.account.ChangeNicknameCommand",
+		"allDeclaredFields":true,
+		"queryAllDeclaredMethods":true
+	},
+	{
+		"name":"io.github.joht.showcase.quarkuseventsourcing.message.command.account.CreateAccountCommand",
+		"allDeclaredFields":true,
+		"queryAllDeclaredMethods":true
 	}
 ]
