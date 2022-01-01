@@ -1,5 +1,44 @@
 [
 {
+  "name":"com.github.benmanes.caffeine.cache.BLCHeader$DrainStatusRef",
+  "fields":[{"name":"drainStatus"}]}
+,
+{
+  "name":"com.github.benmanes.caffeine.cache.BaseMpscLinkedArrayQueueColdProducerFields",
+  "fields":[{"name":"producerLimit"}]}
+,
+{
+  "name":"com.github.benmanes.caffeine.cache.BaseMpscLinkedArrayQueueConsumerFields",
+  "fields":[{"name":"consumerIndex"}]}
+,
+{
+  "name":"com.github.benmanes.caffeine.cache.BaseMpscLinkedArrayQueueProducerFields",
+  "fields":[{"name":"producerIndex"}]}
+,
+{
+  "name":"com.github.benmanes.caffeine.cache.PS",
+  "fields":[
+    {"name":"key"}, 
+    {"name":"value"}
+  ]}
+,
+{
+  "name":"com.github.benmanes.caffeine.cache.PSW",
+  "fields":[{"name":"writeTime"}]}
+,
+{
+  "name":"com.github.benmanes.caffeine.cache.PSWMS",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.github.benmanes.caffeine.cache.SSMSA",
+  "methods":[{"name":"<init>","parameterTypes":["com.github.benmanes.caffeine.cache.Caffeine","com.github.benmanes.caffeine.cache.CacheLoader","boolean"] }]}
+,
+{
+  "name":"com.github.benmanes.caffeine.cache.StripedBuffer",
+  "fields":[{"name":"tableBusy"}]}
+,
+{
   "name":"io.github.joht.showcase.quarkuseventsourcing.domain.model.account.AccountAggregate",
   "allDeclaredFields":true,
   "queryAllDeclaredMethods":true,
@@ -188,6 +227,10 @@
   "queriedMethods":[{"name":"toString","parameterTypes":[] }]}
 ,
 {
+  "name":"java.lang.Thread",
+  "fields":[{"name":"threadLocalRandomProbe"}]}
+,
+{
   "name":"java.security.SecureRandomParameters"}
 ,
 {
@@ -273,7 +316,7 @@
   "queryAllDeclaredMethods":true}
 ,
 {
-  "name":"org.axonframework.config.DefaultConfigurer$$Lambda$583/0x0000000840557040",
+  "name":"org.axonframework.config.DefaultConfigurer$$Lambda$588/0x0000000840569440",
   "queryAllDeclaredMethods":true}
 ,
 {
@@ -285,7 +328,7 @@
   ]}
 ,
 {
-  "name":"org.axonframework.config.MessageMonitorFactoryBuilder$$Lambda$633/0x000000084056cc40",
+  "name":"org.axonframework.config.MessageMonitorFactoryBuilder$$Lambda$638/0x0000000840579840",
   "queryAllDeclaredMethods":true}
 ,
 {
@@ -624,6 +667,10 @@
 ,
 {
   "name":"org.slf4j.spi.SLF4JServiceProvider"}
+,
+{
+  "name":"sun.misc.Unsafe",
+  "fields":[{"name":"theUnsafe"}]}
 ,
 {
   "name":"sun.security.provider.SHA",
