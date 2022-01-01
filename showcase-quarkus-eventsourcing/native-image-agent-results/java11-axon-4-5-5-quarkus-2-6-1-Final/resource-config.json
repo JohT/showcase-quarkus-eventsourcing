@@ -38,6 +38,9 @@
       "pattern":"\\QMETA-INF/services/javax.json.spi.JsonProvider\\E"
     }, 
     {
+      "pattern":"\\QMETA-INF/services/javax.validation.spi.ValidationProvider\\E"
+    }, 
+    {
       "pattern":"\\QMETA-INF/services/javax.xml.stream.XMLInputFactory\\E"
     }, 
     {
@@ -89,10 +92,10 @@
       "pattern":"\\Qdb/command/common/V1.0.0__AxonOnMicroprofileTryoutEventsourcing.sql\\E"
     }, 
     {
-      "pattern":"\\Qdb/command/common/V1.0.2__DomainEventEntryTypeNullable.sql\\E"
+      "pattern":"\\Qdb/command/h2/V1.0.1__H2BlobTypeForBinaryData.sql\\E"
     }, 
     {
-      "pattern":"\\Qdb/command/h2/V1.0.1__H2BlobTypeForBinaryData.sql\\E"
+      "pattern":"\\Qdb/command/h2/V1.0.2__H2DomainEventEntryTypeNullable.sql\\E"
     }, 
     {
       "pattern":"\\Qdb/query/common/V1.1.0__AxonOnMicroprofileTryoutTrackingToken.sql\\E"

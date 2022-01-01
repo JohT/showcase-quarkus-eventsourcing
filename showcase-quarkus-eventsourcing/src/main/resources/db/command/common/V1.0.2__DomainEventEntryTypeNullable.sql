@@ -1,1 +1,0 @@
-ALTER TABLE "axon_on_microprofile_tryout"."domainevententry" ALTER COLUMN "TYPE" SET NULL;
