@@ -2,6 +2,10 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
+	<!-- (2022-01) Persistence unit configuration moved into "application.properties". -->
+	<!-- "application.properties" support profiles that make it possible to switch between h2 and postgres configuration using a build property.-->
+	<!-- "application.properties" are quarkus specific and dont meet MicroProfile Standard. -->
+	<!-- This file is kept for reference to setup an AxonFramework application for another MicroProfile server like WildFly -->
 	<persistence-unit name="query.model" transaction-type="JTA">
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>

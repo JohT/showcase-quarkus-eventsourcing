@@ -1,14 +1,24 @@
 # Showcase for Event Sourcing on Quarkus using AxonFramework and MicroProfile
 
-## Getting started
+## Getting started with H2 database
 * Clone or download this repository. 
 * Open a terminal/command window.
-* Locate the h2 jar in your maven repository, e.g. `repository/com/h2database/h2/1.4.197/`.
-* Start the h2 database server using `java -cp h2-1.4.197.jar org.h2.tools.Server -tcp -tcpAllowOthers`.
+* Locate the h2 jar in your maven repository, e.g.: `repository/com/h2database/h2/1.4.197/`
+* Start the h2 database server using: `java -cp h2-1.4.197.jar org.h2.tools.Server -tcp -tcpAllowOthers`
 * Without the h2 command argument `-tcp` the web console will be opened in the browser. Since the application uses the default user it won't work properly when the same user is logged in on the web console.
 * Open another terminal/command window. Don't close the one where the h2 server is running.
 * Open the directory where this README.md is located.
-* Run the application by using the following command: ```mvn compile quarkus:dev```.
+* Run the application by using the following command: `mvn compile quarkus:dev`
+* Open the UI [http://localhost:8080](http://localhost:8080)
+* (Optional) Use the postman collection "showcase-quarkus-eventsourcing.postman_collection.json" for service call examples.
+* (Optional) Use the unit tests inside the service package to replay nicknames, create new ones or create further accounts.
+
+## Getting started with PostgreSQL database
+* Clone or download this repository. 
+* Open a terminal/command window.
+* Start PostgreSql database with (default) name "postgres" on port 5432. Details see [application.properties](./src/main/resources/application.properties).
+* Open the directory where this README.md is located.
+* Run the application by using the following command: `mvn compile quarkus:dev -Dquarkus.profile=postgres`
 * Open the UI [http://localhost:8080](http://localhost:8080)
 * (Optional) Use the postman collection "showcase-quarkus-eventsourcing.postman_collection.json" for service call examples.
 * (Optional) Use the unit tests inside the service package to replay nicknames, create new ones or create further accounts.
