@@ -25,7 +25,7 @@
 		<quarkus.platform.version>2.6.1.Final</quarkus.platform.version>
 		<quarkus.plugin.version>2.6.1.Final</quarkus.plugin.version>
 		
-		<axon.version>4.5.5</axon.version>
+		<axon.version>4.5.6</axon.version>
 		<dom4j.version>1.6.1</dom4j.version>
 		<xom.version>1.2.10</xom.version>
 
