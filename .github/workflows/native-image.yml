@@ -25,25 +25,53 @@ jobs:
       matrix:
         java: ['java11']
     env: 
-      AUTO_COMMIT_MESSAGE: Automated native image agent results (CI)
+      CI_COMMIT_MESSAGE: Automated native image agent results (CI)
+      CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
     outputs:
-      commit-message: ${{ steps.commit-message-output.outputs.commit-message }}
-      auto-commit-message: ${{ steps.auto-commit-message-output.outputs.auto-commit-message }}
+      ci-commit-message: ${{ steps.ci-commit-message-output.outputs.ci-commit-message }}
+      ci-commit-author: ${{ steps.ci-commit-author-output.outputs.ci-commit-author }}
+      is-ci-commit: ${{ steps.is-ci-commit-output.outputs.is-ci-commit }}
+      original-event-name: ${{ steps.original-event-name-output.outputs.original-event-name }}
     steps:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-      - name: Set the environment variable "commit-message"
+      - name: Set environment variable "commit-message"
         run: echo "commit-message=$(git log -1 --pretty=format:"%s")" >> $GITHUB_ENV
-      - name: Set commit message output parameter
-        id: commit-message-output
-        run: echo "::set-output name=commit-message::${{ env.commit-message }}"
-      - name: Set auto commit message output parameter
-        id: auto-commit-message-output
-        run: echo "::set-output name=auto-commit-message::${{ env.AUTO_COMMIT_MESSAGE }}"
+      - name: Display environment variable "commit-message"
+        run: echo "commit-message=${{ env.commit-message }}"
+
+      - name: Set environment variable "commit-author"
+        run: echo "commit-author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
+      - name: Display environment variable "commit-author"
+        run: echo "commit-author=${{ env.commit-author }}"
+
+      # Detect if the current commit was automatically pushed by continuous integration
+      - name: Set environment variable "is-ci-commit"
+        if: env.commit-message == env.CI_COMMIT_MESSAGE && env.commit-author == env.CI_COMMIT_AUTHOR
+        run: echo "is-ci-commit=true" >> $GITHUB_ENV
+      - name: Display environment variable "is-ci-commit"
+        run: echo "is-ci-commit=${{ env.is-ci-commit }}"
+      - name: Info message on CI auto commit 
+        if: env.is-ci-commit
+        run: echo "Continuous Integration Auto Commit - The following steps will be skipped"
+      
+      # Set job output parameter values
+      - name: Set output parameter "ci-commit-message"
+        id: ci-commit-message-output
+        run: echo "::set-output name=ci-commit-message::${{ env.CI_COMMIT_MESSAGE }}"
+      - name: Set output parameter "ci-commit-author"
+        id: ci-commit-author-output
+        run: echo "::set-output name=ci-commit-author::${{ env.CI_COMMIT_AUTHOR }}"
+      - name: Set output parameter "is-ci-commit"
+        id: is-ci-commit-output
+        run: echo "::set-output name=is-ci-commit::${{ env.is-ci-commit }}"
+      - name: Set output parameter "original-event-name"
+        id: original-event-name-output
+        run: echo "::set-output name=original-event-name::${{ github.event_name }}"
       
       - uses: actions/cache@v2
-        if: env.commit-message != env.AUTO_COMMIT_MESSAGE
+        if: env.is-ci-commit == false
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -51,17 +79,17 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Setup GraalVM Community Edition
-        if: env.commit-message != env.AUTO_COMMIT_MESSAGE
+        if: env.is-ci-commit == false
         uses: DeLaGuardo/setup-graalvm@5.0
         with:
           graalvm: 21.3.0
           java: ${{ matrix.java }}
       - name: Install Native Image
-        if: env.commit-message != env.AUTO_COMMIT_MESSAGE
+        if: env.is-ci-commit == false
         run: gu install native-image
 
       - name: Build native image with Maven
-        if: env.commit-message != env.AUTO_COMMIT_MESSAGE
+        if: env.is-ci-commit == false
         working-directory: showcase-quarkus-eventsourcing
         run: mvn verify --activate-profiles native --file pom.xml --batch-mode
 
@@ -70,9 +98,11 @@ jobs:
     #Variables are not yet supported for "uses". Workaround are hardcoded git refs. TODO: Change to main/master branch as soon as merged.
     #https://stackoverflow.com/questions/69737232/github-context-variables-not-evaluating-for-reusable-workflow-reference
     #uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@${{github.event.pull_request.head.ref}}
-    uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@master
-    if: needs.native-image-build.outputs.commit-message != needs.native-image-build.outputs.auto-commit-message
+    uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@feature/auto-commit-on-push
+    if: needs.native-image-build.outputs.is-ci-commit == false
     with: 
-      auto-commit-message: ${{ needs.native-image-build.outputs.auto-commit-message }}    
+      ci-commit-message: ${{ needs.native-image-build.outputs.ci-commit-message }}
+      ci-commit-author: ${{ needs.native-image-build.outputs.ci-commit-author }}
+      original-event-name: ${{ needs.native-image-build.outputs.original-event-name }}
     secrets:
       git-push-access-token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
