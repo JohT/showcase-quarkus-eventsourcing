@@ -5,6 +5,7 @@ on:
     branches:
       - master
     # Ignore changes in documentation and native image agent results
+    # Need to contain git add parameters below.
     paths-ignore: 
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
       - '**/*.md'
@@ -32,34 +33,10 @@ jobs:
       - name: Checkout git repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
-      
-      # Get the message of the current commit
-      - name: Set environment variable "commit-message"
-        run: echo "commit-message=$(git log -1 --pretty=format:"%s")" >> $GITHUB_ENV
-      - name: Display environment variable "commit-message"
-        run: echo "commit-message=${{ env.commit-message }}"
-
-      # Get the author name of the current commit
-      - name: Set environment variable "commit-author"
-        run: echo "commit-author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
-      - name: Display environment variable "commit-author"
-        run: echo "commit-author=${{ env.commit-author }}"
-
-      # Detect if the current commit was automatically pushed by this workflow (for endless loop prevention)
-      - name: Set environment variable "is-ci-commit"
-        if: env.commit-message == env.CI_COMMIT_MESSAGE && env.commit-author == env.CI_COMMIT_AUTHOR
-        run: echo "is-ci-commit=true" >> $GITHUB_ENV
-      - name: Display environment variable "is-ci-commit"
-        run: echo "is-ci-commit=${{ env.is-ci-commit }}"
-      - name: Info message on CI auto commit 
-        if: env.is-ci-commit
-        run: echo "Continuous Integration Auto Commit - The following steps will be skipped"
-      
+            
       # Cache maven repository
       - uses: actions/cache@v2
-        if: env.is-ci-commit == false
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -68,64 +45,51 @@ jobs:
 
       # Download and prepare GraalVM Community Edition including native image tools
       - name: Setup GraalVM Community Edition
-        if: env.is-ci-commit == false
         uses: DeLaGuardo/setup-graalvm@5.0
         with:
           graalvm: ${{ env.GRAALVM_VERSION }}
           java: ${{ matrix.java }}
       - name: Install Native Image
-        if: env.is-ci-commit == false
         run: gu install native-image
 
       # Build the native image of the application.
       - name: Build native image with Maven
-        if: env.is-ci-commit == false
         working-directory: showcase-quarkus-eventsourcing
         run: mvn verify --activate-profiles native --file pom.xml --batch-mode
 
       # Run integration tests with activated native image agent to get trace and report files about e.g. reflection usage
       - name: Run integration tests on GraalVM with activated native-image-agent for trace file generation
-        if: env.is-ci-commit == false
         working-directory: showcase-quarkus-eventsourcing
         run: mvn verify --activate-profiles native-image-agent-trace --file pom.xml --batch-mode  && sleep 4
       - name: Generate configuration json files out of the native-image-agent trace output
-        if: env.is-ci-commit == false
         working-directory: showcase-quarkus-eventsourcing
         run: $GRAALVM_HOME/bin/native-image-configure generate --trace-input=target/native-image-agent-trace.json --output-dir=target/native-image-agent-trace-configs --caller-filter-file=native-image-caller-filter-rules.json
       
       # Assemble the name of the native image agent results directory based on Java, Axon, Quarkus and GraalVM version
       - name: Get the axon version from the maven pom variable and set the environment variable "axon-version"
-        if: env.is-ci-commit == false
         working-directory: showcase-quarkus-eventsourcing
         run: echo "axon-version=$(mvn -q help:evaluate -Dexpression=axon.version -DforceStdout | tr . -)" >> $GITHUB_ENV
       - name: Get the quarkus version from the maven pom variable and set the environment variable "quarkus-version"
-        if: env.is-ci-commit == false
         working-directory: showcase-quarkus-eventsourcing
         run: echo "quarkus-version=$(mvn -q help:evaluate -Dexpression=quarkus.platform.version -DforceStdout | tr . -)" >> $GITHUB_ENV
       - name: Get the GraalVM version with "-" instead of "." delimiters
-        if: env.is-ci-commit == false
         run: echo "graalvm-version-string=$(echo ${{ env.GRAALVM_VERSION }} | tr . -)" >> $GITHUB_ENV
       - name: Assemble the name of the directory for the native image agent output files and set the environment variable "native-image-agent-results-directory"
-        if: env.is-ci-commit == false
         run: echo "native-image-agent-results-directory=native-image-agent-results/${{ matrix.java }}-axon-${{ env.axon-version }}-quarkus-${{ env.quarkus-version }}-graalvm-${{ env.graalvm-version-string }}" >> $GITHUB_ENV
       
       # Create the directory with the previously assembled name within "native-image-agent-results" and fill in the result files.
       - name: Create the native image agent results directory
-        if: env.is-ci-commit == false
         working-directory: showcase-quarkus-eventsourcing
         run: mkdir -p ${{ env.native-image-agent-results-directory }}
       - name: Copy the native image agent trace file into the native image agent results directory
-        if: env.is-ci-commit == false
         working-directory: showcase-quarkus-eventsourcing
         run: cp target/native-image-agent-trace.json ${{ env.native-image-agent-results-directory }}
       - name: Copy the native image agent configuration files into the native image agent results directory
-        if: env.is-ci-commit == false
         working-directory: showcase-quarkus-eventsourcing
         run: cp target/native-image-agent-trace-configs/* ${{ env.native-image-agent-results-directory }}
       
       # Upload the native image agent results in case they are needed for troubleshooting for a couple of days
       - name: Archive native image agent results
-        if: env.is-ci-commit == false
         uses: actions/upload-artifact@v2
         with:
           name: native-image-agent-results-${{ matrix.java }}
@@ -138,8 +102,9 @@ jobs:
         run: echo "github.event_name=${{ github.event_name }}"
       - name: Commit native image agent results
         working-directory: showcase-quarkus-eventsourcing
-        # Don't run again on already pushed continuous integration auto commit. Only run when pushed to main branch.
-        if: env.is-ci-commit == false && github.event_name == 'push'
+        # Only run when a pull request gets merged or a commit is pushed to the main branch
+        # git add parameters need to match paths-ignore parameters above
+        if: github.event_name == 'push'
         run: |
           git config --global user.name '${{ env.CI_COMMIT_AUTHOR }}'
           git config --global user.email 'joht@users.noreply.github.com'
