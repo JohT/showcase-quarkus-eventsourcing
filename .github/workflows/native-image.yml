@@ -27,11 +27,13 @@ jobs:
     env: 
       CI_COMMIT_MESSAGE: Automated native image agent results (CI)
       CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
+      GRAALVM_VERSION: 22.0.0.2
     outputs:
       ci-commit-message: ${{ steps.ci-commit-message-output.outputs.ci-commit-message }}
       ci-commit-author: ${{ steps.ci-commit-author-output.outputs.ci-commit-author }}
       is-ci-commit: ${{ steps.is-ci-commit-output.outputs.is-ci-commit }}
       original-event-name: ${{ steps.original-event-name-output.outputs.original-event-name }}
+      graalvm_version: ${{ env.GRAALVM_VERSION }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -82,7 +84,7 @@ jobs:
         if: env.is-ci-commit == false
         uses: DeLaGuardo/setup-graalvm@5.0
         with:
-          graalvm: 21.3.0
+          graalvm: ${{ env.GRAALVM_VERSION }}
           java: ${{ matrix.java }}
       - name: Install Native Image
         if: env.is-ci-commit == false
@@ -98,11 +100,12 @@ jobs:
     #Variables are not yet supported for "uses". Workaround are hardcoded git refs. TODO: Change to main/master branch as soon as merged.
     #https://stackoverflow.com/questions/69737232/github-context-variables-not-evaluating-for-reusable-workflow-reference
     #uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@${{github.event.pull_request.head.ref}}
-    uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@master
+    uses: JohT/showcase-quarkus-eventsourcing/.github/workflows/native-image-agent.yml@update/graalvm-22
     if: needs.native-image-build.outputs.is-ci-commit == false
     with: 
       ci-commit-message: ${{ needs.native-image-build.outputs.ci-commit-message }}
       ci-commit-author: ${{ needs.native-image-build.outputs.ci-commit-author }}
       original-event-name: ${{ needs.native-image-build.outputs.original-event-name }}
+      graalvm-version: ${{ needs.native-image-build.outputs.graalvm-version }}
     secrets:
       git-push-access-token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}

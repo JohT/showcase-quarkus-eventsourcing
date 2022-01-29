@@ -12,6 +12,9 @@ on:
       original-event-name:
         required: true
         type: string    
+      graalvm-version:
+        required: true
+        type: string
     secrets:
       git-push-access-token:
         required: true
@@ -41,7 +44,7 @@ jobs:
       - name: Setup GraalVM Community Edition
         uses: DeLaGuardo/setup-graalvm@5.0
         with:
-          graalvm: 21.3.0
+          graalvm: ${{ inputs.graalvm-version }}
           java: ${{ matrix.java }}
       - name: Install Native Image Tool for GraalVM
         run: gu install native-image
@@ -59,8 +62,10 @@ jobs:
       - name: Get the quarkus version from the maven pom variable and set the environment variable "quarkus-version"
         working-directory: showcase-quarkus-eventsourcing
         run: echo "quarkus-version=$(mvn -q help:evaluate -Dexpression=quarkus.platform.version -DforceStdout | tr . -)" >> $GITHUB_ENV
+      - name: Get the GraalVM version with "-" instead of "." delimiters
+        run: echo "graalvm-version-string=$(echo ${{ inputs.graalvm-version }} | tr .) - >> $GITHUB_ENV
       - name: Assemble the name of the directory for the native image agent output files and set the environment variable "native-image-agent-results-directory"
-        run: echo "native-image-agent-results-directory=native-image-agent-results/${{ matrix.java }}-axon-${{ env.axon-version }}-quarkus-${{ env.quarkus-version }}" >> $GITHUB_ENV
+        run: echo "native-image-agent-results-directory=native-image-agent-results/${{ matrix.java }}-axon-${{ env.axon-version }}-quarkus-${{ env.quarkus-version }}-graalvm-${{ env.graalvm-version-string }}" >> $GITHUB_ENV
       
       - name: Create the native image agent results directory
         working-directory: showcase-quarkus-eventsourcing
@@ -78,6 +83,7 @@ jobs:
           name: native-image-agent-results-${{ matrix.java }}
           path: showcase-quarkus-eventsourcing/${{ env.native-image-agent-results-directory }}
           if-no-files-found: error
+          retention-days: 5
       
       - name: Commit native image agent results
         working-directory: showcase-quarkus-eventsourcing
