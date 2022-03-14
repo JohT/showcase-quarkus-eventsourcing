@@ -22,8 +22,8 @@
 
    		<quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     	<quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-		<quarkus.platform.version>2.7.3.Final</quarkus.platform.version>
-		<quarkus.plugin.version>2.7.3.Final</quarkus.plugin.version>
+		<quarkus.platform.version>2.7.4.Final</quarkus.platform.version>
+		<quarkus.plugin.version>2.7.4.Final</quarkus.plugin.version>
 		
 		<axon.version>4.5.8</axon.version>
 		<dom4j.version>1.6.1</dom4j.version>
