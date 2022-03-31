@@ -316,7 +316,7 @@
   "queryAllDeclaredMethods":true
 },
 {
-  "name":"org.axonframework.config.DefaultConfigurer$$Lambda$584/0x000000084056f840",
+  "name":"org.axonframework.config.DefaultConfigurer$$Lambda$585/0x000000084056f840",
   "queryAllDeclaredMethods":true
 },
 {
@@ -328,7 +328,7 @@
   ]
 },
 {
-  "name":"org.axonframework.config.MessageMonitorFactoryBuilder$$Lambda$634/0x0000000840586c40",
+  "name":"org.axonframework.config.MessageMonitorFactoryBuilder$$Lambda$635/0x0000000840587c40",
   "queryAllDeclaredMethods":true
 },
 {
