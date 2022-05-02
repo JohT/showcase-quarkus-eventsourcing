@@ -17,7 +17,7 @@
 		
 		<surefire-plugin.version>2.22.2</surefire-plugin.version>
 		<failsafe-plugin.version>2.22.2</failsafe-plugin.version>
-		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 		<jasmine-maven-plugin.version>2.2</jasmine-maven-plugin.version>
 
    		<quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
