@@ -1,0 +1,2 @@
+-- Rename the column named "TIMESTAMP" to "EVENTTIMESTAMP" so that there is no conflict with reserved words.
+ALTER TABLE "axon_on_microprofile_query_tryout"."tokenentry" ALTER COLUMN "timestamp" RENAME TO "eventtimestamp";

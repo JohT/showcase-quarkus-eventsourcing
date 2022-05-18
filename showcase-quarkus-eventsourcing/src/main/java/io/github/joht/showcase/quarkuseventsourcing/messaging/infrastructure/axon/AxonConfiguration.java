@@ -211,6 +211,7 @@ public class AxonConfiguration {
         EventSchema schema = EventSchema.builder()
                 .eventTable(DATABASE_SCHEMA_COMMAND_SIDE + "." + DATABASE_TABLE_DOMAIN_EVENTS)
                 .snapshotTable(DATABASE_SCHEMA_COMMAND_SIDE + "." + DATABASE_TABLE_SNAPSHOTS)
+                .timestampColumn("eventtimestamp")
                 .build();
         return JdbcEventStorageEngine.builder()
                 .schema(schema)
@@ -276,7 +277,9 @@ public class AxonConfiguration {
 
     // Note Query-Side
     private JdbcTokenStore jdbcTokenStore(Configuration config) {
-        TokenSchema schema = TokenSchema.builder().setTokenTable(DATABASE_SCHEMA_QUERY_SIDE + "." + DATABASE_TABLE_TOKEN).build();
+		TokenSchema schema = TokenSchema.builder()
+				.setTokenTable(DATABASE_SCHEMA_QUERY_SIDE + "." + DATABASE_TABLE_TOKEN)
+				.setTimestampColumn("eventtimestamp").build();
         return JdbcTokenStore.builder()
                 .connectionProvider(this::getConnection)
                 .contentType(isPostgreSqlDatabaseUsingJsonbForBinaryDataOnQuerySide() ? postgreSqlObjectType() : byte[].class)
