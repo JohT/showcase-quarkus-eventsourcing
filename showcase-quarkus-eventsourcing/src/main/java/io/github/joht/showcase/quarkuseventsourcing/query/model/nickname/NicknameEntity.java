@@ -15,7 +15,7 @@ import io.github.joht.showcase.quarkuseventsourcing.message.common.Nickname;
 import io.github.joht.showcase.quarkuseventsourcing.message.query.nickname.NicknameDetails;
 
 @Entity
-@Table(name = "nickname", schema = "axon_on_microprofile_query_tryout")
+@Table(name = "\"nickname\"", schema = "\"axon_on_microprofile_query_tryout\"")
 @NamedQueries({
         @NamedQuery(name = NicknameEntity.QUERY_NICKNAMES, query = " SELECT nickname FROM NicknameEntity nickname "
                 + "WHERE nickname.key.nickname LIKE :partOfNickname "
