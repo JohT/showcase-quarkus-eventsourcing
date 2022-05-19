@@ -211,7 +211,16 @@ public class AxonConfiguration {
         EventSchema schema = EventSchema.builder()
                 .eventTable("\"" + DATABASE_SCHEMA_COMMAND_SIDE + "\".\"" + DATABASE_TABLE_DOMAIN_EVENTS + "\"")
                 .snapshotTable("\"" + DATABASE_SCHEMA_COMMAND_SIDE + "\".\"" + DATABASE_TABLE_SNAPSHOTS + "\"")
-                .timestampColumn("eventtimestamp")
+                .aggregateIdentifierColumn("AGGREGATEIDENTIFIER")
+                .eventIdentifierColumn("EVENTIDENTIFIER")
+                .globalIndexColumn("GLOBALINDEX")
+                .metaDataColumn("METADATA")
+                .payloadColumn("PAYLOAD")
+                .payloadTypeColumn("PAYLOADTYPE")
+                .payloadRevisionColumn("PAYLOADREVISION")
+                .sequenceNumberColumn("SEQUENCENUMBER")
+                .timestampColumn("EVENTTIMESTAMP") // needed to be changed since TIMESTAMP is a reserved word
+                .typeColumn("TYPE")
                 .build();
         return JdbcEventStorageEngine.builder()
                 .schema(schema)
@@ -279,7 +288,13 @@ public class AxonConfiguration {
     private JdbcTokenStore jdbcTokenStore(Configuration config) {
 		TokenSchema schema = TokenSchema.builder()
 				.setTokenTable("\"" + DATABASE_SCHEMA_QUERY_SIDE + "\".\"" + DATABASE_TABLE_TOKEN + "\"")
-				.setTimestampColumn("eventtimestamp").build();
+				.setOwnerColumn("OWNER")
+				.setProcessorNameColumn("PROCESSORNAME")
+				.setSegmentColumn("SEGMENT")
+				.setTimestampColumn("EVENTTIMESTAMP")
+				.setTokenColumn("TOKEN")
+				.setTokenTypeColumn("TOKENTYPE")
+				.build();
         return JdbcTokenStore.builder()
                 .connectionProvider(this::getConnection)
                 .contentType(isPostgreSqlDatabaseUsingJsonbForBinaryDataOnQuerySide() ? postgreSqlObjectType() : byte[].class)
