@@ -17,13 +17,15 @@
 		
 		<surefire-plugin.version>2.22.2</surefire-plugin.version>
 		<failsafe-plugin.version>2.22.2</failsafe-plugin.version>
-		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 		<jasmine-maven-plugin.version>2.2</jasmine-maven-plugin.version>
+		<phantomjs-maven-plugin.version>0.7</phantomjs-maven-plugin.version>
+		<phantomjs.version>2.1.1</phantomjs.version>
 
    		<quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     	<quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-		<quarkus.platform.version>2.8.3.Final</quarkus.platform.version>
-		<quarkus.plugin.version>2.9.0.Final</quarkus.plugin.version>
+		<quarkus.platform.version>2.9.1.Final</quarkus.platform.version>
+		<quarkus.plugin.version>2.9.1.Final</quarkus.plugin.version>
 		
 		<axon.version>4.5.9</axon.version>
 		<dom4j.version>1.6.1</dom4j.version>
@@ -227,9 +229,26 @@
 	<build>
 		<plugins>
 			<plugin>
+				<!-- phantomjs-maven-plugin provides a distinct phantomjs version for jasmine-maven-plugin -->
+				<!-- This is done here to get a "newer" version of phantomjs. -->
+     			<groupId>com.github.klieber</groupId>
+      			<artifactId>phantomjs-maven-plugin</artifactId>
+      			<version>${phantomjs-maven-plugin.version}</version>
+      			<executions>
+        			<execution>
+          				<goals>
+            				<goal>install</goal>
+          				</goals>
+        			</execution>
+      			</executions>
+      			<configuration>
+        			<version>${phantomjs.version}</version>
+      			</configuration>
+    		</plugin>
+			<plugin>
 				<groupId>com.github.searls</groupId>
 				<artifactId>jasmine-maven-plugin</artifactId>
-				<version>2.2</version>
+				<version>${jasmine-maven-plugin.version}</version>
 				<!-- Run Jasmine JavaScript Unit-Tests -->
 				<executions>
 					<execution>
@@ -237,6 +256,17 @@
 							<goal>bdd</goal>
 							<goal>test</goal>
 						</goals>
+						<!-- The configuration is not necessary in most cases, since phantomjs will be downloaded automatically. -->
+						<!-- It is only needed when phantomjs is provided explicitly. -->
+						<configuration>
+            				<webDriverClassName>org.openqa.selenium.phantomjs.PhantomJSDriver</webDriverClassName>
+            				<webDriverCapabilities>
+              				<capability>
+                				<name>phantomjs.binary.path</name>
+                				<value>${phantomjs.binary}</value>
+              				</capability>
+            				</webDriverCapabilities>
+          				</configuration>
 					</execution>
 				</executions>
 				<configuration>
@@ -389,7 +419,7 @@
 						<goals>
 							<goal>check</goal>
 						</goals>
-						<phase>test</phase>
+						 <phase>post-integration-test</phase>
 						<configuration>
 							<dataFile>${project.build.directory}/jacoco-quarkus.exec</dataFile>
 							<rules>

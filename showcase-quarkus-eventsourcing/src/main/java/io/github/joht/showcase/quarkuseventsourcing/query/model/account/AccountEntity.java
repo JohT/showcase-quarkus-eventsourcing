@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import io.github.joht.showcase.quarkuseventsourcing.message.common.Nickname;
 
 @Entity
-@Table(name = "account", schema = "axon_on_microprofile_query_tryout")
+@Table(name = "\"account\"", schema = "\"axon_on_microprofile_query_tryout\"")
 public class AccountEntity {
 
 	@EmbeddedId

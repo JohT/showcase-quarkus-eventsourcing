@@ -4,7 +4,7 @@
 * Clone or download this repository. 
 * Open a terminal/command window.
 * Locate the h2 jar in your maven repository, e.g.: `repository/com/h2database/h2/1.4.197/`
-* Start the h2 database server using: `java -cp h2-1.4.197.jar org.h2.tools.Server -tcp -tcpAllowOthers`
+* Start the h2 database server using: `java -cp h2-1.4.197.jar org.h2.tools.Server -tcp -tcpAllowOthers -ifNotExists`
 * Without the h2 command argument `-tcp` the web console will be opened in the browser. Since the application uses the default user it won't work properly when the same user is logged in on the web console.
 * Open another terminal/command window. Don't close the one where the h2 server is running.
 * Open the directory where this README.md is located.
