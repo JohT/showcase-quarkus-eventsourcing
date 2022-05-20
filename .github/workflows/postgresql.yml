@@ -49,3 +49,8 @@ jobs:
       - name: Build with Maven, Test with PostgreSql
         working-directory: showcase-quarkus-eventsourcing
         run: mvn verify -Dquarkus.profile=postgres --file pom.xml --batch-mode
+        env:
+          # The hostname used to communicate with the PostgreSQL service container
+          POSTGRES_HOST: postgres
+          # The default PostgreSQL port
+          POSTGRES_PORT: 5432
