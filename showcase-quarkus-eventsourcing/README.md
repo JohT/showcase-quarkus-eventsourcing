@@ -9,6 +9,7 @@
 * Open another terminal/command window. Don't close the one where the h2 server is running.
 * Open the directory where this README.md is located.
 * Run the application by using the following command: `mvn compile quarkus:dev`
+* (Optional) Use environment variable `H2_HOST` if the database runs on a different host than  `localhost`.
 * Open the UI [http://localhost:8080](http://localhost:8080)
 * (Optional) Use the postman collection "showcase-quarkus-eventsourcing.postman_collection.json" for service call examples.
 * (Optional) Use the unit tests inside the service package to replay nicknames, create new ones or create further accounts.
@@ -19,6 +20,8 @@
 * Start PostgreSql database with (default) name "postgres" on port 5432. Details see [application.properties](./src/main/resources/application.properties).
 * Open the directory where this README.md is located.
 * Run the application by using the following command: `mvn compile quarkus:dev -Dquarkus.profile=postgres`
+* (Optional) Use environment variable `POSTGRES_HOST` if the database runs on a different host than  `localhost`.
+* (Optional) Use environment variable `POSTGRES_PORT` if the database runs on a different port than  `5432`.
 * Open the UI [http://localhost:8080](http://localhost:8080)
 * (Optional) Use the postman collection "showcase-quarkus-eventsourcing.postman_collection.json" for service call examples.
 * (Optional) Use the unit tests inside the service package to replay nicknames, create new ones or create further accounts.
