@@ -1,4 +1,4 @@
-## Unreleased
+## v1.6.0
   - Migrate to H2 version 2.1, Automate PostgreSQL build and test, Update Code Coverage
   ([#79](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/79))
   [2022-05-20]
