@@ -1,0 +1,1 @@
+DROP TABLE "axon_on_microprofile_tryout"."eventsourcing_sequence";
