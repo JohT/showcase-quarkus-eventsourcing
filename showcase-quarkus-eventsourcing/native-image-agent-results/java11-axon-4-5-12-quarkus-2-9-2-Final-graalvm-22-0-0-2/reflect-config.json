@@ -1,0 +1,688 @@
+[
+{
+  "name":"com.github.benmanes.caffeine.cache.BLCHeader$DrainStatusRef",
+  "fields":[{"name":"drainStatus"}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.BaseMpscLinkedArrayQueueColdProducerFields",
+  "fields":[{"name":"producerLimit"}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.BaseMpscLinkedArrayQueueConsumerFields",
+  "fields":[{"name":"consumerIndex"}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.BaseMpscLinkedArrayQueueProducerFields",
+  "fields":[{"name":"producerIndex"}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.PS",
+  "fields":[
+    {"name":"key"}, 
+    {"name":"value"}
+  ]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.PSW",
+  "fields":[{"name":"writeTime"}]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.PSWMS",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.SSMSA",
+  "methods":[{"name":"<init>","parameterTypes":["com.github.benmanes.caffeine.cache.Caffeine","com.github.benmanes.caffeine.cache.CacheLoader","boolean"] }]
+},
+{
+  "name":"com.github.benmanes.caffeine.cache.StripedBuffer",
+  "fields":[{"name":"tableBusy"}]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.domain.model.account.AccountAggregate",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"changeNickname","parameterTypes":["io.github.joht.showcase.quarkuseventsourcing.message.command.account.ChangeNicknameCommand","io.github.joht.showcase.quarkuseventsourcing.messaging.command.boundary.AggregateEventEmitterService"] }, 
+    {"name":"createWith","parameterTypes":["io.github.joht.showcase.quarkuseventsourcing.message.command.account.CreateAccountCommand","io.github.joht.showcase.quarkuseventsourcing.messaging.command.boundary.AggregateEventEmitterService"] }, 
+    {"name":"on","parameterTypes":["io.github.joht.showcase.quarkuseventsourcing.message.event.account.AccountCreatedEvent"] }, 
+    {"name":"on","parameterTypes":["io.github.joht.showcase.quarkuseventsourcing.message.event.account.NicknameChangedEvent"] }
+  ]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTargetAggregateIdentifier",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.message.command.account.ChangeNicknameCommand",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.command.boundary.CommandModelAggregate",
+  "queryAllDeclaredMethods":true,
+  "methods":[
+    {"name":"repository","parameterTypes":[] }, 
+    {"name":"type","parameterTypes":[] }
+  ]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.command.boundary.CommandModelAggregateIdentifier",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"routingKey","parameterTypes":[] }]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.command.boundary.CommandModelCommandHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[
+    {"name":"commandName","parameterTypes":[] }, 
+    {"name":"payloadType","parameterTypes":[] }, 
+    {"name":"routingKey","parameterTypes":[] }
+  ]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.command.boundary.CommandModelEventSourcingHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"payloadType","parameterTypes":[] }]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.JsonbSerializer",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.transaction.jta.JtaTransactionManager",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.upcaster.AnnotationEventRevisionResolver",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.upcaster.NicknameChangedEventV1Upcaster",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.EventTimestampParameter",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.QueryModelEventHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"payloadType","parameterTypes":[] }]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.QueryModelProjection",
+  "queryAllDeclaredMethods":true,
+  "methods":[
+    {"name":"processingGroup","parameterTypes":[] }, 
+    {"name":"processor","parameterTypes":[] }
+  ]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.QueryModelQueryHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"queryName","parameterTypes":[] }]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.QueryModelResetHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.query.model.account.AccountProjection",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[
+    {"name":"onCreated","parameterTypes":["io.github.joht.showcase.quarkuseventsourcing.message.event.account.AccountCreatedEvent"] }, 
+    {"name":"onNicknameChanged","parameterTypes":["io.github.joht.showcase.quarkuseventsourcing.message.event.account.NicknameChangedEvent"] }
+  ]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.query.model.account.AccountProjection_Subclass",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.query.model.account.AccountQueryHandler",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"getAccountNickname","parameterTypes":["io.github.joht.showcase.quarkuseventsourcing.message.query.account.AccountNicknameQuery"] }]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.query.model.account.AccountQueryHandler_ClientProxy",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.query.model.nickname.NicknameProjection",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[
+    {"name":"onNicknameChanged","parameterTypes":["io.github.joht.showcase.quarkuseventsourcing.message.event.account.NicknameChangedEvent","java.time.Instant"] }, 
+    {"name":"onReset","parameterTypes":[] }
+  ]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.query.model.nickname.NicknameProjection_Subclass",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.query.model.nickname.NicknameQueryHandler",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"queryNicknames","parameterTypes":["io.github.joht.showcase.quarkuseventsourcing.message.query.nickname.FetchDistinctNicknamesQuery"] }]
+},
+{
+  "name":"io.github.joht.showcase.quarkuseventsourcing.query.model.nickname.NicknameQueryHandler_ClientProxy",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true
+},
+{
+  "name":"io.quarkus.arc.ClientProxy",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true
+},
+{
+  "name":"io.quarkus.arc.Subclass",
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true
+},
+{
+  "name":"io.quarkus.runtime.logging.InheritableLevel",
+  "methods":[{"name":"of","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.io.File",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.io.Serializable",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.lang.Boolean",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.lang.Comparable",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.lang.Enum",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.lang.Iterable",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.lang.Object",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.lang.String",
+  "queriedMethods":[{"name":"toString","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.Thread",
+  "fields":[{"name":"threadLocalRandomProbe"}]
+},
+{
+  "name":"java.security.SecureRandomParameters"
+},
+{
+  "name":"java.util.AbstractCollection",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.util.AbstractList",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.util.Collection",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.util.Collections$SingletonList",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.util.List",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.util.RandomAccess",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.util.function.BiFunction",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"java.util.function.Function",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.commandhandling.CommandBus",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.commandhandling.CommandHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[
+    {"name":"commandName","parameterTypes":[] }, 
+    {"name":"payloadType","parameterTypes":[] }, 
+    {"name":"routingKey","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.axonframework.commandhandling.CommandMessageHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.commandhandling.DuplicateCommandHandlerResolver",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.commandhandling.LoggingDuplicateCommandHandlerResolver",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.commandhandling.SimpleCommandBus",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.commandhandling.gateway.AbstractCommandGateway",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.commandhandling.gateway.CommandGateway",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.commandhandling.gateway.DefaultCommandGateway",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.common.Priority",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"value","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.common.transaction.TransactionManager",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.config.DefaultConfigurer$$Lambda$573/0x0000000840575c40",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.config.MessageHandlerRegistrar",
+  "queryAllDeclaredMethods":true,
+  "methods":[
+    {"name":"shutdown","parameterTypes":[] }, 
+    {"name":"start","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.axonframework.config.MessageMonitorFactoryBuilder$$Lambda$624/0x000000084058d440",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.config.ProcessingGroup",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"value","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.eventhandling.AbstractEventBus",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.AbstractEventProcessor",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.DomainEventSequenceAware",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.ErrorHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.EventBus",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.EventHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"payloadType","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.eventhandling.EventProcessor",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.GapAwareTrackingToken"
+},
+{
+  "name":"org.axonframework.eventhandling.ListenerInvocationErrorHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.LoggingErrorHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.PropagatingErrorHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.StreamingEventProcessor",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.SubscribingEventProcessor",
+  "queryAllDeclaredMethods":true,
+  "methods":[
+    {"name":"shutDown","parameterTypes":[] }, 
+    {"name":"start","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.axonframework.eventhandling.Timestamp",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.TrackingEventProcessor",
+  "queryAllDeclaredMethods":true,
+  "methods":[
+    {"name":"shutdownAsync","parameterTypes":[] }, 
+    {"name":"start","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.axonframework.eventhandling.TrackingEventProcessorConfiguration",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.async.SequencingPolicy",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.async.SequentialPerAggregatePolicy",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.tokenstore.TokenStore",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventhandling.tokenstore.jdbc.JdbcTokenStore",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventsourcing.AbstractAggregateFactory",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventsourcing.AggregateFactory",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventsourcing.EventCountSnapshotTriggerDefinition",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventsourcing.EventSourcingHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"payloadType","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.eventsourcing.EventSourcingRepository",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventsourcing.GenericAggregateFactory",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventsourcing.SnapshotTriggerDefinition",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventsourcing.eventstore.AbstractEventStore",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventsourcing.eventstore.EmbeddedEventStore",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.eventsourcing.eventstore.EventStore",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.lifecycle.ShutdownHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"phase","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.lifecycle.StartHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"phase","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.messaging.MessageDispatchInterceptorSupport",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.MessageHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.MessageHandlerInterceptorSupport",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.ScopeAware",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.StreamableMessageSource",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.SubscribableMessageSource",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.annotation.MessageHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[
+    {"name":"messageType","parameterTypes":[] }, 
+    {"name":"payloadType","parameterTypes":[] }
+  ]
+},
+{
+  "name":"org.axonframework.messaging.annotation.MultiParameterResolverFactory",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.annotation.ParameterResolverFactory",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.unitofwork.RollbackConfiguration",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.unitofwork.RollbackConfigurationType",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.messaging.unitofwork.RollbackConfigurationType$2",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.AbstractRepository",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.AggregateAnnotationCommandHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.AggregateIdentifier",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"routingKey","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.modelling.command.AggregateRoot",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"type","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.modelling.command.AnnotationCommandTargetResolver",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.CommandTargetResolver",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.EntityId",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"routingKey","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.modelling.command.LockingRepository",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.Repository",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.inspection.AggregateMetaModelFactory",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.inspection.AggregateModel",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.inspection.AnnotatedAggregateMetaModelFactory",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.inspection.AnnotatedAggregateMetaModelFactory$AnnotatedAggregateModel",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.modelling.command.inspection.EntityModel",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.queryhandling.DefaultQueryGateway",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.queryhandling.LoggingQueryInvocationErrorHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.queryhandling.QueryBus",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.queryhandling.QueryGateway",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.queryhandling.QueryHandler",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"queryName","parameterTypes":[] }]
+},
+{
+  "name":"org.axonframework.queryhandling.QueryInvocationErrorHandler",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.queryhandling.QueryUpdateEmitter",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.queryhandling.SimpleQueryBus",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.queryhandling.SimpleQueryUpdateEmitter",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.serialization.RevisionResolver",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.serialization.Serializer",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.serialization.upcasting.GenericUpcasterChain",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.serialization.upcasting.SingleEntryUpcaster",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.serialization.upcasting.Upcaster",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.serialization.upcasting.event.EventUpcaster",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.serialization.upcasting.event.EventUpcasterChain",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.axonframework.serialization.upcasting.event.SingleEventUpcaster",
+  "queryAllDeclaredMethods":true
+},
+{
+  "name":"org.flywaydb.core.internal.logging.slf4j.Slf4jLogCreator",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"org.slf4j.Logger"
+},
+{
+  "name":"org.slf4j.impl.StaticLoggerBinder"
+},
+{
+  "name":"org.slf4j.spi.SLF4JServiceProvider"
+},
+{
+  "name":"sun.misc.Unsafe",
+  "fields":[{"name":"theUnsafe"}]
+},
+{
+  "name":"sun.security.provider.SHA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA2$SHA256",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SecureRandom",
+  "methods":[{"name":"<init>","parameterTypes":[] }],
+  "queriedMethods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
+}
+]
