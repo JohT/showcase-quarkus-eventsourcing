@@ -104,10 +104,12 @@ jobs:
         working-directory: showcase-quarkus-eventsourcing
         # Only run when a pull request gets merged or a commit is pushed to the main branch
         # git add parameters need to match paths-ignore parameters above
+        # Git pull before add/commit/push to reduce race conditions on parallel builds
         if: github.event_name == 'push'
         run: |
           git config --global user.name '${{ env.CI_COMMIT_AUTHOR }}'
           git config --global user.email 'joht@users.noreply.github.com'
+          git pull
           git add ${{ env.native-image-agent-results-directory }}
           git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
           git push
