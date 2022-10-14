@@ -1,4 +1,7 @@
-## Unreleased
+## v1.7.0
+  - Automatically update GraalVM Community Edition to newest version
+  ([#80](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/80))
+  [2022-10-14]
   - Migrate to Java 17 and GraalVM 21.1.0
   ([#113](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/113))
   [2022-10-14]
