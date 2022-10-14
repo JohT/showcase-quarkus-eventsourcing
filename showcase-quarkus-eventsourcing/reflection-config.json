@@ -214,6 +214,14 @@
 		"allDeclaredMethods": true
 	},
 	{
+		"name": "org.axonframework.serialization.xml.Dom4JToByteArrayConverter",
+		"allDeclaredMethods": true
+	},
+	{
+		"name": "org.axonframework.serialization.xml.InputStreamToDom4jConverter",
+		"allDeclaredMethods": true
+	},
+	{
 		"name": "org.axonframework.config.MessageHandlerRegistrar",
 		"allDeclaredMethods": true
 	},
@@ -420,12 +428,6 @@
 		"allDeclaredConstructors": true
 	},
 	{
-		"name": "org.axonframework.commandhandling.InterceptorChainParameterResolverFactory",
-		"allDeclaredFields": true,
-		"allDeclaredMethods": true,
-		"allDeclaredConstructors": true
-	},
-	{
 		"name": "org.axonframework.eventhandling.ConcludesBatchParameterResolverFactory",
 		"allDeclaredFields": true,
 		"allDeclaredMethods": true,
@@ -469,6 +471,12 @@
 	},
 	{
 		"name": "org.axonframework.messaging.annotation.SourceIdParameterResolverFactory",
+		"allDeclaredFields": true,
+		"allDeclaredMethods": true,
+		"allDeclaredConstructors": true
+	},
+	{
+		"name": "org.axonframework.messaging.annotation.InterceptorChainParameterResolverFactory",
 		"allDeclaredFields": true,
 		"allDeclaredMethods": true,
 		"allDeclaredConstructors": true
