@@ -1,3 +1,97 @@
+## Unreleased
+  - Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.95.2
+  ([#112](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/112))
+  [2022-10-10]
+  - Update Quarkus to v2.13.1.Final
+  ([#110](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/110))
+  [2022-10-06]
+  - Update axon.version to v4.6.1
+  ([#111](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/111))
+  [2022-10-06]
+  - Update dependency com.tngtech.archunit:archunit-junit5 to v1
+  ([#109](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/109))
+  [2022-10-04]
+  - Update Quarkus to v2.13.0.Final
+  ([#108](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/108))
+  [2022-10-03]
+  - Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.94.0
+  ([#107](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/107))
+  [2022-09-27]
+  - Update Quarkus to v2.12.2.Final
+  ([#106](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/106))
+  [2022-09-18]
+  - Update axon.version to v4.6.0
+  ([#105](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/105))
+  [2022-09-16]
+  - Update dependency io.projectreactor:reactor-core to v3.4.23
+  ([#104](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/104))
+  [2022-09-16]
+  - Update Quarkus to v2.12.1.Final
+  ([#103](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/103))
+  [2022-09-12]
+  - Update dependency io.quarkus:quarkus-universe-bom to v2.12.0.Final
+  ([#102](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/102))
+  [2022-09-05]
+  - Update Quarkus
+  ([#101](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/101))
+  [2022-08-29]
+  - Update dependency org.apache.maven.plugins:maven-project-info-reports-plugin to v3.4.1
+  ([#100](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/100))
+  [2022-08-15]
+  - Update dependency io.projectreactor:reactor-core to v3.4.22
+  ([#99](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/99))
+  [2022-08-15]
+  - Update dependency maven to v3.8.6
+  ([#98](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/98))
+  [2022-08-08]
+  - Update dependency org.apache.maven.plugins:maven-site-plugin to v3.12.1
+  ([#97](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/97))
+  [2022-08-05]
+  - Update Quarkus to v2.11.2.Final
+  ([#96](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/96))
+  [2022-08-05]
+  - Update axon.version to v4.5.15
+  ([#95](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/95))
+  [2022-08-03]
+  - Update dependency nl.jqno.equalsverifier:equalsverifier to v3.10.1
+  ([#94](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/94))
+  [2022-08-01]
+  - Update Quarkus to v2.11.1.Final
+  ([#93](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/93))
+  [2022-08-01]
+  - Update dependency org.apache.maven.plugins:maven-project-info-reports-plugin to v3.4.0
+  ([#92](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/92))
+  [2022-07-25]
+  - Update Quarkus
+  ([#91](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/91))
+  [2022-07-25]
+  - Update axon.version to v4.5.14
+  ([#89](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/89))
+  [2022-07-18]
+  - Update dependency io.projectreactor:reactor-core to v3.4.21
+  ([#90](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/90))
+  [2022-07-18]
+  - Update Quarkus to v2.10.2.Final
+  ([#88](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/88))
+  [2022-07-06]
+  - Update Quarkus
+  ([#87](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/87))
+  [2022-06-29]
+  - Update axon.version to v4.5.12
+  ([#86](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/86))
+  [2022-06-27]
+  - Update dependency io.quarkus:quarkus-maven-plugin to v2.10.0.Final
+  ([#85](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/85))
+  [2022-06-20]
+  - Update axon.version to v4.5.10
+  ([#84](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/84))
+  [2022-06-06]
+  - Update Quarkus to v2.9.2.Final
+  ([#83](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/83))
+  [2022-05-30]
+  - Drop unnecessary sequence table in database schema (issue #81)
+  ([#82](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/82))
+  [2022-05-28]
 ## v1.6.0
   - Migrate to H2 version 2.1, Automate PostgreSQL build and test, Update Code Coverage
   ([#79](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/79))
