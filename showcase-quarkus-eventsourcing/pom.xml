@@ -504,7 +504,7 @@
 			</activation>
 			<properties>
         		<quarkus.package.type>native</quarkus.package.type>
-        		<quarkus.native.additional-build-args>--allow-incomplete-classpath,-H:ReflectionConfigurationFiles=${project.basedir}/reflection-config.json,-H:ResourceConfigurationFiles=${project.basedir}/resources-config.json</quarkus.native.additional-build-args>
+        		<quarkus.native.additional-build-args>-H:ReflectionConfigurationFiles=${project.basedir}/reflection-config.json,-H:ResourceConfigurationFiles=${project.basedir}/resources-config.json,--initialize-at-run-time=com.thoughtworks.xstream.converters.extended.DynamicProxyConverter$Reflections</quarkus.native.additional-build-args>
      		</properties>
 			<build>
 				<plugins>
