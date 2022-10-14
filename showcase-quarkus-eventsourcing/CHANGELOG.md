@@ -1,4 +1,7 @@
 ## Unreleased
+  - Migrate to Java 17 and GraalVM 21.1.0
+  ([#113](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/113))
+  [2022-10-14]
   - Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.95.2
   ([#112](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/112))
   [2022-10-10]
