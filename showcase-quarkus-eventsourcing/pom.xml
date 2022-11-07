@@ -34,7 +34,7 @@
 		<reactor-core.version>3.4.24</reactor-core.version>
 
 		<archunit.version>1.0.0</archunit.version>
-		<equalsverifier.version>3.10.1</equalsverifier.version>
+		<equalsverifier.version>3.11</equalsverifier.version>
 		<hamcrest.version>2.2</hamcrest.version>
 	</properties>
 
