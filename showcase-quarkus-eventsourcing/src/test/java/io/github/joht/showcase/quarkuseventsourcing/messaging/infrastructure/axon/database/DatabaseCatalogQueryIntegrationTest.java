@@ -6,8 +6,8 @@ import static io.github.joht.showcase.quarkuseventsourcing.messaging.infrastruct
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import javax.sql.DataSource;
 
 import org.junit.jupiter.api.Test;

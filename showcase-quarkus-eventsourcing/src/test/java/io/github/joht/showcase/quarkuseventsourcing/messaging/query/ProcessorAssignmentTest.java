@@ -3,7 +3,7 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.query;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-import javax.enterprise.inject.Typed;
+import jakarta.enterprise.inject.Typed;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

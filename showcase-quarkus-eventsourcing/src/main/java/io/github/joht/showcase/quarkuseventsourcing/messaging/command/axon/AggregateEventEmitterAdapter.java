@@ -1,6 +1,6 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.command.axon;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import org.axonframework.modelling.command.AggregateLifecycle;
 

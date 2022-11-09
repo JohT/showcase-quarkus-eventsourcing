@@ -1,8 +1,8 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.command.axon;
 
-import static javax.transaction.Transactional.TxType.REQUIRED;
+import static jakarta.transaction.Transactional.TxType.REQUIRED;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import org.axonframework.commandhandling.CommandExecutionException;
 import org.axonframework.commandhandling.gateway.CommandGateway;

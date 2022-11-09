@@ -11,10 +11,10 @@ import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axo
 
 import java.lang.reflect.Field;
 
-import javax.transaction.Status;
-import javax.transaction.SystemException;
-import javax.transaction.TransactionSynchronizationRegistry;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.Status;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.TransactionSynchronizationRegistry;
+import jakarta.transaction.UserTransaction;
 
 import org.axonframework.common.transaction.Transaction;
 import org.hamcrest.CoreMatchers;

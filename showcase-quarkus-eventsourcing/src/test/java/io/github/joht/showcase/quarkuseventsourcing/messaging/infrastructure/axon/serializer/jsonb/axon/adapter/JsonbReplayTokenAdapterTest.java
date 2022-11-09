@@ -8,7 +8,7 @@ import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axo
 
 import java.util.Collections;
 
-import javax.json.bind.JsonbConfig;
+import jakarta.json.bind.JsonbConfig;
 
 import org.axonframework.eventhandling.GapAwareTrackingToken;
 import org.axonframework.eventhandling.GlobalSequenceTrackingToken;

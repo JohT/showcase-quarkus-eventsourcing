@@ -1,6 +1,6 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.query.axon;
 
-import static javax.transaction.Transactional.TxType.REQUIRED;
+import static jakarta.transaction.Transactional.TxType.REQUIRED;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import org.axonframework.config.EventProcessingConfiguration;
 import org.axonframework.eventhandling.EventTrackerStatus;

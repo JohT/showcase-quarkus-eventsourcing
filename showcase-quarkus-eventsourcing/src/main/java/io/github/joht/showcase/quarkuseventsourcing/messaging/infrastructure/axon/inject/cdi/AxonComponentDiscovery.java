@@ -4,14 +4,14 @@ import java.lang.annotation.Annotation;
 import java.util.Set;
 import java.util.function.Function;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.inject.Any;
-import javax.enterprise.inject.Typed;
-import javax.enterprise.inject.spi.Bean;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.util.AnnotationLiteral;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.spi.CreationalContext;
+import jakarta.enterprise.inject.Any;
+import jakarta.enterprise.inject.Typed;
+import jakarta.enterprise.inject.spi.Bean;
+import jakarta.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.util.AnnotationLiteral;
+import jakarta.inject.Inject;
 
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.config.AggregateConfigurer;

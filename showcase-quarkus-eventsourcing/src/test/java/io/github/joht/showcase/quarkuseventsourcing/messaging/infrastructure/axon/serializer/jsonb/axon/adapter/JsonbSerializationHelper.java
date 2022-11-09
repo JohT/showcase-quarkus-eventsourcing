@@ -2,11 +2,11 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.ax
 
 import java.util.function.Consumer;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.json.bind.JsonbConfig;
-import javax.json.bind.JsonbException;
-import javax.json.bind.adapter.JsonbAdapter;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.JsonbConfig;
+import jakarta.json.bind.JsonbException;
+import jakarta.json.bind.adapter.JsonbAdapter;
 
 class JsonbSerializationHelper {
 

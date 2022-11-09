@@ -2,8 +2,8 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.ax
 
 import java.util.logging.Logger;
 
-import javax.transaction.Status;
-import javax.transaction.TransactionSynchronizationRegistry;
+import jakarta.transaction.Status;
+import jakarta.transaction.TransactionSynchronizationRegistry;
 
 import org.axonframework.common.transaction.Transaction;
 

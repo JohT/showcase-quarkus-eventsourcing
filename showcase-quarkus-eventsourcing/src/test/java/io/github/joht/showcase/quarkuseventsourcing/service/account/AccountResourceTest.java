@@ -7,9 +7,9 @@ import static org.jboss.resteasy.util.HttpHeaderNames.LOCATION;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.ws.rs.core.Response.Status;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.ws.rs.core.Response.Status;
 
 import org.junit.jupiter.api.Test;
 

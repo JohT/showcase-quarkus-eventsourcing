@@ -1,7 +1,7 @@
 package io.github.joht.showcase.quarkuseventsourcing.message.event.account;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -2,7 +2,7 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.ax
 
 import java.util.Map;
 
-import javax.json.bind.adapter.JsonbAdapter;
+import jakarta.json.bind.adapter.JsonbAdapter;
 
 import org.axonframework.messaging.MetaData;
 
