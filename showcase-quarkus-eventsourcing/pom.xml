@@ -79,11 +79,6 @@
 			<version>${axon.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.thoughtworks.xstream</groupId>
-			<artifactId>xstream</artifactId>
-			<version>${xstream.version}</version>
-		</dependency>
 
 		<!-- Axon - Optional dependencies for CQRS and EventSourcing Framework (only needed for native compile) -->
 		<dependency>
@@ -96,12 +91,6 @@
 					<artifactId>xml-apis</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
-    		<groupId>org.dom4j</groupId>
-    		<artifactId>dom4j</artifactId>
-    		<version>${dom4j.version}</version>
-    		<optional>true</optional>
 		</dependency>
 
 		<dependency>
