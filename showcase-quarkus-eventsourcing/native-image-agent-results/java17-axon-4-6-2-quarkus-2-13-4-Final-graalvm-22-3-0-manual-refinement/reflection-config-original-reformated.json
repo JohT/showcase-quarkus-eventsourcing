@@ -1,5 +1,15 @@
 [
     {
+        "methods": [
+            {
+                "parameterTypes": [
+                ],
+                "name": "value"
+            }
+        ],
+        "name": "java.beans.ConstructorProperties"
+    },
+    {
         "name": "org.axonframework.commandhandling.CommandHandler",
         "allDeclaredMethods": true
     },
@@ -36,11 +46,23 @@
         "allDeclaredMethods": true
     },
     {
+        "name": "org.axonframework.eventhandling.AbstractEventProcessor",
+        "allDeclaredMethods": true
+    },
+    {
         "name": "org.axonframework.eventhandling.LoggingErrorHandler",
         "allDeclaredMethods": true
     },
     {
         "name": "org.axonframework.eventhandling.PropagatingErrorHandler",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.eventhandling.SubscribingEventProcessor",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.eventhandling.TrackingEventProcessor",
         "allDeclaredMethods": true
     },
     {
@@ -80,6 +102,14 @@
         "allDeclaredMethods": true
     },
     {
+        "name": "org.axonframework.lifecycle.ShutdownHandler",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.lifecycle.StartHandler",
+        "allDeclaredMethods": true
+    },
+    {
         "name": "org.axonframework.messaging.annotation.MultiParameterResolverFactory",
         "allDeclaredMethods": true
     },
@@ -114,6 +144,16 @@
     {
         "name": "org.axonframework.modelling.command.inspection.AnnotatedAggregateMetaModelFactory$AnnotatedAggregateModel",
         "allDeclaredMethods": true
+    },
+    {
+        "methods": [
+            {
+                "parameterTypes": [
+                ],
+                "name": "<init>"
+            }
+        ],
+        "name": "org.axonframework.modelling.command.inspection.MethodCreationPolicyDefinition"
     },
     {
         "name": "org.axonframework.queryhandling.DefaultQueryGateway",
@@ -184,12 +224,36 @@
         "allDeclaredMethods": true
     },
     {
+        "name": "org.axonframework.config.MessageHandlerRegistrar",
+        "allDeclaredMethods": true
+    },
+    {
         "allDeclaredConstructors": true,
         "name": "org.axonframework.eventhandling.GapAwareTrackingToken",
         "allDeclaredMethods": true
     },
     {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.eventhandling.ReplayToken",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.eventhandling.TrackingToken",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "name": "org.axonframework.eventhandling.WrappedToken",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
         "name": "org.axonframework.eventhandling.Timestamp",
+        "allDeclaredMethods": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.MetaData",
         "allDeclaredMethods": true
     },
     {
@@ -208,6 +272,10 @@
     },
     {
         "name": "org.axonframework.serialization.upcasting.event.EventUpcaster",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.serialization.upcasting.event.IntermediateEventRepresentation",
         "allDeclaredMethods": true
     },
     {
@@ -274,6 +342,24 @@
     {
         "allDeclaredConstructors": true,
         "name": "org.axonframework.serialization.converters.StringToByteArrayConverter",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.common.property.UniformPropertyAccessStrategy",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.common.property.BeanPropertyAccessStrategy",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.common.property.DirectPropertyAccessStrategy",
         "allDeclaredMethods": true,
         "allDeclaredFields": true
     },
@@ -394,6 +480,12 @@
     {
         "allDeclaredConstructors": true,
         "name": "org.axonframework.messaging.annotation.InterceptorChainParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.eventsourcing.conflictresolution.ConflictResolution",
         "allDeclaredMethods": true,
         "allDeclaredFields": true
     },

@@ -176,14 +176,6 @@
         "allDeclaredMethods": true
     },
     {
-        "name": "org.axonframework.serialization.xml.Dom4JToByteArrayConverter",
-        "allDeclaredMethods": true
-    },
-    {
-        "name": "org.axonframework.serialization.xml.InputStreamToDom4jConverter",
-        "allDeclaredMethods": true
-    },
-    {
         "allDeclaredConstructors": true,
         "name": "org.axonframework.eventhandling.GapAwareTrackingToken",
         "allDeclaredMethods": true
@@ -228,10 +220,6 @@
         "allDeclaredMethods": true
     },
     {
-        "name": "org.axonframework.modelling.saga.SagaEventHandler",
-        "allDeclaredMethods": true
-    },
-    {
         "name": "org.axonframework.queryhandling.QueryHandler",
         "allDeclaredMethods": true
     },
@@ -246,156 +234,6 @@
     {
         "name": "org.axonframework.common.Priority",
         "allDeclaredMethods": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.serialization.converters.ByteArrayToInputStreamConverter",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.serialization.converters.BlobToInputStreamConverter",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.serialization.converters.InputStreamToByteArrayConverter",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.serialization.converters.ByteArrayToStringConverter",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.serialization.converters.StringToByteArrayConverter",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.messaging.annotation.AnnotatedMessageHandlingMemberDefinition",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.commandhandling.MethodCommandHandlerDefinition",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.queryhandling.annotation.MethodQueryMessageHandlerDefinition",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.eventhandling.replay.ReplayAwareMessageHandlerWrapper",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.deadline.annotation.DeadlineMethodMessageHandlerDefinition",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.modelling.saga.SagaMethodMessageHandlerDefinition",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.modelling.command.inspection.MethodCommandHandlerInterceptorDefinition",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.modelling.command.inspection.AggregateMemberAnnotatedChildEntityDefinition",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.modelling.command.inspection.AggregateMemberAnnotatedChildEntityMapDefinition",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.modelling.command.inspection.AggregateMemberAnnotatedChildEntityCollectionDefinition",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.commandhandling.CurrentUnitOfWorkParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.eventhandling.ConcludesBatchParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.eventhandling.SequenceNumberParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.eventhandling.TrackingTokenParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.eventhandling.TimestampParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.eventhandling.replay.ReplayParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.messaging.annotation.DefaultParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.messaging.annotation.MessageIdentifierParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.messaging.annotation.SourceIdParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "allDeclaredConstructors": true,
-        "name": "org.axonframework.messaging.annotation.InterceptorChainParameterResolverFactory",
-        "allDeclaredMethods": true,
-        "allDeclaredFields": true
     },
     {
         "name": "io.github.joht.showcase.quarkuseventsourcing.messaging.query.boundary.EventTimestampParameter",
@@ -438,10 +276,6 @@
         "allDeclaredMethods": true
     },
     {
-        "name": "io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTargetAggregateVersion",
-        "allDeclaredMethods": true
-    },
-    {
         "allDeclaredConstructors": true,
         "name": "io.github.joht.showcase.quarkuseventsourcing.domain.model.account.AccountAggregate",
         "allDeclaredMethods": true,
@@ -461,11 +295,6 @@
     },
     {
         "name": "io.github.joht.showcase.quarkuseventsourcing.message.command.account.ChangeNicknameCommand",
-        "queryAllDeclaredMethods": true,
-        "allDeclaredFields": true
-    },
-    {
-        "name": "io.github.joht.showcase.quarkuseventsourcing.message.command.account.CreateAccountCommand",
         "queryAllDeclaredMethods": true,
         "allDeclaredFields": true
     }
