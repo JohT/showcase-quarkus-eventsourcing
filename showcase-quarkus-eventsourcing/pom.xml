@@ -438,7 +438,7 @@
 				<version>${release-plugin.version}</version>
 				<configuration>
 					<tagNameFormat>v@{project.version}</tagNameFormat>
-					<releaseProfiles>releases</releaseProfiles>
+					<arguments>-Dmaven.javadoc.skip=true</arguments>
 					<checkModificationExcludes>
 						<checkModificationExclude>**/pom.xml</checkModificationExclude>
 						<checkModificationExclude>**/MANIFEST.MF</checkModificationExclude>
