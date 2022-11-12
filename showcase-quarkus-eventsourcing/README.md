@@ -1,6 +1,6 @@
 # Showcase for Event Sourcing on Quarkus using AxonFramework and MicroProfile
 
-## 💪 Features
+## ✨ Features
 
 * MicroProfile Standard
 * "Reactive" example using server sent events (SSE, tested with safari & chrome browser) and axon subscription query
