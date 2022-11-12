@@ -20,6 +20,10 @@ on:
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
       - '**/*.md'
       - '**/*.txt'
+      - '.gitignore'
+      - '.gitattributes'
+      - 'renovate.json'
+      - 'changelogTemplate.mustache'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: 
@@ -29,6 +33,10 @@ on:
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
       - '**/*.md'
       - '**/*.txt'
+      - '.gitignore'
+      - '.gitattributes'
+      - 'renovate.json'
+      - 'changelogTemplate.mustache'
   schedule:
     - cron: '0 09 1 * *'
 

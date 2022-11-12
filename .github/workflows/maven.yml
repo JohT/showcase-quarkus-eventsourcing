@@ -9,6 +9,10 @@ on:
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
       - '**/*.md'
       - '**/*.txt'
+      - '.gitignore'
+      - '.gitattributes'
+      - 'renovate.json'
+      - 'changelogTemplate.mustache'
   pull_request:
     branches:
       - master
@@ -17,6 +21,10 @@ on:
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
       - '**/*.md'
       - '**/*.txt'
+      - '.gitignore'
+      - '.gitattributes'
+      - 'renovate.json'
+      - 'changelogTemplate.mustache'
 
 jobs:
   build:

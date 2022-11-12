@@ -1,7 +1,13 @@
 # Changes
 
-## Unreleased
+## Next Release
 
+- Optimize Reflection Configuration
+  ([#126](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/126))
+  [2022-11-11]
+- Fix CHANGELOG Markdown linter warnings
+  ([#125](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/125))
+  [2022-11-11]
 - Update dependency io.quarkus:quarkus-universe-bom to v2.14.0.Final
   ([#124](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/124))
   [2022-11-09]
