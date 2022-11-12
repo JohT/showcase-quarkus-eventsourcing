@@ -2,6 +2,9 @@
 
 ## Next Release
 
+
+## v1.8.0
+
 - Optimize Reflection Configuration
   ([#126](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/126))
   [2022-11-11]
