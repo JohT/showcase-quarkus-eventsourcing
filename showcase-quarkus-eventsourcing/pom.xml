@@ -17,6 +17,7 @@
 		
 		<surefire-plugin.version>2.22.2</surefire-plugin.version>
 		<failsafe-plugin.version>2.22.2</failsafe-plugin.version>
+		<release-plugin.version>2.5.3</release-plugin.version>
 		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 		<jasmine-maven-plugin.version>2.2</jasmine-maven-plugin.version>
 		<phantomjs-maven-plugin.version>0.7</phantomjs-maven-plugin.version>
@@ -430,6 +431,19 @@
                   		<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                     	<maven.home>${maven.home}</maven.home>
 					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${release-plugin.version}</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<releaseProfiles>releases</releaseProfiles>
+					<checkModificationExcludes>
+						<checkModificationExclude>**/pom.xml</checkModificationExclude>
+						<checkModificationExclude>**/MANIFEST.MF</checkModificationExclude>
+					</checkModificationExcludes>
 				</configuration>
 			</plugin>
 			<plugin>
