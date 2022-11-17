@@ -3,6 +3,15 @@
 ## Next Release
 
 
+## v2.0.0
+
+- Migrate from javax to jakarta namespace with Quarkus v3
+  ([#123](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/123))
+  [2022-11-17]
+- Update Quarkus to v2.14.1.Final (patch)
+  ([#127](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/127))
+  [2022-11-17]
+
 ## v1.8.0
 
 - Optimize Reflection Configuration
