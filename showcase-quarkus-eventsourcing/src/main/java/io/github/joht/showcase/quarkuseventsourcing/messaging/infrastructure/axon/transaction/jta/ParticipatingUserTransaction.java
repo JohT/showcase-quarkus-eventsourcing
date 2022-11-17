@@ -2,8 +2,8 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.ax
 
 import java.util.logging.Logger;
 
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
 
 import org.axonframework.common.transaction.Transaction;
 

@@ -1,7 +1,7 @@
 package io.github.joht.showcase.quarkuseventsourcing.query.model.account;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import io.github.joht.showcase.quarkuseventsourcing.message.common.Nickname;
 import io.github.joht.showcase.quarkuseventsourcing.message.query.account.AccountNicknameQuery;

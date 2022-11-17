@@ -3,7 +3,7 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.ax
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.transaction.UserTransaction;
+import jakarta.transaction.UserTransaction;
 
 import org.axonframework.common.transaction.Transaction;
 import org.axonframework.eventhandling.TransactionMethodExecutionException;

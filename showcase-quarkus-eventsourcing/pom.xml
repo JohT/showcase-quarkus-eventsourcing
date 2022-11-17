@@ -25,13 +25,15 @@
 
    		<quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     	<quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-		<quarkus.platform.version>2.14.1.Final</quarkus.platform.version>
-		<quarkus.plugin.version>2.14.1.Final</quarkus.plugin.version>
+		<quarkus.platform.version>3.0.0.Alpha1</quarkus.platform.version>
+		<quarkus.plugin.version>3.0.0.Alpha1</quarkus.plugin.version>
+		<jacc-api.version>1.6.1</jacc-api.version>
 		
 		<axon.version>4.6.2</axon.version>
 		<dom4j.version>2.1.3</dom4j.version>
 		<xom.version>1.2.10</xom.version>
 		<reactor-core.version>3.5.0</reactor-core.version>
+		<xstream.version>1.4.19</xstream.version>
 
 		<archunit.version>1.0.0</archunit.version>
 		<equalsverifier.version>3.11</equalsverifier.version>
@@ -61,25 +63,21 @@
 		<!-- Axon - CQRS and EventSourcing Framework -->
 		<dependency>
 			<groupId>org.axonframework</groupId>
-			<artifactId>axon-configuration</artifactId>
+			<artifactId>axon-configuration-jakarta</artifactId>
 			<version>${axon.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.axonframework</groupId>
-			<artifactId>axon-modelling</artifactId>
+			<artifactId>axon-modelling-jakarta</artifactId>
 			<version>${axon.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.axonframework</groupId>
-			<artifactId>axon-messaging</artifactId>
+			<artifactId>axon-messaging-jakarta</artifactId>
 			<version>${axon.version}</version>
 			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.thoughtworks.xstream</groupId>
-			<artifactId>xstream</artifactId>
 		</dependency>
 
 		<!-- Axon - Optional dependencies for CQRS and EventSourcing Framework (only needed for native compile) -->
@@ -94,12 +92,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-    		<groupId>org.dom4j</groupId>
-    		<artifactId>dom4j</artifactId>
-    		<version>${dom4j.version}</version>
-    		<optional>true</optional>
-		</dependency>
 
 		<dependency>
 			<groupId>io.projectreactor</groupId>
@@ -113,6 +105,7 @@
 		<dependency>
 			<groupId>jakarta.security.jacc</groupId>
 			<artifactId>jakarta.security.jacc-api</artifactId>
+			<version>${jacc-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.java.dev.jna</groupId>

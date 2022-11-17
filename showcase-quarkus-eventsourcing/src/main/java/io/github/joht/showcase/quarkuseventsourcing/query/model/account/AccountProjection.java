@@ -1,8 +1,8 @@
 package io.github.joht.showcase.quarkuseventsourcing.query.model.account;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
 
 import io.github.joht.showcase.quarkuseventsourcing.message.event.account.AccountCreatedEvent;
 import io.github.joht.showcase.quarkuseventsourcing.message.event.account.NicknameChangedEvent;

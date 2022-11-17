@@ -1,6 +1,6 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.converter;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 import org.axonframework.serialization.ContentTypeConverter;
 

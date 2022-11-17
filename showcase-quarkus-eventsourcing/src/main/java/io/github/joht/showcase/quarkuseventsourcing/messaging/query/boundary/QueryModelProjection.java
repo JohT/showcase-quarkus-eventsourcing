@@ -11,8 +11,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Stereotype;
+import jakarta.enterprise.context.Dependent;
+import jakarta.enterprise.inject.Stereotype;
 
 import org.axonframework.config.ProcessingGroup;
 

@@ -6,10 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ServiceLoader;
 
-import javax.enterprise.inject.Instance;
-import javax.enterprise.inject.spi.BeanManager;
-import javax.enterprise.inject.spi.CDI;
-import javax.enterprise.util.TypeLiteral;
+import jakarta.enterprise.inject.Instance;
+import jakarta.enterprise.inject.spi.BeanManager;
+import jakarta.enterprise.inject.spi.CDI;
+import jakarta.enterprise.util.TypeLiteral;
 
 import org.axonframework.messaging.annotation.ParameterResolverFactory;
 import org.junit.jupiter.api.Disabled;
@@ -74,6 +74,16 @@ public class CdiParameterResolverFactoryTest {
 
         @Override
         public BeanManager getBeanManager() {
+            return null;
+        }
+
+        @Override
+        public Handle<Object> getHandle() {
+            return null;
+        }
+
+        @Override
+        public Iterable<? extends Handle<Object>> handles() {
             return null;
         }
     }

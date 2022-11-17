@@ -1,6 +1,6 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.adapter;
 
-import javax.json.bind.JsonbConfig;
+import jakarta.json.bind.JsonbConfig;
 
 public class JsonbAxonAdapterRegister {
 

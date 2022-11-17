@@ -15,6 +15,7 @@
     {"excludeClasses": "org.locationtech.**"},
     {"excludeClasses": "org.eclipse.yasson.**"},
     {"excludeClasses": "javax.**"},
+    {"excludeClasses": "jakarta.**"},
     {"excludeClasses": "com.sun.**"},
     {"excludeClasses": "sun.misc.**"},
     {"excludeClasses": "sun.reflect.**"},

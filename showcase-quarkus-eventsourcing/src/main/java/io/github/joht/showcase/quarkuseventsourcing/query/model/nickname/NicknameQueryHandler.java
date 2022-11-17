@@ -2,8 +2,8 @@ package io.github.joht.showcase.quarkuseventsourcing.query.model.nickname;
 
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import io.github.joht.showcase.quarkuseventsourcing.message.query.nickname.FetchDistinctNicknamesQuery;
 import io.github.joht.showcase.quarkuseventsourcing.message.query.nickname.NicknameDetails;

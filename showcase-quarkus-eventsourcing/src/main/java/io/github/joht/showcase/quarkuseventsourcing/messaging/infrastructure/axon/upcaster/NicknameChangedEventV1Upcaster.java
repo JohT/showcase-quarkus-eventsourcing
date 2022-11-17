@@ -1,8 +1,8 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.upcaster;
 
-import javax.enterprise.context.Dependent;
-import javax.json.Json;
-import javax.json.JsonObject;
+import jakarta.enterprise.context.Dependent;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 
 import org.axonframework.serialization.SerializedType;
 import org.axonframework.serialization.SimpleSerializedType;

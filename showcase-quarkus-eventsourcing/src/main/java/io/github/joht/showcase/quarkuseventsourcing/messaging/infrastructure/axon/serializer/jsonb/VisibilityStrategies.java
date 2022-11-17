@@ -3,7 +3,7 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.ax
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import javax.json.bind.config.PropertyVisibilityStrategy;
+import jakarta.json.bind.config.PropertyVisibilityStrategy;
 
 enum VisibilityStrategies implements PropertyVisibilityStrategy {
     FIELD_VISIBILITY {

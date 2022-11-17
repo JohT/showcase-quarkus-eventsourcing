@@ -9,9 +9,9 @@ import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.enterprise.inject.Instance;
-import javax.enterprise.inject.Typed;
-import javax.enterprise.inject.spi.CDI;
+import jakarta.enterprise.inject.Instance;
+import jakarta.enterprise.inject.Typed;
+import jakarta.enterprise.inject.spi.CDI;
 
 import org.axonframework.messaging.Message;
 import org.axonframework.messaging.annotation.ParameterResolver;

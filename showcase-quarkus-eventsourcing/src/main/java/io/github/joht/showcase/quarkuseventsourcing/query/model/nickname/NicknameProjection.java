@@ -3,9 +3,9 @@ package io.github.joht.showcase.quarkuseventsourcing.query.model.nickname;
 import java.time.Instant;
 import java.util.function.Predicate;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
 
 import io.github.joht.showcase.quarkuseventsourcing.message.event.account.NicknameChangedEvent;
 import io.github.joht.showcase.quarkuseventsourcing.message.query.nickname.FetchDistinctNicknamesQuery;

@@ -3,7 +3,7 @@ package io.github.joht.showcase.quarkuseventsourcing.service.nickname;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.ws.rs.core.Response.Status;
+import jakarta.ws.rs.core.Response.Status;
 
 import org.junit.jupiter.api.Test;
 
