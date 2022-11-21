@@ -35,7 +35,7 @@
 		<reactor-core.version>3.5.0</reactor-core.version>
 		<xstream.version>1.4.19</xstream.version>
 
-		<archunit.version>1.0.0</archunit.version>
+		<archunit.version>1.0.1</archunit.version>
 		<equalsverifier.version>3.11.1</equalsverifier.version>
 		<hamcrest.version>2.2</hamcrest.version>
 	</properties>
