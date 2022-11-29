@@ -37,6 +37,7 @@ import org.axonframework.eventsourcing.eventstore.jdbc.EventSchema;
 import org.axonframework.eventsourcing.eventstore.jdbc.JdbcEventStorageEngine;
 import org.axonframework.messaging.annotation.MultiParameterResolverFactory;
 import org.axonframework.messaging.annotation.ParameterResolverFactory;
+import org.axonframework.serialization.AnnotationRevisionResolver;
 import org.axonframework.serialization.RevisionResolver;
 import org.axonframework.serialization.Serializer;
 
@@ -189,13 +190,13 @@ public class AxonConfiguration {
 
     private Serializer flexibleSerializer(Configuration config) {
         return postgreSqlJsonbTypeConverter(JsonbSerializer.fieldAccess())
-                .revisionResolver(config.getComponent(RevisionResolver.class))
+                .revisionResolver(config.getComponent(RevisionResolver.class, AnnotationRevisionResolver::new))
                 .build();
     }
 
     private Serializer messageSerializer(Configuration config) {
         return postgreSqlJsonbTypeConverter(JsonbSerializer.defaultSerializer())
-                .revisionResolver(config.getComponent(RevisionResolver.class))
+                .revisionResolver(config.getComponent(RevisionResolver.class, AnnotationRevisionResolver::new))
                 .build();
     }
 
