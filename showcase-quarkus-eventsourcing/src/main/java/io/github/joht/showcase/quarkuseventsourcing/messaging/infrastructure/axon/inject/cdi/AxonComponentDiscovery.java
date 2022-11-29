@@ -31,9 +31,13 @@ import org.axonframework.serialization.upcasting.event.EventUpcaster;
 @ApplicationScoped
 public class AxonComponentDiscovery {
 
-    @Inject
-    BeanManager beanManager;
+    private final BeanManager beanManager;
 
+    @Inject
+    public AxonComponentDiscovery(BeanManager beanManager) {
+    	this.beanManager = beanManager;
+    }
+    
     /**
      * Attaches all discovered components to the given {@link AxonComponentDiscoveryContext#getConfigurer()}.
      * 
@@ -121,4 +125,10 @@ public class AxonComponentDiscovery {
         private static final long serialVersionUID = 1L;
         public static final AnnotationLiteral<Any> ANY = new AnnotationLiteralAny();
     }
+
+	@Override
+	public String toString() {
+		return "AxonComponentDiscovery [beanManager=" + beanManager + "]";
+	}
+	
 }
