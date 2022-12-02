@@ -36,7 +36,7 @@
 		<xstream.version>1.4.19</xstream.version>
 
 		<archunit.version>1.0.1</archunit.version>
-		<equalsverifier.version>3.12</equalsverifier.version>
+		<equalsverifier.version>3.12.1</equalsverifier.version>
 		<hamcrest.version>2.2</hamcrest.version>
 	</properties>
 
