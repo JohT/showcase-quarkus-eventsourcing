@@ -63,19 +63,19 @@
 		<!-- Axon - CQRS and EventSourcing Framework -->
 		<dependency>
 			<groupId>org.axonframework</groupId>
-			<artifactId>axon-configuration-jakarta</artifactId>
+			<artifactId>axon-configuration</artifactId>
 			<version>${axon.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.axonframework</groupId>
-			<artifactId>axon-modelling-jakarta</artifactId>
+			<artifactId>axon-modelling</artifactId>
 			<version>${axon.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.axonframework</groupId>
-			<artifactId>axon-messaging-jakarta</artifactId>
+			<artifactId>axon-messaging</artifactId>
 			<version>${axon.version}</version>
 			<scope>compile</scope>
 		</dependency>
