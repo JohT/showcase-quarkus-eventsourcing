@@ -37,6 +37,7 @@ import org.axonframework.eventsourcing.eventstore.jdbc.EventSchema;
 import org.axonframework.eventsourcing.eventstore.jdbc.JdbcEventStorageEngine;
 import org.axonframework.messaging.annotation.MultiParameterResolverFactory;
 import org.axonframework.messaging.annotation.ParameterResolverFactory;
+import org.axonframework.serialization.AnnotationRevisionResolver;
 import org.axonframework.serialization.RevisionResolver;
 import org.axonframework.serialization.Serializer;
 
@@ -100,8 +101,10 @@ public class AxonConfiguration {
 
     @PostConstruct
     protected void startUp() {
-        Configurer configurer = DefaultConfigurer.defaultConfiguration();
-        configureEventProcessing(configurer);
+    	// autoLocateConfigurerModule doesn't work with quarkus dev mode.
+    	// For more details see application.properties
+		Configurer configurer = DefaultConfigurer.defaultConfiguration(false);
+		configureEventProcessing(configurer);
         addDiscoveredComponentsTo(configurer);
         configuration = configurer
                 .registerComponent(RevisionResolver.class, config -> new AnnotationEventRevisionResolver())
@@ -133,7 +136,7 @@ public class AxonConfiguration {
      * @return {@link ParameterResolverFactory}
      */
     private ParameterResolverFactory parameterResolvers(Configuration config) {
-        Configuration defaultConfig = DefaultConfigurer.defaultConfiguration().buildConfiguration();
+        Configuration defaultConfig = DefaultConfigurer.defaultConfiguration(false).buildConfiguration();
         List<ParameterResolverFactory> factories = allFactoriesOf(defaultConfig.getComponent(ParameterResolverFactory.class));
         factories.add(new CdiParameterResolverFactory()); // add with lowest priority (without using an annotation)
         factories.removeIf(factory -> factory.getClass().getName().contains(".test.")); // remove test factories
@@ -189,13 +192,13 @@ public class AxonConfiguration {
 
     private Serializer flexibleSerializer(Configuration config) {
         return postgreSqlJsonbTypeConverter(JsonbSerializer.fieldAccess())
-                .revisionResolver(config.getComponent(RevisionResolver.class))
+                .revisionResolver(config.getComponent(RevisionResolver.class, AnnotationRevisionResolver::new))
                 .build();
     }
 
     private Serializer messageSerializer(Configuration config) {
         return postgreSqlJsonbTypeConverter(JsonbSerializer.defaultSerializer())
-                .revisionResolver(config.getComponent(RevisionResolver.class))
+                .revisionResolver(config.getComponent(RevisionResolver.class, AnnotationRevisionResolver::new))
                 .build();
     }
 

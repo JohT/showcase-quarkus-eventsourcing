@@ -2,7 +2,6 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.ax
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.JsonbConfig;
@@ -204,7 +203,7 @@ public class JsonbSerializer implements Serializer {
          * @param converter {@link Converter}
          * @return {@link Builder}
          */
-        public Builder converter(Converter converter) {
+        protected Builder converter(Converter converter) {
             this.serializer.converter = converter;
             return this;
         }
@@ -235,20 +234,6 @@ public class JsonbSerializer implements Serializer {
             return this;
         }
 
-        /**
-         * Registers additional chained {@link ContentTypeConverter}s. Requires the default {@link ChainingConverter}.
-         * 
-         * @param contentTypeConverters {@link Class} of a {@link ContentTypeConverter}
-         * @return {@link Builder}
-         * @throws IllegalArgumentException when the default {@link ChainingConverter} had been exchanged by using
-         *             {@link #converter(Converter)}.
-         */
-        @SafeVarargs
-        public final Builder addContentTypeConverters(Class<? extends ContentTypeConverter<?, ?>>... contentTypeConverters) {
-            Stream.of(contentTypeConverters).forEach(this::addContentTypeConverter);
-            return this;
-        }
-
         private ChainingConverter mandatoryChainingConverter() {
             if (this.serializer.getConverter() instanceof ChainingConverter) {
                 return ((ChainingConverter) this.serializer.getConverter());
@@ -263,7 +248,9 @@ public class JsonbSerializer implements Serializer {
          * @return {@link Builder}
          */
         public Builder revisionResolver(RevisionResolver revisionResolver) {
-            this.serializer.revisionResolver = revisionResolver;
+            if (revisionResolver != null) {
+            	this.serializer.revisionResolver = revisionResolver;
+            }
             return this;
         }
 

@@ -1,6 +1,14 @@
 package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.isA;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.beans.ConstructorProperties;
 import java.io.InputStream;
@@ -18,33 +26,22 @@ import org.axonframework.serialization.UnknownSerializedType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.JsonbSerializer;
-
 class JsonbSerializerTest {
 
-    private JsonbSerializer serializerToTest;
+    private JsonbSerializer serializerUnderTest;
     private Instant time;
 
     @BeforeEach
     void setUp() {
-        serializerToTest = JsonbSerializer.defaultSerializer().build();
+        serializerUnderTest = JsonbSerializer.defaultSerializer().build();
         time = Instant.now();
     }
 
     @Test
     void testCanSerializeToStringByteArrayAndInputStream() {
-        assertTrue(serializerToTest.canSerializeTo(byte[].class));
-        assertTrue(serializerToTest.canSerializeTo(String.class));
-        assertTrue(serializerToTest.canSerializeTo(InputStream.class));
+        assertTrue(serializerUnderTest.canSerializeTo(byte[].class));
+        assertTrue(serializerUnderTest.canSerializeTo(String.class));
+        assertTrue(serializerUnderTest.canSerializeTo(InputStream.class));
     }
 
     @Test
@@ -52,9 +49,9 @@ class JsonbSerializerTest {
         SimpleSerializableType toSerialize = new SimpleSerializableType("first", time,
                 new SimpleNestedSerializableType("nested"));
 
-        SerializedObject<String> serialized = serializerToTest.serialize(toSerialize, String.class);
+        SerializedObject<String> serialized = serializerUnderTest.serialize(toSerialize, String.class);
 
-        SimpleSerializableType actual = serializerToTest.deserialize(serialized);
+        SimpleSerializableType actual = serializerUnderTest.deserialize(serialized);
         assertEquals(toSerialize.getValue(), actual.getValue());
         assertEquals(toSerialize.getNested().getValue(), actual.getNested().getValue());
     }
@@ -64,9 +61,9 @@ class JsonbSerializerTest {
         SimpleSerializableType toSerialize = new SimpleSerializableType("first", time,
                 new SimpleNestedSerializableType("nested"));
 
-        SerializedObject<String> serialized = serializerToTest.serialize(new SimpleSerializableType[] { toSerialize }, String.class);
+        SerializedObject<String> serialized = serializerUnderTest.serialize(new SimpleSerializableType[] { toSerialize }, String.class);
 
-        SimpleSerializableType[] actual = serializerToTest.deserialize(serialized);
+        SimpleSerializableType[] actual = serializerUnderTest.deserialize(serialized);
         assertEquals(1, actual.length);
         assertEquals(toSerialize.getValue(), actual[0].getValue());
         assertEquals(toSerialize.getNested().getValue(), actual[0].getNested().getValue());
@@ -77,9 +74,9 @@ class JsonbSerializerTest {
         SimpleSerializableType toSerialize = new SimpleSerializableType("first", time,
                 new SimpleNestedSerializableType("nested"));
 
-        SerializedObject<byte[]> serialized = serializerToTest.serialize(toSerialize, byte[].class);
+        SerializedObject<byte[]> serialized = serializerUnderTest.serialize(toSerialize, byte[].class);
 
-        SimpleSerializableType actual = serializerToTest.deserialize(serialized);
+        SimpleSerializableType actual = serializerUnderTest.deserialize(serialized);
 
         assertEquals(toSerialize.getValue(), actual.getValue());
         assertEquals(toSerialize.getNested().getValue(), actual.getNested().getValue());
@@ -90,9 +87,9 @@ class JsonbSerializerTest {
         SimpleSerializableType toSerialize = new SimpleSerializableType("first", time,
                 new SimpleNestedSerializableType("nested"));
 
-        SerializedObject<byte[]> serialized = serializerToTest.serialize(toSerialize, byte[].class);
+        SerializedObject<byte[]> serialized = serializerUnderTest.serialize(toSerialize, byte[].class);
 
-        Object actual = serializerToTest.deserialize(new SimpleSerializedObject<>(serialized.getData(),
+        Object actual = serializerUnderTest.deserialize(new SimpleSerializedObject<>(serialized.getData(),
                 byte[].class,
                 "someUnknownType",
                 "42.1"));
@@ -105,32 +102,60 @@ class JsonbSerializerTest {
         RevisionResolver revisionResolver = spy(new AnnotationRevisionResolver());
         ChainingConverter converter = spy(new ChainingConverter());
 
-        serializerToTest = JsonbSerializer.builder()
+        serializerUnderTest = JsonbSerializer.builder()
                 .revisionResolver(revisionResolver)
                 .converter(converter)
                 .build();
 
-        SerializedObject<byte[]> serialized = serializerToTest.serialize(new SimpleNestedSerializableType("test"), byte[].class);
-        SimpleNestedSerializableType actual = serializerToTest.deserialize(serialized);
+        SerializedObject<byte[]> serialized = serializerUnderTest.serialize(new SimpleNestedSerializableType("test"), byte[].class);
+        SimpleNestedSerializableType actual = serializerUnderTest.deserialize(serialized);
 
         assertNotNull(actual);
         verify(revisionResolver).revisionOf(SimpleNestedSerializableType.class);
         verify(converter, times(2)).registerConverter(isA(ContentTypeConverter.class));
     }
+ 
+    @Test
+    void testCustomConverterTakenFromTemplate() {
+    	ChainingConverter converter = new ChainingConverter();
+
+		serializerUnderTest = JsonbSerializer.builder().converter(converter).build();
+		JsonbSerializer copy = JsonbSerializer.builder().template(serializerUnderTest).build();
+				
+        assertSame(converter, copy.getConverter());
+    }
 
     @Test
+    void testCustomRevisionResolverTakenFromTemplate() {
+        RevisionResolver revisionResolver = new AnnotationRevisionResolver();
+
+		serializerUnderTest = JsonbSerializer.builder().revisionResolver(revisionResolver).build();
+		JsonbSerializer copy = JsonbSerializer.builder().template(serializerUnderTest).build();
+				
+        assertSame(serializerUnderTest.getRevisionResolver(), copy.getRevisionResolver());
+    }
+    
+    @Test
+    void testDefaultAnnotationRevisionResolverWhenSetToNullOnBuilder() {
+		serializerUnderTest = JsonbSerializer.builder().revisionResolver(null).build();
+		JsonbSerializer copy = JsonbSerializer.builder().template(serializerUnderTest).build();
+				
+        assertEquals(AnnotationRevisionResolver.class, copy.getRevisionResolver().getClass());
+    }
+    
+    @Test
     void testDeserializeNullValue() {
-        SerializedObject<byte[]> serializedNull = serializerToTest.serialize(null, byte[].class);
+        SerializedObject<byte[]> serializedNull = serializerUnderTest.serialize(null, byte[].class);
         SimpleSerializedObject<byte[]> serializedNullString = new SimpleSerializedObject<>(
-                serializedNull.getData(), byte[].class, serializerToTest.typeForClass(String.class));
-        assertNull(serializerToTest.deserialize(serializedNull));
-        assertNull(serializerToTest.deserialize(serializedNullString));
+                serializedNull.getData(), byte[].class, serializerUnderTest.typeForClass(String.class));
+        assertNull(serializerUnderTest.deserialize(serializedNull));
+        assertNull(serializerUnderTest.deserialize(serializedNullString));
     }
 
     @Test
     void testDeserializeEmptyBytes() {
-        assertEquals(Void.class, serializerToTest.classForType(SerializedType.emptyType()));
-        assertNull(serializerToTest.deserialize(new SimpleSerializedObject<>(new byte[0], byte[].class, SerializedType.emptyType())));
+        assertEquals(Void.class, serializerUnderTest.classForType(SerializedType.emptyType()));
+        assertNull(serializerUnderTest.deserialize(new SimpleSerializedObject<>(new byte[0], byte[].class, SerializedType.emptyType())));
     }
 
     public static class ComplexObject {
