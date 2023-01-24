@@ -36,7 +36,7 @@ jobs:
     env: 
       CI_COMMIT_MESSAGE: Automated native image agent results (CI)
       CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
-      GRAALVM_VERSION: 22.3.0
+      GRAALVM_VERSION: 22.3.1
     steps:
       - name: Checkout git repository
         uses: actions/checkout@v3
