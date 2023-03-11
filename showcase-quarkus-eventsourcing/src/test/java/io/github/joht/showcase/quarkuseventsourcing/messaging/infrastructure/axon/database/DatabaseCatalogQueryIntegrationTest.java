@@ -14,11 +14,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import io.quarkus.test.junit.DisabledOnNativeImage;
+import io.quarkus.test.junit.DisabledOnIntegrationTest;
 import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
-@DisabledOnNativeImage
+@DisabledOnIntegrationTest
 public class DatabaseCatalogQueryIntegrationTest {
 
     @Inject
