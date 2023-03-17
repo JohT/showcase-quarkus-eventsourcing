@@ -10,7 +10,7 @@
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<!-- PostgreSql: minimal required database settings -->
-			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect" /> -->
+			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> -->
 
 			<!-- H2: minimal required database settings -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
