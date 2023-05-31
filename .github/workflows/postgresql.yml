@@ -32,7 +32,7 @@ jobs:
     # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     # Docker Hub image that `postgresql-build` executes in
-    container: maven:3.8.7-openjdk-18
+    container: maven:3.9.0-eclipse-temurin-19
 
     # Service containers to run with `postgresql-build`
     services:
