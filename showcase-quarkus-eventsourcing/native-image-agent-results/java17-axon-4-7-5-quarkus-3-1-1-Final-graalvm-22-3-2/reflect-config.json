@@ -234,6 +234,9 @@
   "name":"io.github.joht.showcase.quarkuseventsourcing.service.nickname.NicknamesProjectionManagementResource"
 },
 {
+  "name":"io.micrometer.context.ContextRegistry"
+},
+{
   "name":"io.quarkus.arc.ClientProxy",
   "queryAllDeclaredMethods":true,
   "queryAllDeclaredConstructors":true
