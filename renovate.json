@@ -16,19 +16,5 @@
       ],
       "groupName": "Quarkus"
     }
-  ],
-  "regexManagers": [
-    {
-      "fileMatch": [
-        "^(workflow-templates|\\.github\/workflows)\\/[^/]+\\.ya?ml$",
-        "(^|\\/)action\\.ya?ml$]"
-      ],
-      "matchStrings": [
-        "GRAALVM_VERSION:\\s+?(?<currentValue>.*?)\\s+"
-      ],
-      "depNameTemplate": "graalvm/graalvm-ce-builds",
-      "datasourceTemplate": "github-releases",
-      "extractVersionTemplate": "^v?m?-?(?<version>.*?)$"
-    }
   ]
 }

@@ -1,4 +1,4 @@
-name: GraalVM Community Edition Continuous Integration
+name: GraalVM Continuous Integration
 
 on:
   push:
@@ -32,11 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: ['java17']
+        java: ['17']
     env: 
       CI_COMMIT_MESSAGE: Automated native image agent results (CI)
       CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
-      GRAALVM_VERSION: 22.3.2
     steps:
       - name: Checkout git repository
         uses: actions/checkout@v3
@@ -53,12 +52,11 @@ jobs:
 
       # Download and prepare GraalVM Community Edition including native image tools
       - name: Setup GraalVM Community Edition
-        uses: DeLaGuardo/setup-graalvm@5.0
+        uses: graalvm/setup-graalvm@v1
         with:
-          graalvm: ${{ env.GRAALVM_VERSION }}
-          java: ${{ matrix.java }}
-      - name: Install Native Image
-        run: gu install native-image
+          java-version: ${{ matrix.java }}
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # Build the native image of the application.
       - name: Build native image with Maven
@@ -80,10 +78,8 @@ jobs:
       - name: Get the quarkus version from the maven pom variable and set the environment variable "quarkus-version"
         working-directory: showcase-quarkus-eventsourcing
         run: echo "quarkus-version=$(mvn -q help:evaluate -Dexpression=quarkus.platform.version -DforceStdout | tr . -)" >> $GITHUB_ENV
-      - name: Get the GraalVM version with "-" instead of "." delimiters
-        run: echo "graalvm-version-string=$(echo ${{ env.GRAALVM_VERSION }} | tr . -)" >> $GITHUB_ENV
       - name: Assemble the name of the directory for the native image agent output files and set the environment variable "native-image-agent-results-directory"
-        run: echo "native-image-agent-results-directory=native-image-agent-results/${{ matrix.java }}-axon-${{ env.axon-version }}-quarkus-${{ env.quarkus-version }}-graalvm-${{ env.graalvm-version-string }}" >> $GITHUB_ENV
+        run: echo "native-image-agent-results-directory=native-image-agent-results/java-${{ matrix.java }}-axon-${{ env.axon-version }}-quarkus-${{ env.quarkus-version }}-graalvm-oracle" >> $GITHUB_ENV
       
       # Create the directory with the previously assembled name within "native-image-agent-results" and fill in the result files.
       - name: Create the native image agent results directory
@@ -100,7 +96,7 @@ jobs:
       - name: Archive native image agent results
         uses: actions/upload-artifact@v3
         with:
-          name: native-image-agent-results-${{ matrix.java }}
+          name: native-image-agent-results-java-${{ matrix.java }}
           path: showcase-quarkus-eventsourcing/${{ env.native-image-agent-results-directory }}
           if-no-files-found: error
           retention-days: 5
