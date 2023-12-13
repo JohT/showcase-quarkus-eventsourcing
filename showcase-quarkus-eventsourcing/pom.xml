@@ -32,7 +32,7 @@
 		<axon.version>4.8.3</axon.version>
 		<dom4j.version>2.1.4</dom4j.version>
 		<xom.version>1.2.10</xom.version>
-		<reactor-core.version>3.6.0</reactor-core.version>
+		<reactor-core.version>3.6.1</reactor-core.version>
 
 		<archunit.version>1.2.1</archunit.version>
 		<equalsverifier.version>3.15.4</equalsverifier.version>
