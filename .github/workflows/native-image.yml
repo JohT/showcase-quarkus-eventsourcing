@@ -98,7 +98,7 @@ jobs:
       
       # Upload the native image agent results in case they are needed for troubleshooting for a couple of days
       - name: Archive native image agent results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: native-image-agent-results-${{ matrix.java }}
           path: showcase-quarkus-eventsourcing/${{ env.native-image-agent-results-directory }}
