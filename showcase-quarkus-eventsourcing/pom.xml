@@ -21,7 +21,7 @@
 		<jasmine-maven-plugin.version>2.2</jasmine-maven-plugin.version>
 		<phantomjs-maven-plugin.version>0.7</phantomjs-maven-plugin.version>
 		<phantomjs.version>2.1.1</phantomjs.version>
-		<git-changelog-maven-plugin.version>1.100.7</git-changelog-maven-plugin.version>
+		<git-changelog-maven-plugin.version>1.101.0</git-changelog-maven-plugin.version>
 
    		<quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     	<quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
