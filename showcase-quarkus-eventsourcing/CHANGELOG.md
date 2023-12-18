@@ -2,6 +2,255 @@
 
 ## Next Release
 
+- Update Quarkus to v3.6.3 (minor)
+  ([#206](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/206))
+  [2023-12-18]
+- Disable native image agent trace
+  ([#249](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/249))
+  [2023-12-18]
+- Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.101.0
+  ([#248](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/248))
+  [2023-12-17]
+- Update actions/upload-artifact action to v4
+  ([#245](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/245))
+  [2023-12-15]
+- Update github/codeql-action action to v3
+  ([#246](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/246))
+  [2023-12-15]
+- Update dependency org.apache.maven.plugins:maven-failsafe-plugin to v3.2.3
+  ([#243](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/243))
+  [2023-12-14]
+- Update dependency org.apache.maven.plugins:maven-surefire-plugin to v3.2.3
+  ([#244](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/244))
+  [2023-12-14]
+- Update dependency io.projectreactor:reactor-core to v3.6.1
+  ([#242](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/242))
+  [2023-12-13]
+- Update dependency com.tngtech.archunit:archunit-junit5 to v1.2.1
+  ([#241](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/241))
+  [2023-12-04]
+- Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.100.7
+  ([#240](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/240))
+  [2023-12-02]
+- Update actions/setup-java action to v4
+  ([#239](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/239))
+  [2023-11-30]
+- Update dependency nl.jqno.equalsverifier:equalsverifier to v3.15.4
+  ([#238](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/238))
+  [2023-11-30]
+- Update dependency org.apache.maven.plugins:maven-project-info-reports-plugin to v3.5.0
+  ([#237](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/237))
+  [2023-11-22]
+- Update dependency io.projectreactor:reactor-core to v3.6.0
+  ([#236](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/236))
+  [2023-11-15]
+- Update dependency io.projectreactor:reactor-core to v3.5.12
+  ([#235](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/235))
+  [2023-11-15]
+- Update dependency org.apache.maven.plugins:maven-surefire-plugin to v3.2.2
+  ([#234](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/234))
+  [2023-11-07]
+- Update dependency org.apache.maven.plugins:maven-failsafe-plugin to v3.2.2
+  ([#233](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/233))
+  [2023-11-07]
+- Update dependency com.tngtech.archunit:archunit-junit5 to v1.2.0
+  ([#232](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/232))
+  [2023-11-06]
+- Update dependency nl.jqno.equalsverifier:equalsverifier to v3.15.3
+  ([#231](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/231))
+  [2023-11-02]
+- Update dependency org.apache.maven.plugins:maven-failsafe-plugin to v3.2.1
+  ([#229](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/229))
+  [2023-10-24]
+- Update dependency org.apache.maven.plugins:maven-surefire-plugin to v3.2.1
+  ([#230](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/230))
+  [2023-10-24]
+- Update axon.version to v4.8.3 (patch)
+  ([#227](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/227))
+  [2023-10-21]
+- Update dependency org.jacoco:jacoco-maven-plugin to v0.8.11
+  ([#226](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/226))
+  [2023-10-17]
+- Update dependency io.projectreactor:reactor-core to v3.5.11
+  ([#225](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/225))
+  [2023-10-11]
+- Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.100.6
+  ([#224](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/224))
+  [2023-09-27]
+- Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.100.3
+  ([#223](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/223))
+  [2023-09-24]
+- Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.100.1
+  ([#222](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/222))
+  [2023-09-24]
+- Update dependency nl.jqno.equalsverifier:equalsverifier to v3.15.2
+  ([#221](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/221))
+  [2023-09-23]
+- Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.99.0
+  ([#220](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/220))
+  [2023-09-13]
+- Update dependency io.projectreactor:reactor-core to v3.5.10
+  ([#219](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/219))
+  [2023-09-13]
+- Update axon.version to v4.8.2 (patch)
+  ([#218](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/218))
+  [2023-09-09]
+- Update actions/checkout action to v4
+  ([#217](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/217))
+  [2023-09-05]
+- Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.98.2
+  ([#216](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/216))
+  [2023-09-01]
+- Update dependency io.projectreactor:reactor-core to v3.5.9
+  ([#215](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/215))
+  [2023-08-15]
+- Update axon.version to v4.8.1 (patch)
+  ([#214](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/214))
+  [2023-08-14]
+- Update dependency com.tngtech.archunit:archunit-junit5 to v1.1.0
+  ([#213](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/213))
+  [2023-08-10]
+- Update dependency nl.jqno.equalsverifier:equalsverifier to v3.15.1
+  ([#212](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/212))
+  [2023-08-03]
+- Update dependency graalvm/graalvm-ce-builds to v22.3.3
+  ([#211](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/211))
+  [2023-07-25]
+- Update dependency io.projectreactor:reactor-core to v3.5.8
+  ([#210](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/210))
+  [2023-07-12]
+- Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.97.1
+  ([#209](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/209))
+  [2023-07-09]
+- Update dependency nl.jqno.equalsverifier:equalsverifier to v3.15
+  ([#208](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/208))
+  [2023-07-08]
+- Update Quarkus to v3.1.3.Final (patch)
+  ([#205](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/205))
+  [2023-06-29]
+- Update dependency nl.jqno.equalsverifier:equalsverifier to v3.14.3
+  ([#204](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/204))
+  [2023-06-24]
+- Update axon.version to v4.8.0 (minor)
+  ([#203](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/203))
+  [2023-06-22]
+- Update axon.version to v4.7.6 (patch)
+  ([#202](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/202))
+  [2023-06-20]
+- Update Quarkus to v3.1.2.Final (patch)
+  ([#201](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/201))
+  [2023-06-15]
+- Update dependency io.projectreactor:reactor-core to v3.5.7
+  ([#200](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/200))
+  [2023-06-14]
+- Update Quarkus to v3.1.1.Final (patch)
+  ([#199](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/199))
+  [2023-06-08]
+- Update dependency org.apache.maven.plugins:maven-surefire-plugin to v3.1.2
+  ([#198](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/198))
+  [2023-06-07]
+- Update dependency org.apache.maven.plugins:maven-failsafe-plugin to v3.1.2
+  ([#196](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/196))
+  [2023-06-07]
+- Update dependency org.apache.maven.plugins:maven-project-info-reports-plugin to v3.4.5
+  ([#197](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/197))
+  [2023-06-07]
+- Update dependency org.apache.maven.plugins:maven-release-plugin to v3.0.1
+  ([#195](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/195))
+  [2023-06-03]
+- Update dependency io.quarkus:quarkus-universe-bom to v3.1.0.Final
+  ([#194](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/194))
+  [2023-06-01]
+- Update dependency nl.jqno.equalsverifier:equalsverifier to v3.14.2
+  ([#193](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/193))
+  [2023-05-31]
+- Update dependency org.apache.maven.plugins:maven-project-info-reports-plugin to v3.4.4
+  ([#191](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/191))
+  [2023-05-30]
+- Update dependency io.quarkus:quarkus-universe-bom to v3.0.4.Final
+  ([#190](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/190))
+  [2023-05-26]
+- Update dependency io.quarkus:quarkus-maven-plugin to v3.1.0.Final
+  ([#189](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/189))
+  [2023-05-25]
+- Update dependency io.quarkus:quarkus-maven-plugin to v3.0.4.Final
+  ([#188](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/188))
+  [2023-05-25]
+- Update axon.version to v4.7.5 (patch)
+  ([#187](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/187))
+  [2023-05-19]
+- Update Quarkus to v3.0.3.Final (patch)
+  ([#186](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/186))
+  [2023-05-11]
+- Update dependency io.projectreactor:reactor-core to v3.5.6
+  ([#185](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/185))
+  [2023-05-09]
+- Update dependency org.apache.maven.plugins:maven-surefire-plugin to v3.1.0
+  ([#184](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/184))
+  [2023-05-08]
+- Update dependency org.apache.maven.plugins:maven-failsafe-plugin to v3.1.0
+  ([#183](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/183))
+  [2023-05-08]
+- Update Quarkus to v3.0.2.Final (patch)
+  ([#182](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/182))
+  [2023-05-04]
+- Update dependency io.quarkus:quarkus-universe-bom to v3.0.1.Final
+  ([#181](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/181))
+  [2023-04-26]
+- Update dependency io.quarkus:quarkus-maven-plugin to v3.0.1.Final
+  ([#180](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/180))
+  [2023-04-26]
+- Update dependency graalvm/graalvm-ce-builds to v22.3.2
+  ([#179](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/179))
+  [2023-04-25]
+- Update dependency org.jacoco:jacoco-maven-plugin to v0.8.10
+  ([#178](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/178))
+  [2023-04-25]
+- Update axon.version to v4.7.4 (patch)
+  ([#177](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/177))
+  [2023-04-25]
+- Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.97.0
+  ([#176](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/176))
+  [2023-04-22]
+- Update dependency org.apache.maven.plugins:maven-project-info-reports-plugin to v3.4.3
+  ([#175](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/175))
+  [2023-04-19]
+- Update dependency io.quarkus:quarkus-maven-plugin to v3.0.0.Final
+  ([#174](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/174))
+  [2023-04-12]
+- Update dependency io.projectreactor:reactor-core to v3.5.5
+  ([#173](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/173))
+  [2023-04-12]
+- Update Quarkus to v3.0.0.CR2 (patch)
+  ([#172](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/172))
+  [2023-04-06]
+- Update dependency org.jacoco:jacoco-maven-plugin to v0.8.9
+  ([#171](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/171))
+  [2023-04-04]
+- Update Quarkus to v3.0.0.CR1 (patch)
+  ([#170](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/170))
+  [2023-03-31]
+- Update Quarkus to v3.0.0.Beta1 (patch)
+  ([#165](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/165))
+  [2023-03-22]
+- Update dependency org.apache.maven.plugins:maven-release-plugin to v3
+  ([#169](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/169))
+  [2023-03-21]
+- Fix some minor configuration issues
+  ([#167](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/167))
+  [2023-03-17]
+- Update dependency nl.jqno.equalsverifier:equalsverifier to v3.14.1
+  ([#166](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/166))
+  [2023-03-17]
+- Update dependency org.apache.maven.plugins:maven-failsafe-plugin to v3
+  ([#163](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/163))
+  [2023-03-14]
+- Update dependency org.apache.maven.plugins:maven-surefire-plugin to v3
+  ([#164](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/164))
+  [2023-03-14]
+- Update dependency io.projectreactor:reactor-core to v3.5.4
+  ([#162](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/162))
+  [2023-03-14]
 - Update dependency se.bjurr.gitchangelog:git-changelog-maven-plugin to v1.96.1
   ([#161](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/161))
   [2023-03-12]

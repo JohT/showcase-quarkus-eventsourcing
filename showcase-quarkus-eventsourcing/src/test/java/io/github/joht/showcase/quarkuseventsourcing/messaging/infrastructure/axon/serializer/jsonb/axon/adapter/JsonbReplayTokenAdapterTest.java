@@ -2,10 +2,6 @@ package io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.ax
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.adapter.JsonbGapAwareTrackingTokenAdapter;
-import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.adapter.JsonbGlobalSequenceTrackingTokenAdapter;
-import io.github.joht.showcase.quarkuseventsourcing.messaging.infrastructure.axon.serializer.jsonb.axon.adapter.JsonbReplayTokenAdapter;
-
 import java.util.Collections;
 
 import jakarta.json.bind.JsonbConfig;
@@ -58,6 +54,13 @@ class JsonbReplayTokenAdapterTest {
         TrackingToken current = GapAwareTrackingToken.newInstance(0, Collections.emptyList());
         TrackingToken reset = new GlobalSequenceTrackingToken(123);
         ReplayToken token = new ReplayToken(reset, current);
+        assertEquals(token, serializer.serializeAndDeserialize(token));
+    }
+
+    @Test
+    void replayTokenWithNullCurrentToken() {
+        TrackingToken reset = new GlobalSequenceTrackingToken(321);
+        ReplayToken token = new ReplayToken(reset, null);
         assertEquals(token, serializer.serializeAndDeserialize(token));
     }
 }

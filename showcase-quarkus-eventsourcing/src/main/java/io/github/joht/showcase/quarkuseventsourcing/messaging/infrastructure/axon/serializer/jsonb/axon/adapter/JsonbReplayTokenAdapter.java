@@ -47,13 +47,20 @@ class JsonbReplayTokenAdapter implements JsonbAdapter<ReplayToken, JsonObject> {
      */
     @Override
     public JsonObject adaptToJson(ReplayToken obj) {
-        return Json.createObjectBuilder()
-                .add(CURRENT_TOKEN, buildJsonFrom(obj.getCurrentToken()))
-                .add(TOKEN_AT_RESET, buildJsonFrom(obj.getTokenAtReset()))
-                .build();
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+        addOrAddNull(objectBuilder, CURRENT_TOKEN, buildJsonFrom(obj.getCurrentToken()));
+        addOrAddNull(objectBuilder, TOKEN_AT_RESET, buildJsonFrom(obj.getTokenAtReset()));
+        return objectBuilder.build();
+    }
+
+    private static final JsonObjectBuilder addOrAddNull(JsonObjectBuilder objectBuilder, String name, JsonObjectBuilder value) {
+        return (value == null)? objectBuilder.addNull(name) : objectBuilder.add(name, value);
     }
 
     private JsonObjectBuilder buildJsonFrom(Object obj) {
+        if (obj == null) {
+            return null;
+        }
         JsonObject jsonObject = getJsonb().fromJson(getJsonb().toJson(obj), JsonObject.class);
         JsonObjectBuilder builder = Json.createObjectBuilder();
         builder.add(TYPE_FIELD, obj.getClass().getName());
@@ -66,9 +73,13 @@ class JsonbReplayTokenAdapter implements JsonbAdapter<ReplayToken, JsonObject> {
      */
     @Override
     public ReplayToken adaptFromJson(JsonObject obj) {
-        TrackingToken currentToken = tokenFrom(obj.getJsonObject(CURRENT_TOKEN));
-        TrackingToken tokenAtReset = tokenFrom(obj.getJsonObject(TOKEN_AT_RESET));
+        TrackingToken currentToken = tokenFrom(getObjectOrNull(obj, CURRENT_TOKEN));
+        TrackingToken tokenAtReset = tokenFrom(getObjectOrNull(obj, TOKEN_AT_RESET));
         return new ReplayToken(tokenAtReset, currentToken);
+    }
+
+    private static final JsonObject getObjectOrNull(JsonObject obj, String name) {
+        return obj.isNull(name)? null : obj.getJsonObject(name);
     }
 
     private TrackingToken tokenFrom(JsonObject jsonObject) {
