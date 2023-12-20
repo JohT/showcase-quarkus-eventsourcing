@@ -33,14 +33,14 @@ jobs:
     strategy:
       matrix:
         java: ['17']
-   env: 
+    env: 
       CI_COMMIT_MESSAGE: Automated native image agent results (CI)
       CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
     steps:
       - name: Checkout git repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
+        # with:
+        #   token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
             
       # Cache maven repository
       - uses: actions/cache@v3
@@ -56,7 +56,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: 'graalvm'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          #github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # Build the native image of the application.
       - name: Build native image with Maven
@@ -101,19 +101,20 @@ jobs:
           if-no-files-found: error
           retention-days: 5
       
-      # Commit and push the native image agent results
-      - name: Display environment variable "github.event_name"
-        run: echo "github.event_name=${{ github.event_name }}"
-      - name: Commit native image agent results
-        working-directory: showcase-quarkus-eventsourcing
-        # Only run when a pull request gets merged or a commit is pushed to the main branch
-        # git add parameters need to match paths-ignore parameters above
-        # Git pull before add/commit/push to reduce race conditions on parallel builds
-        if: github.event_name == 'push'
-        run: |
-          git config --global user.name '${{ env.CI_COMMIT_AUTHOR }}'
-          git config --global user.email 'joht@users.noreply.github.com'
-          git pull
-          git add ${{ env.native-image-agent-results-directory }}
-          git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
-          git push
+      # TODO Temoporarily skip commit
+      # # Commit and push the native image agent results
+      # - name: Display environment variable "github.event_name"
+      #   run: echo "github.event_name=${{ github.event_name }}"
+      # - name: Commit native image agent results
+      #   working-directory: showcase-quarkus-eventsourcing
+      #   # Only run when a pull request gets merged or a commit is pushed to the main branch
+      #   # git add parameters need to match paths-ignore parameters above
+      #   # Git pull before add/commit/push to reduce race conditions on parallel builds
+      #   if: github.event_name == 'push'
+      #   run: |
+      #     git config --global user.name '${{ env.CI_COMMIT_AUTHOR }}'
+      #     git config --global user.email 'joht@users.noreply.github.com'
+      #     git pull
+      #     git add ${{ env.native-image-agent-results-directory }}
+      #     git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+      #     git push
