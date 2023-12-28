@@ -1,0 +1,84 @@
+name: GraalVM Community Edition Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+    # Ignore changes in documentation and native image agent results
+    # Need to contain git add parameters below.
+    paths-ignore: 
+      - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
+      - '**/*.md'
+      - '**/*.txt'
+      - '.gitignore'
+      - '.gitattributes'
+      - 'renovate.json'
+      - 'changelogTemplate.mustache'
+
+jobs:
+  native-image-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: ['17']
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v4
+            
+      # Cache maven repository
+      - uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # Download and prepare GraalVM Community Edition including native image tools
+      - name: Setup GraalVM Community Edition
+        uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'graalvm'
+
+      # Build the native image of the application.
+      - name: Build native image with Maven
+        working-directory: showcase-quarkus-eventsourcing
+        run: mvn verify --activate-profiles native --file pom.xml --batch-mode
+
+      # Run integration tests with activated native image agent to get trace and report files about e.g. reflection usage
+      - name: Run integration tests on GraalVM with activated native-image-agent for trace file generation
+        working-directory: showcase-quarkus-eventsourcing
+        run: mvn verify --activate-profiles native-image-agent-trace --file pom.xml --batch-mode  && sleep 4
+      - name: Generate configuration json files out of the native-image-agent trace output
+        working-directory: showcase-quarkus-eventsourcing
+        run: $GRAALVM_HOME/bin/native-image-configure generate --trace-input=target/native-image-agent-trace.json --output-dir=target/native-image-agent-trace-configs --caller-filter-file=native-image-caller-filter-rules.json
+      
+      # Assemble the name of the native image agent results directory based on Java, Axon, Quarkus and GraalVM version
+      - name: Get the axon version from the maven pom variable and set the environment variable "axon-version"
+        working-directory: showcase-quarkus-eventsourcing
+        run: echo "axon-version=$(mvn -q help:evaluate -Dexpression=axon.version -DforceStdout | tr . -)" >> $GITHUB_ENV
+      - name: Get the quarkus version from the maven pom variable and set the environment variable "quarkus-version"
+        working-directory: showcase-quarkus-eventsourcing
+        run: echo "quarkus-version=$(mvn -q help:evaluate -Dexpression=quarkus.platform.version -DforceStdout | tr . -)" >> $GITHUB_ENV
+      - name: Assemble the name of the directory for the native image agent output files and set the environment variable "native-image-agent-results-directory"
+        run: echo "native-image-agent-results-directory=native-image-agent-results/java-${{ matrix.java }}-axon-${{ env.axon-version }}-quarkus-${{ env.quarkus-version }}-graalvm-oracle" >> $GITHUB_ENV
+      
+      # Create the directory with the previously assembled name within "native-image-agent-results" and fill in the result files.
+      - name: Create the native image agent results directory
+        working-directory: showcase-quarkus-eventsourcing
+        run: mkdir -p ${{ env.native-image-agent-results-directory }}
+      - name: Copy the native image agent trace file into the native image agent results directory
+        working-directory: showcase-quarkus-eventsourcing
+        run: cp target/native-image-agent-trace.json ${{ env.native-image-agent-results-directory }}
+      - name: Copy the native image agent configuration files into the native image agent results directory
+        working-directory: showcase-quarkus-eventsourcing
+        run: cp --recursive target/native-image-agent-trace-configs/* ${{ env.native-image-agent-results-directory }}
+      
+      # Upload the native image agent results in case they are needed for troubleshooting for a couple of days
+      - name: Archive native image agent results
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-image-agent-results-java-${{ matrix.java }}
+          path: showcase-quarkus-eventsourcing/${{ env.native-image-agent-results-directory }}
+          if-no-files-found: error
+          retention-days: 5
