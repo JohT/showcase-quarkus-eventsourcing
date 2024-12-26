@@ -29,7 +29,7 @@ on:
 
 jobs:
   native-image-build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         java: ['java17']
