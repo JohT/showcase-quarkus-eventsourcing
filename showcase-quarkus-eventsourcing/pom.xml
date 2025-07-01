@@ -30,7 +30,7 @@
 		<jacc-api.version>1.6.1</jacc-api.version>
 		
 		<axon.version>4.11.2</axon.version>
-		<dom4j.version>2.1.5</dom4j.version>
+		<dom4j.version>2.2.0</dom4j.version>
 		<xom.version>1.2.10</xom.version>
 		<reactor-core.version>3.7.7</reactor-core.version>
 
