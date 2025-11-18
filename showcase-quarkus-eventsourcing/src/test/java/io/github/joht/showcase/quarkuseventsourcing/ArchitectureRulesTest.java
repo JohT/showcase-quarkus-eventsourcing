@@ -22,7 +22,7 @@ import com.tngtech.archunit.lang.SimpleConditionEvent;
 
 import io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTargetAggregateIdentifier;
 import io.github.joht.showcase.quarkuseventsourcing.message.command.CommandTargetAggregateVersion;
-import nl.jqno.equalsverifier.ConfiguredEqualsVerifier;
+import nl.jqno.equalsverifier.api.ConfiguredEqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 import nl.jqno.equalsverifier.Warning;
