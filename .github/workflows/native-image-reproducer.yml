@@ -14,36 +14,19 @@ on:
       - '.gitattributes'
       - 'renovate.json'
       - 'changelogTemplate.mustache'
-  pull_request:
-    branches:
-      - master
-    # Ignore changes in documentation and native image agent results
-    paths-ignore: 
-      - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
-      - '**/*.md'
-      - '**/*.txt'
-      - '.gitignore'
-      - '.gitattributes'
-      - 'renovate.json'
-      - 'changelogTemplate.mustache'
 
 jobs:
   native-image-build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         java: ['17']
-    env: 
-      CI_COMMIT_MESSAGE: Automated native image agent results (CI)
-      CI_COMMIT_AUTHOR: ${{ github.event.repository.name }} Continuous Integration
     steps:
       - name: Checkout git repository
-        uses: actions/checkout@v6
-        with:
-          token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
+        uses: actions/checkout@v4
             
       # Cache maven repository
-      - uses: actions/cache@v5
+      - uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -56,7 +39,6 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: 'graalvm'
-          github-token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
 
       # Build the native image of the application.
       - name: Build native image with Maven
@@ -100,21 +82,3 @@ jobs:
           path: showcase-quarkus-eventsourcing/${{ env.native-image-agent-results-directory }}
           if-no-files-found: error
           retention-days: 5
-      
-      # TODO Temoporarily skip commit
-      # # Commit and push the native image agent results
-      # - name: Display environment variable "github.event_name"
-      #   run: echo "github.event_name=${{ github.event_name }}"
-      # - name: Commit native image agent results
-      #   working-directory: showcase-quarkus-eventsourcing
-      #   # Only run when a pull request gets merged or a commit is pushed to the main branch
-      #   # git add parameters need to match paths-ignore parameters above
-      #   # Git pull before add/commit/push to reduce race conditions on parallel builds
-      #   if: github.event_name == 'push'
-      #   run: |
-      #     git config --global user.name '${{ env.CI_COMMIT_AUTHOR }}'
-      #     git config --global user.email 'joht@users.noreply.github.com'
-      #     git pull
-      #     git add ${{ env.native-image-agent-results-directory }}
-      #     git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
-      #     git push
