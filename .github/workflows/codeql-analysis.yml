@@ -14,7 +14,7 @@ name: "CodeQL"
 on:
   push:
     branches: 
-      - master
+      - main
     # Ignore changes in documentation and reports
     paths-ignore: 
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
@@ -27,7 +27,7 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: 
-      - master
+      - main
     # Ignore changes in documentation and reports
     paths-ignore: 
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'

@@ -17,4 +17,4 @@ Overview of the commands to test, run, build and release this project.
 - `mvn release:prepare` Prepares a new version
 - `mvn release:perform` Performs the publish-ready release including tag and version number increment
 - `git push–tags` Pushes the newly created tag to the remote repository
-- `git push origin master` Pushes code changes (pom) to the remote repository
+- `git push origin main` Pushes code changes (pom) to the remote repository

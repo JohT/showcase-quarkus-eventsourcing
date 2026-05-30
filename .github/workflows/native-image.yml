@@ -3,7 +3,7 @@ name: GraalVM Community Edition Continuous Integration
 on:
   push:
     branches:
-      - master
+      - main
     # Ignore changes in documentation and native image agent results
     # Need to contain git add parameters below.
     paths-ignore: 
@@ -16,7 +16,7 @@ on:
       - 'changelogTemplate.mustache'
   pull_request:
     branches:
-      - master
+      - main
     # Ignore changes in documentation and native image agent results
     paths-ignore: 
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'

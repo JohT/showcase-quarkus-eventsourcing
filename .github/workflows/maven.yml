@@ -3,7 +3,7 @@ name: Java Continuous Integration
 on:
   push:
     branches:
-      - master
+      - main
     # Ignore changes in documentation and reports
     paths-ignore: 
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
@@ -15,7 +15,7 @@ on:
       - 'changelogTemplate.mustache'
   pull_request:
     branches:
-      - master
+      - main
     # Ignore changes in documentation and reports
     paths-ignore: 
       - 'showcase-quarkus-eventsourcing/native-image-agent-results/**'
