@@ -1,0 +1,16 @@
+CREATE SCHEMA IF NOT EXISTS "axon_on_microprofile_query_tryout";
+
+CREATE TABLE "axon_on_microprofile_query_tryout"."account" (
+    ACCOUNTID VARCHAR NOT NULL,
+    NICKNAME VARCHAR NOT NULL,
+    PRIMARY KEY (ACCOUNTID)
+);
+
+CREATE TABLE "axon_on_microprofile_query_tryout"."nickname" (
+    NICKNAME VARCHAR NOT NULL,
+    COUNT BIGINT NOT NULL DEFAULT 0,
+    CREATESEQUENCE BIGINT NOT NULL DEFAULT 0,
+    FIRSTCHOSEN TIMESTAMP NULL,
+    LASTCHOSEN TIMESTAMP NULL,
+    PRIMARY KEY (NICKNAME)
+);
