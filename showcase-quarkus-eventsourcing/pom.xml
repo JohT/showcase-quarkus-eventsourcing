@@ -17,7 +17,7 @@
 		<surefire-plugin.version>3.5.6</surefire-plugin.version>
 		<failsafe-plugin.version>3.5.6</failsafe-plugin.version>
 		<release-plugin.version>3.3.1</release-plugin.version>
-		<jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.15</jacoco-maven-plugin.version>
 		<jasmine-maven-plugin.version>2.2</jasmine-maven-plugin.version>
 		<git-changelog-maven-plugin.version>2.2.11</git-changelog-maven-plugin.version>
 
