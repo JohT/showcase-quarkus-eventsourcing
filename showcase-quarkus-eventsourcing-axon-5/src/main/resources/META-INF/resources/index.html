@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles/application.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="styles/animate.min.css" type="text/css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Baumans|Open+Sans&display=swap" rel="stylesheet" />
+
+    <script src="javascript/application.js"></script>
+    <!-- 
+    <script src="../../../javascript/polyfills/addEventListener.js"></script>
+    <script src="../../../javascript/polyfills/eventsource.min.js"></script>
+    <script src="../../../javascript/polyfills/fetch.umd.js"></script>
+    <script src="../../../javascript/polyfills/promise.js"></script>
+    <script src="../../../javascript/polyfills/startswith.js"></script>
+    <script src="../../../javascript/event.js"></script>
+    <script src="../../../javascript/account.js"></script>
+    <script src="../../../javascript/startup.js"></script>
+    -->
+
+    <title>event sourcing showcase</title>
+  </head>
+
+  <body>
+    <header class="container">
+      <h1 id="headertext" class="animated rubberBand delay-1s">Event Sourcing Showcase</h1>
+      <div class="marquee fast backgroundtext">
+        <div>
+          <span>----</span>
+        </div>
+      </div>
+      <div class="marquee slow backgroundtext">
+        <div>
+          <span>--</span>
+        </div>
+      </div>
+      <div class="marquee normal backgroundtext">
+        <div>
+          <span>---</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="accountsettings container">
+      <div>
+        <input id="accountid" placeholder="no account selected" readonly />
+      </div>
+      <div>
+        <table>
+          <tr>
+            <td rowspan="2">
+              <button id="create_account" class="action big">
+                create account
+              </button>
+            </td>
+            <td class="nickname_panel hide">
+              <input id="nickname" placeholder="choose nickname" />
+              <input id="nickname_old" hidden="true" />
+            </td>
+          </tr>
+          <tr>
+            <td class="nickname_panel confirmationalignment hide">
+              <button id="nickname_confirm" class="confirm action"></button>
+              <button id="nickname_reset" class="abort noaction"></button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <button id="replay_nicknames" class="action big">
+        replay nicknames
+      </button>
+    </section>
+
+    <section class="eventviews container">
+      <div class="eventview">
+        <h3>nicknames</h3>
+        <ul id="nicknamechanges" class="bulletless"></ul>
+      </div>
+      <!-- for further views -->
+      <div class="eventview">
+        <h3>&nbsp;</h3>
+        <ul id="createdaccounts" class="bulletless">
+          <li>&nbsp;</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="container">
+      (c)2020 JohT
+    </footer>
+  </body>
+</html>

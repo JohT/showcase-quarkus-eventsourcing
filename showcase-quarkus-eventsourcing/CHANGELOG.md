@@ -2,6 +2,9 @@
 
 ## Next Release
 
+- Update dependency ubuntu to v24
+  ([#425](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/425))
+  [2026-06-02]
 - Update dependency org.apache.maven.plugins:maven-failsafe-plugin to v3.5.6
   ([#423](https://github.com/JohT/showcase-quarkus-eventsourcing/pull/423))
   [2026-05-28]

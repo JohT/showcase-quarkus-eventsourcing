@@ -1,0 +1,262 @@
+[
+    {
+        "name": "org.axonframework.messaging.commandhandling.annotation.CommandHandler",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.common.Priority",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.eventsourcing.annotation.EventSourcedEntity",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.eventsourcing.annotation.EventSourcingHandler",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.eventsourcing.annotation.reflection.EntityCreator",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.eventsourcing.annotation.reflection.InjectEntityId",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.messaging.eventhandling.annotation.EventHandler",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.messaging.eventhandling.annotation.Timestamp",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.messaging.eventhandling.replay.annotation.ResetHandler",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.messaging.queryhandling.annotation.QueryHandler",
+        "allDeclaredMethods": true
+    },
+    {
+        "name": "org.axonframework.modelling.annotation.TargetEntityId",
+        "allDeclaredMethods": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.configuration.MessagingConfigurationDefaults",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.commandhandling.annotation.CommandDispatcherParameterResolverFactoryConfigurationEnhancer",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.annotation.EventAppenderParameterResolverFactoryConfigurationEnhancer",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.configuration.EventBusConfigurationDefaults",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.reflection.ClasspathParameterResolverConfigurationEnhancer",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.configuration.reflection.ConfigurationParameterResolverConfigurationEnhancer",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.reflection.HierarchicalParameterResolverFactoryConfigurationEnhancer",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.eventsourcing.configuration.EventSourcingConfigurationDefaults",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.modelling.HierarchicalStateManagerConfigurationEnhancer",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.modelling.annotation.InjectEntityParameterResolverFactoryConfigurationEnhancer",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.modelling.configuration.ModellingConfigurationDefaults",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.modelling.entity.annotation.ListEntityChildModelDefinition",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.modelling.entity.annotation.SingleEntityChildModelDefinition",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.common.property.UniformPropertyAccessStrategy",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.common.property.BeanPropertyAccessStrategy",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.common.property.DirectPropertyAccessStrategy",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.annotation.SequenceNumberParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.annotation.TimestampParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.processing.streaming.token.annotation.TrackingTokenParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.replay.annotation.ReplayContextParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.replay.annotation.ReplayParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.annotation.AggregateTypeParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.annotation.DefaultParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.deadletter.DeadLetterParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.annotation.InterceptorChainParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.annotation.MessageIdentifierParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.interception.annotation.ResultParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.annotation.SourceIdParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.unitofwork.annotation.ProcessingContextParameterResolverFactory",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.annotation.AnnotatedMessageHandlingMemberDefinition",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.commandhandling.annotation.MethodCommandHandlerDefinition",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.annotation.MethodEventHandlerDefinition",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.annotation.MethodSequencingPolicyEventHandlerDefinition",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.eventhandling.replay.annotation.ReplayAwareMessageHandlerWrapper",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.core.interception.annotation.MessageHandlerInterceptorDefinition",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    },
+    {
+        "allDeclaredConstructors": true,
+        "name": "org.axonframework.messaging.queryhandling.annotation.MethodQueryHandlerDefinition",
+        "allDeclaredMethods": true,
+        "allDeclaredFields": true
+    }
+]

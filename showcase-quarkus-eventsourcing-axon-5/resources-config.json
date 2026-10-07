@@ -1,0 +1,11 @@
+{
+    "resources": [
+        {"pattern": "\\QMETA-INF/services/org.axonframework.common.configuration.ConfigurationEnhancer\\E"},
+        {"pattern": "\\QMETA-INF/services/org.axonframework.messaging.core.annotation.ParameterResolverFactory\\E"},
+        {"pattern": "\\QMETA-INF/services/org.axonframework.messaging.core.annotation.HandlerDefinition\\E"},
+        {"pattern": "\\QMETA-INF/services/org.axonframework.messaging.core.annotation.HandlerEnhancerDefinition\\E"},
+        {"pattern": "\\QMETA-INF/services/org.axonframework.modelling.entity.annotation.EntityChildModelDefinition\\E"},
+        {"pattern": "\\QMETA-INF/services/org.axonframework.common.property.PropertyAccessStrategy\\E"},
+        {"pattern": ".*\\.sql$"}
+    ]
+}
